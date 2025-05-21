@@ -2,47 +2,65 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
-package com.mycompany.pokando;
+package com.br.Pokando.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author 04766167198
  */
-public class Evento {
+@Entity
+public class Evento implements Serializable{
 
     private String nomeEvento;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private LocalDate data;
-    private LocalTime hora;
+    // private LocalDate data;
+   // private LocalTime hora;
     private String descricao;
     private float custo;
     private double limiteDePessoas;
     private boolean autoricaoLocal;
     private String status;
-
-
     List<Local> local;
+/*
+    voltar quando estiver tudo definido...
+  
     List<Organizador> organizador;
     List<Usuario> usuario;
     List<CategoriaDeIngresso> categoria;
-    
+    */
     public Evento() {
     }
 
-    public Evento(String nomeEvento) {
+    public Evento(String nomeEvento, int id, LocalDate data, LocalTime hora, String descricao, float custo, double limiteDePessoas, boolean autoricaoLocal, String status) {
         this.nomeEvento = nomeEvento;
-        this.local = new ArrayList<>();
+        this.id = id;
+        this.descricao = descricao;
+        this.custo = custo;
+        this.limiteDePessoas = limiteDePessoas;
+        this.autoricaoLocal = autoricaoLocal;
+        this.status = status;
     }
+
+  
 
     public List<Local> getLocal() {
         return local;
     }
-
+    public void setLocal(List<Local> local){
+    this.local = local;
+    }
+/*
     public List<Organizador> getOrganizador() {
         return organizador;
     }
@@ -54,7 +72,7 @@ public class Evento {
      public List<CategoriaDeIngresso> getCategoriaDeIngresso() {
         return categoria;
      }
-     
+     */
     public String getNomeEvento() {
         return nomeEvento;
     }
@@ -71,7 +89,7 @@ public class Evento {
         this.id = id;
     }
 
-    public LocalDate getData() {
+    /*public LocalDate getData() {
         return data;
     }
 
@@ -86,7 +104,7 @@ public class Evento {
     public void setHora(LocalTime hora) {
         this.hora = hora;
     }
-
+*/
     public String getDescricao() {
         return descricao;
     }
@@ -128,5 +146,9 @@ public class Evento {
     }
 
 
+    
+    
+    
+    
 
 }
