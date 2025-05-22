@@ -4,15 +4,27 @@
  */
 package com.br.Pokando.model.heranca;
 
-import com.br.Pokando.model.Evento;
+//import com.br.Pokando.model.Evento;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+//import java.util.List;
 
 /**
  *
  * @author 05029689150
  */
-public class Usuario {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Usuario implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nomeCompleto;
     private String email;
     private String senha;
@@ -22,14 +34,34 @@ public class Usuario {
     private String telefone;
     private String foto;
 
-     List<Evento> evento;
+  //   List<Evento> evento;
     
     
-    public List<Evento> getEvento() {
+    /*public List<Evento> getEvento() {
         return evento;
     }
-    
+   */ 
     public Usuario() {
+    }
+    
+     public Usuario(Long id, String nomeCompleto, String email, String senha, String cpf, String rg, Date dataDeNascimento, String telefone, String foto) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.senha = senha;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.dataDeNascimento = dataDeNascimento;
+        this.telefone = telefone;
+        this.foto = foto;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     
@@ -96,6 +128,8 @@ public class Usuario {
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
+   
     
     
 }
