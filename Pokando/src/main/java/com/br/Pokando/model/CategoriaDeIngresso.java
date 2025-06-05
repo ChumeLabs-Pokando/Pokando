@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author 05029689150
+ * @author 05493172100
  */
 @Entity
 public class CategoriaDeIngresso {
