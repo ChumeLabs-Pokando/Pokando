@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventoController {
     @Autowired
    private EventoRepository repository;
+  
     
     @Transactional
     @PostMapping
