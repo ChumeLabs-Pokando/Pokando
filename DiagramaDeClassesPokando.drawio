@@ -363,7 +363,7 @@
           <mxGeometry y="52" width="140" height="26" as="geometry" />
         </mxCell>
         <mxCell id="RDp6uDrn0O3kN2cW2lQx-130" value="Estado" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-340" width="140" height="104" as="geometry" />
+          <mxGeometry x="-340" y="-48" width="140" height="104" as="geometry" />
         </mxCell>
         <mxCell id="RDp6uDrn0O3kN2cW2lQx-133" value="id: Long" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="RDp6uDrn0O3kN2cW2lQx-130">
           <mxGeometry y="26" width="140" height="26" as="geometry" />
@@ -420,7 +420,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="RDp6uDrn0O3kN2cW2lQx-157" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="RDp6uDrn0O3kN2cW2lQx-133" target="RDp6uDrn0O3kN2cW2lQx-93">
+        <mxCell id="RDp6uDrn0O3kN2cW2lQx-157" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="RDp6uDrn0O3kN2cW2lQx-132" target="RDp6uDrn0O3kN2cW2lQx-3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="RDp6uDrn0O3kN2cW2lQx-159" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;startFill=0;" edge="1" parent="1" source="RDp6uDrn0O3kN2cW2lQx-89" target="RDp6uDrn0O3kN2cW2lQx-90">
