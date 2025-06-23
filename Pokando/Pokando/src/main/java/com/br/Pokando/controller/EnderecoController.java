@@ -39,15 +39,27 @@ public class EnderecoController {
     }
 
     ;
-/*
-    @GetMapping("/{logradouro}")
-    public ResponseEntity<Endereco> buscarEnderecoPorLogradouro(
-            @RequestParam String logradouro
-    ) {
-        return ResponseEntity.ok(enderecoService.buscarPorLogradouro(logradouro));
-    };
 
-*/
+    @GetMapping("/logradouro-{logradouro}")
+    public Endereco findByLogradouro(
+            @PathVariable String logradouro
+    ) {
+        var optional = find(logradouro);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        return null;
+    }
+
+
+    public Optional<Endereco> find(
+            String logradouro
+    ) {
+        Optional<Endereco> optional = enderecoService.buscarPorLogradouro(logradouro);
+        return optional;
+    }
+
+
     @GetMapping
     public List<Endereco> list() {
         var lista = repository.findAll();
@@ -85,6 +97,22 @@ public class EnderecoController {
         }
     }
 
+    /*
+    -- teste --
+    @Transactional
+    @DeleteMapping("/logradouro-{logradouro}")
+    public void delete(
+            @PathVariable String logradouro
+    ) {
+
+        var optional = find(logradouro);
+        if (optional.isPresent()) {
+            Endereco endereco = optional.get();
+            enderecoService.deletarPorLogradouro(logradouro);
+
+        }
+    }*/
+
     @Transactional
     @PutMapping("/{id}")
     public Endereco update(
@@ -94,6 +122,8 @@ public class EnderecoController {
         Endereco enderecoEntity = repository.findById(id).orElseThrow(() ->
                 new RuntimeException("Endereço não encontrado"));
         Endereco enderecoAtualizado = Endereco.builder()
+                .id(endereco.getId() != null ? endereco.getId() :
+                        enderecoEntity.getId())
                 .logradouro(endereco.getLogradouro() != null ? endereco.getLogradouro() :
                         enderecoEntity.getLogradouro())
                 .bairro(endereco.getBairro() != null ? endereco.getBairro()

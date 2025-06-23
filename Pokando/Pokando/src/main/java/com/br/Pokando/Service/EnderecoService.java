@@ -8,6 +8,7 @@ import com.br.Pokando.model.Endereco;
 import com.br.Pokando.repository.EnderecoRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -28,10 +29,10 @@ public class EnderecoService {
        return saved;
     }
 
-    public Endereco buscarPorLogradouro(String logradouro) {
-        return repository.findByLogradouro(logradouro).orElseThrow(
+    public Optional<Endereco> buscarPorLogradouro(String logradouro) {
+        return Optional.ofNullable(repository.findByLogradouro(logradouro).orElseThrow(
                 () -> new RuntimeException("Logradouro não encontrado")
-        );
+        ));
 
     }
     public List<Endereco> buscarTudo() {
