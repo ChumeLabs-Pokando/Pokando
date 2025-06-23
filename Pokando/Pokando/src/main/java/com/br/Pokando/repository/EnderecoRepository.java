@@ -19,7 +19,7 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
     Optional<Endereco> findByLogradouro(String logradouro);
     
     @Transactional
-    void deletarPorLogradouro(String logradouro);
+    Optional<Endereco> deleteByLogradouro(String logradouro);
     
     
 }
