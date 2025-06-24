@@ -4,13 +4,18 @@
  */
 package com.br.Pokando.dto;
 
-import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+
+
 
 /**
  *
@@ -24,8 +29,10 @@ import lombok.Setter;
 @AllArgsConstructor
 // Request é o que eu vou receber do Front para gravar e gerenciar no back e no bd...
 public class EnderecoRequest {
-    
-  
+
+    @NotNull
+    @NotEmpty(message = "Logradouro não pode ser Vazio.")
+    @NotBlank
     private String logradouro;
    
     private String cidade;
@@ -37,5 +44,6 @@ public class EnderecoRequest {
     private String bairro;
     
     private String complemento;
-    
+
+
 }

@@ -4,15 +4,15 @@
  */
 package com.br.Pokando.controller;
 
+import com.br.Pokando.Mapper.EnderecoMapper;
 import com.br.Pokando.Service.EnderecoService;
+import com.br.Pokando.dto.EnderecoRequest;
+import com.br.Pokando.dto.EnderecoResponse;
 import com.br.Pokando.model.Endereco;
-import com.br.Pokando.model.Evento;
 import com.br.Pokando.repository.EnderecoRepository;
 import jakarta.transaction.Transactional;
-import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,15 +31,24 @@ public class EnderecoController {
     @Autowired
     private EnderecoRepository repository;
 
+    private final EnderecoMapper mapper;
+
+
+    @Transactional
     @PostMapping
-    public Endereco salvarEndereco(
-            @RequestBody Endereco endereco
+    public EnderecoResponse salvarEndereco(
+            @RequestBody EnderecoRequest endereco
     ) {
-        return enderecoService.salvarEndereco(endereco);
+        var entity = mapper.toEntity(endereco);
+        var saved = repository.save(entity);
+        var dto = mapper.toDto(saved);
+        return dto;
     }
 
     ;
 
+    // busca apenas logradouros unicos no sistema...
+    // implementar para buscar no banco com LIKE = %% para busca dos usuarios...
     @GetMapping("/logradouro-{logradouro}")
     public Endereco findByLogradouro(
             @PathVariable String logradouro
@@ -61,9 +70,9 @@ public class EnderecoController {
 
 
     @GetMapping
-    public List<Endereco> list() {
-        var lista = repository.findAll();
-        return lista;
+    public List<EnderecoResponse> list() {
+        List<Endereco> l = repository.findAll();
+        return mapper.toListDto(l);
     }
 
     @GetMapping("/{id}")
