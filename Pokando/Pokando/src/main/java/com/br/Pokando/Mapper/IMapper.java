@@ -17,8 +17,6 @@ public interface IMapper<E, RESP, CREATE_DTO, UPDATE_DTO> {
 
     public RESP toDto(E entity);
 
-    EnderecoResponse toDto(Endereco entity);
-
     public E toEntity(CREATE_DTO request);
 
     public E update(UPDATE_DTO request, E entity);

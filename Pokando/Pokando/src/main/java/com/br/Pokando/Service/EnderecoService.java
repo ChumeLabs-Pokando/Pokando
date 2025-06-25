@@ -29,13 +29,25 @@ public class EnderecoService {
        return saved;
     }
 
-    public Optional<Endereco> buscarPorLogradouro(String logradouro) {
+    /*public Optional<Endereco> buscarPorLogradouro(String logradouro) {
         return Optional.ofNullable(repository.findByLogradouro(logradouro).orElseThrow(
                 () -> new RuntimeException("Logradouro não encontrado")
-        ));
+        ));*/
 
+    public Optional<Endereco> buscarPorLogradouro(String logradouro) {
+        // Busca todos e retorna o primeiro encontrado (ou você pode retornar a lista inteira se preferir)
+        return repository
+                .findByLogradouroContainingIgnoreCase(logradouro)
+                .stream()
+                .findFirst();
     }
-    public List<Endereco> buscarTudo() {
+
+    // ou se quiser retornar todos:
+    public List<Endereco> buscarTodosPorLogradouro(String logradouro) {
+        return repository.findByLogradouroContainingIgnoreCase(logradouro);
+    }
+
+    public List<Endereco> buscarTodos() {
         var lista = repository.findAll();
         return lista;
 

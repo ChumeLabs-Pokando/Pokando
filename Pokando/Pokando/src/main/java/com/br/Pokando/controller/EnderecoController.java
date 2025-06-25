@@ -48,8 +48,7 @@ public class EnderecoController {
     ;
 
     // busca apenas logradouros unicos no sistema...
-    // implementar para buscar no banco com LIKE = %% para busca dos usuarios...
-    @GetMapping("/logradouro-{logradouro}")
+   /* @GetMapping("/logradouro-{logradouro}")
     public Endereco findByLogradouro(
             @PathVariable String logradouro
     ) {
@@ -60,13 +59,28 @@ public class EnderecoController {
         return null;
     }
 
-
     public Optional<Endereco> find(
             String logradouro
     ) {
         Optional<Endereco> optional = enderecoService.buscarPorLogradouro(logradouro);
         return optional;
     }
+
+    */
+
+    // pesquisa zika, se voce mandar vazio ele devolve todos os logradouros..
+    // se voce pesquisar ele devolve todos com a pesquisa; exemplo: ?logradouro=rua (ele ignora maiusculo e minisculo)
+    // no bd ta buscando um LIKE = "%?%"
+    @GetMapping("/logradouro")
+    public List<Endereco> findByLogradouro(@RequestParam(required = false) String logradouro) {
+        if (logradouro == null || logradouro.isBlank()) {
+            return enderecoService.buscarTodos();
+        }
+        return enderecoService.buscarTodosPorLogradouro(logradouro);
+    }
+
+
+
 
 
     @GetMapping

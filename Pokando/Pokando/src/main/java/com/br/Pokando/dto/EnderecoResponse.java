@@ -4,11 +4,11 @@
  */
 package com.br.Pokando.dto;
 
+import com.br.Pokando.model.Estado;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -19,11 +19,12 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-//Reponse é oque eu vou devolver pro front, da pra tratar o que vai ser ocultado(no caso dados mais sensiveis)
+//Response é oque eu vou devolver pro front, da pra tratar o que vai ser ocultado(no caso dados mais sensiveis)
 public class EnderecoResponse {
-    
+
+    private Long id;
+
     private String logradouro;
    
     private String cidade;
@@ -35,6 +36,11 @@ public class EnderecoResponse {
     private String bairro;
     
     private String complemento;
+
+    private Estado estado;
     
-    
+    public EnderecoResponse(Long id){
+        this.id = this.id;
+    }
+
 }

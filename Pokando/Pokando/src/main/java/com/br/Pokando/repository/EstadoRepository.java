@@ -12,5 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author felip
  */
 public interface EstadoRepository extends JpaRepository<Estado, Long> {
-    
+
+
 }

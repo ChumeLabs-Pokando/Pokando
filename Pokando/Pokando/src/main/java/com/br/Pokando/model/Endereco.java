@@ -4,11 +4,7 @@
  */
 package com.br.Pokando.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +22,6 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class Endereco {
 
@@ -46,7 +41,14 @@ public class Endereco {
     private String bairro;
     @Column(name = "complemento", nullable = true)
     private String complemento;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "estado_id")
+    private Estado estado;
 
-   
-    
+    public Endereco() {
+    }
+
+    public Endereco(Long id) {
+        this.id = id;
+    }
 }
