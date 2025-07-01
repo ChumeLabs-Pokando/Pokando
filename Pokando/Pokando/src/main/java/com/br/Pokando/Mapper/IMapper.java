@@ -1,7 +1,9 @@
 package com.br.Pokando.Mapper;
 
+import com.br.Pokando.dto.EnderecoRequest;
 import com.br.Pokando.dto.EnderecoResponse;
 import com.br.Pokando.model.Endereco;
+import com.br.Pokando.repository.EstadoRepository;
 
 import java.util.List;
 

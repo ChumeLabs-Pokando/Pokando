@@ -43,4 +43,8 @@ public class EnderecoResponse {
         this.id = this.id;
     }
 
+
+    public void setEstado(EstadoResponse dto) {
+        this.estado = estado;
+    }
 }

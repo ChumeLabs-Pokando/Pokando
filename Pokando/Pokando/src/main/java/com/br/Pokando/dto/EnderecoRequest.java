@@ -23,7 +23,6 @@ import lombok.Setter;
  * @author felip
  */
 @Builder
-@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,6 +30,8 @@ import lombok.Setter;
 // Request é o que eu vou receber do Front para gravar e gerenciar no back e no bd...
 public class EnderecoRequest {
 
+
+    private  Long id;
     @NotNull
     @NotEmpty(message = "Logradouro não pode ser Vazio.")
     @NotBlank
@@ -46,7 +47,8 @@ public class EnderecoRequest {
     
     private String complemento;
 
-    private Estado estado;
+    @NotNull(message = "Estado não pode ser nulo.")
+    private EstadoResponse estado;
 
 
 }
