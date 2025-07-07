@@ -91,8 +91,7 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
     }
 
 
-
-
+    @Override
     public Endereco update(EnderecoRequest request, Endereco entity) {
         entity.setLogradouro(request.getLogradouro());
         entity.setCidade(request.getCidade());
@@ -100,27 +99,9 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
         entity.setCep(request.getCep());
         entity.setBairro(request.getBairro());
         entity.setComplemento(request.getComplemento());
-        return entity;
-    }
-
-    @Override
-    public Produto update(ProdutoRequest request, Produto entity) {
-        entity.setNome(request.getNome());
-        entity.setDescricao(request.getDescricao());
-        entity.setEstoqueMinimo(request.getEstoqueMinimo());
-        if (request.getSubGrupo() != null) {
-            var subgrupo = subgrupoMapper.toEntity(request.getSubGrupo());
-            entity.setSubgrupo(subgrupo);
-        }
-
-        if (request.getUnidadeMedida() != null) {
-            var unidadeMedida = unidadeMedidaMapper.toEntity(request.getUnidadeMedida());
-            entity.setUnidadeMedida(unidadeMedida);
-        }
-
-        if (request.getMarca() != null) {
-            var marca = marcaMapper.toEntity(request.getMarca());
-            entity.setMarca(marca);
+        if (request.getEstado() != null) {
+            var subgrupo = estadoMapper.toEntity(request.getEstado());
+            entity.setEstado(subgrupo);
         }
         return entity;
     }
