@@ -12,13 +12,19 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EstadoResponse {
-
-    public Long id;
+public class EstadoResponse extends DefaultResponse{
 
     public String nome;
 
     public String sigla;
 
+    public EstadoResponse(Long id) {
+        super(id);
+    }
+    public EstadoResponse(Long id, String nome, String sigla) {
+        super(id);
+        this.nome = nome;
+        this.sigla = sigla;
+    }
 
 }

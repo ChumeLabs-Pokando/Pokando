@@ -16,10 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-
-
 /**
- *
  * @author felip
  */
 @Builder
@@ -28,27 +25,29 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 // Request é o que eu vou receber do Front para gravar e gerenciar no back e no bd...
-public class EnderecoRequest {
+public class EnderecoRequest extends DefaultRequest {
 
 
-    private  Long id;
     @NotNull
     @NotEmpty(message = "Logradouro não pode ser Vazio.")
     @NotBlank
     private String logradouro;
-   
+
     private String cidade;
-   
+
     private String numero;
-    
+
     private String cep;
-    
+
     private String bairro;
-    
+
     private String complemento;
 
     @NotNull(message = "Estado não pode ser nulo.")
-    private EstadoResponse estado;
+    private EstadoRequest estado;
 
+    public EnderecoRequest(Long id) {
+        super(id);
 
+    }
 }

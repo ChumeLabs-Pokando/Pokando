@@ -41,8 +41,8 @@ public class Endereco {
     private String bairro;
     @Column(name = "complemento", nullable = true)
     private String complemento;
-    @OneToOne(optional = false)
-    @JoinColumn(name = "estado_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "estado_id", nullable = false)
     private Estado estado;
 
     public Endereco() {

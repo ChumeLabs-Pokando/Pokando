@@ -27,7 +27,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/endereco")
 public class EnderecoController
-        extends CRUDControllerAdapter<Endereco, Long, EnderecoResponse, EnderecoRequest, EnderecoRequest> {
+ extends CRUDDefaultControllerAdapter<Endereco, Long, EnderecoResponse, EnderecoRequest, EnderecoRequest> {
 
     public EnderecoController(IService<Endereco, Long, EnderecoResponse, EnderecoRequest, EnderecoRequest> service, IMapper<Endereco, EnderecoResponse, EnderecoRequest, EnderecoRequest> mapper) {
         super(service, mapper);

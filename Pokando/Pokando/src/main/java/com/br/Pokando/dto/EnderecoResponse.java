@@ -16,14 +16,13 @@ import lombok.Setter;
  * @author felip
  */
 @Builder
-@Data
 @Getter
 @Setter
 @AllArgsConstructor
 //Response é oque eu vou devolver pro front, da pra tratar o que vai ser ocultado(no caso dados mais sensiveis)
-public class EnderecoResponse {
+public class EnderecoResponse extends DefaultResponse{
 
-    private Long id;
+
 
     private String logradouro;
    
@@ -37,14 +36,22 @@ public class EnderecoResponse {
     
     private String complemento;
 
-    private Estado estado;
-    
-    public EnderecoResponse(Long id){
-        this.id = this.id;
+    private EstadoResponse estado;
+
+    public EnderecoResponse(Long id) {
+        super(id);
     }
-
-
-    public void setEstado(EstadoResponse dto) {
+    public EnderecoResponse(Long id, String logradouro, String cidade, String numero, String cep, String bairro, String complemento, EstadoResponse estado) {
+        super(id);
+        this.logradouro = logradouro;
+        this.cidade = cidade;
+        this.numero = numero;
+        this.cep = cep;
+        this.bairro = bairro;
+        this.complemento = complemento;
         this.estado = estado;
+
     }
+
+
 }

@@ -42,7 +42,6 @@ public abstract class CRUDControllerAdapter<E, K, DTO_RESPONSE, DTO_CREATE_REQUE
         this.mapper = mapper;
     }
 
-
     /**
      * Método para criar URI.Método utilizado para criar a URI que será
      * devolvida na resposta ao sistema requisitante.
@@ -51,34 +50,9 @@ public abstract class CRUDControllerAdapter<E, K, DTO_RESPONSE, DTO_CREATE_REQUE
      * @param uriBuilder    Objeto da classe UriComponentsBuilder utilizado para criar a URI.
      * @return
      */
-    @Override
-    protected URI createURI(DTO_RESPONSE response, UriComponentsBuilder uriBuilder) {
-        return uriBuilder
-                .path("/{id}")
-                .buildAndExpand(response.getId())
-                .toUri();
-    }
+    protected abstract URI createURI(DTO_RESPONSE response, UriComponentsBuilder uriBuilder);
 
 
-    @Operation(summary = "Recurso utilizado para cadastrar dados de um objeto no sistema")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "201",
-                    description = "Objeto criado com sucesso",
-                    content = {
-                            @Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = DTO_CREATE_REQUEST.class))
-                    }
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Um ou mais dados informados são inválidos ou estão ausentes"
-            ),
-            @ApiResponse(
-                    responseCode = "409",
-                    description = "Falha na tentativa de criação do objeto. Tente novamente"
-            )
-    })
     @PostMapping
     @Override
     public ResponseEntity<DTO_RESPONSE> create(
@@ -90,92 +64,13 @@ public abstract class CRUDControllerAdapter<E, K, DTO_RESPONSE, DTO_CREATE_REQUE
         return createdResponse(response, uri);
     }
 
-    @Operation(summary = "Recurso responsável por recuperar uma lista de objetos cadastrados no sistema")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Lista dos objetos encontrados",
-                    content = @Content
-            )
-    })
+
     @GetMapping
     @Override
     public ResponseEntity<List<DTO_RESPONSE>> list() {
         var items = service.list();
         var dtoItems = mapper.toListDto(items);
         return okListResponse(dtoItems);
-    }
-
-    @Operation(summary = "Recurso responsável por recuperar um objeto cadastrado, pela chave primária")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Dados encontrados com sucesso",
-                    content = {
-                            @Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(implementation = DTO_RESPONSE.class)
-                            )
-                    }
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Dados não encontrados",
-                    content = @Content
-            )
-    })
-    @GetMapping("/{id}")
-    @Override
-    public ResponseEntity<DTO_RESPONSE> findById(K id) {
-        var entity = service.findBy(id);
-        var response = mapper.toDto(entity);
-        return okResponse(response);
-    }
-
-    @Operation(summary = "Recurso responsável por excluir um objeto cadastrado no sistema pela chave primária")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "204",
-                    description = "Dados removidos com sucesso",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Dados não encontrados",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "409",
-                    description = "Não é possível deletar o objeto."
-            )
-    })
-    @DeleteMapping("/{id}")
-    @Override
-    public ResponseEntity<Void> delete(K id) {
-        service.deleteById(id);
-        return voidResponse();
-    }
-
-    @Operation(summary = "Recurso responsável por recuperar e alterar os dados de um objeto pela chave primária")
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Dados alterados com sucesso",
-                    content = @Content
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Dados não encontrados",
-                    content = @Content
-            )
-    })
-    @PutMapping("/{id}")
-    @Override
-    public ResponseEntity<DTO_RESPONSE> update(K id, DTO_UPDATE_REQUEST request) {
-        var entity = service.findBy(id);
-        var updated = mapper.update(request, entity);
-        var response = mapper.toDto(updated);
-        return okResponse(response);
     }
 
 }

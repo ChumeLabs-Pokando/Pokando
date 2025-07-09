@@ -22,8 +22,8 @@ import org.mapstruct.ReportingPolicy;
 
 // "componentModel" = mapeia e cria um bean pro spring poder instaciar ...
 // "unmappedTargetPolicy" = se o target não encontrar um objeto que não foi mapeado ele devolve um erro...
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
-      unmappedTargetPolicy = ReportingPolicy.ERROR)
+//@Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
+ //     unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface EnderecoMapperDidadico {
     
     

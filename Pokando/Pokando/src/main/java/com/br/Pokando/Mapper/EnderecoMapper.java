@@ -18,28 +18,22 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
     private final EstadoMapper estadoMapper;
 
     @Override
-    public EnderecoResponse toDto(
-            Endereco entity
-    ) {
-        EnderecoResponse dto = new EnderecoResponse(
-                entity.getId()
-        );
-        entity.setLogradouro(dto.getLogradouro());
-        entity.setCidade(dto.getCidade());
-        entity.setNumero(dto.getNumero());
-        entity.setCep(dto.getCep());
-        entity.setBairro(dto.getBairro());
-        entity.setComplemento(dto.getComplemento());
+    public EnderecoResponse toDto(Endereco entity) {
+        EnderecoResponse dto = new EnderecoResponse(entity.getId());
+
+        dto.setLogradouro(entity.getLogradouro());
+        dto.setCidade(entity.getCidade());
+        dto.setNumero(entity.getNumero());
+        dto.setCep(entity.getCep());
+        dto.setBairro(entity.getBairro());
+        dto.setComplemento(entity.getComplemento());
 
         if (entity.getEstado() != null) {
-            dto.setEstado(estadoMapper
-                    .toDto(entity.getEstado()));
+            dto.setEstado(estadoMapper.toDto(entity.getEstado()));
         }
-
-
+        System.out.println("Estado no DTO: " + dto.getEstado());
         return dto;
     }
-
 
 
 
@@ -85,7 +79,6 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
             var estado = estadoMapper.toEntity(request.getEstado());
             entity.setEstado(estado);
         }
-
 
         return entity;
     }
