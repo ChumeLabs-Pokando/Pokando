@@ -2,7 +2,9 @@ package com.br.Pokando.controller;
 
 import com.br.Pokando.Mapper.IMapper;
 import com.br.Pokando.Service.IService;
+import com.br.Pokando.dto.ApiDataResponse;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -28,7 +30,11 @@ import java.util.List;
  * @param <DTO_UPDATE_REQUEST> Classe DTO que representa um objeto da classe DTO que
  * contem os atributos para alteração de dados de uma entidade no banco de dados do sistema
  */
-public abstract class CRUDControllerAdapter<E, K, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST>
+public abstract class CRUDControllerAdapter<
+        E, K,
+        DTO_RESPONSE,
+        DTO_CREATE_REQUEST,
+        DTO_UPDATE_REQUEST>
         implements IController<K, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST> {
 
     protected final IService<E, K, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST> service;
@@ -42,35 +48,41 @@ public abstract class CRUDControllerAdapter<E, K, DTO_RESPONSE, DTO_CREATE_REQUE
         this.mapper = mapper;
     }
 
-    /**
-     * Método para criar URI.Método utilizado para criar a URI que será
-     * devolvida na resposta ao sistema requisitante.
-     *
-     * @param response  Objeto da classe de resposta que contem o ID gerado no banco de dados
-     * @param uriBuilder    Objeto da classe UriComponentsBuilder utilizado para criar a URI.
-     * @return
-     */
     protected abstract URI createURI(DTO_RESPONSE response, UriComponentsBuilder uriBuilder);
-
 
     @PostMapping
     @Override
-    public ResponseEntity<DTO_RESPONSE> create(
+    public ResponseEntity<ApiDataResponse<DTO_RESPONSE>> create(
             @RequestBody @Valid DTO_CREATE_REQUEST request,
             UriComponentsBuilder uriBuilder) {
+
         var entity = service.create(request);
         DTO_RESPONSE response = mapper.toDto(entity);
         URI uri = createURI(response, uriBuilder);
-        return createdResponse(response, uri);
-    }
 
+        ApiDataResponse<DTO_RESPONSE> resposta = new ApiDataResponse<>(
+                "Recurso criado com sucesso",
+                HttpStatus.CREATED.value(),
+                HttpStatus.CREATED.getReasonPhrase(),
+                response
+        );
+
+        return ResponseEntity.created(uri).body(resposta);
+    }
 
     @GetMapping
     @Override
-    public ResponseEntity<List<DTO_RESPONSE>> list() {
+    public ResponseEntity<ApiDataResponse<List<DTO_RESPONSE>>> list() {
         var items = service.list();
         var dtoItems = mapper.toListDto(items);
-        return okListResponse(dtoItems);
-    }
 
+        ApiDataResponse<List<DTO_RESPONSE>> resposta = new ApiDataResponse<>(
+                "Lista carregada com sucesso",
+                HttpStatus.OK.value(),
+                HttpStatus.OK.getReasonPhrase(),
+                dtoItems
+        );
+
+        return ResponseEntity.ok(resposta);
+    }
 }

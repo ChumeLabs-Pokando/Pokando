@@ -2,6 +2,7 @@ package com.br.Pokando.Mapper;
 
 import com.br.Pokando.dto.EnderecoRequest;
 import com.br.Pokando.dto.EnderecoResponse;
+import com.br.Pokando.exception.ResourceNotFoundException;
 import com.br.Pokando.model.Endereco;
 import com.br.Pokando.model.Estado;
 import com.br.Pokando.repository.EstadoRepository;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, EnderecoRequest, EnderecoRequest>{
 
     private final EstadoMapper estadoMapper;
+    private final EstadoRepository estadoRepository;
 
     @Override
     public EnderecoResponse toDto(Endereco entity) {
@@ -38,8 +40,9 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
 
 
 
-    public EnderecoMapper(EstadoMapper estadoMapper) {
+    public EnderecoMapper(EstadoMapper estadoMapper, EstadoRepository estadoRepository) {
         this.estadoMapper = estadoMapper;
+        this.estadoRepository = estadoRepository;
 
     }
 
@@ -75,8 +78,9 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
         entity.setBairro(request.getBairro());
         entity.setComplemento(request.getComplemento());
 
-        if (request.getEstado() != null) {
-            var estado = estadoMapper.toEntity(request.getEstado());
+        if (request.getEstado() != null && request.getEstado().getId() != null) {
+            Estado estado = estadoRepository.findById(request.getEstado().getId())
+                    .orElseThrow(() -> new RuntimeException("Estado não encontrado"));
             entity.setEstado(estado);
         }
 
@@ -92,9 +96,11 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
         entity.setCep(request.getCep());
         entity.setBairro(request.getBairro());
         entity.setComplemento(request.getComplemento());
-        if (request.getEstado() != null) {
-            var subgrupo = estadoMapper.toEntity(request.getEstado());
-            entity.setEstado(subgrupo);
+
+        if (request.getEstado() != null && request.getEstado().getId() != null) {
+            var estado = estadoRepository.findById(request.getEstado().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Estado não encontrado"));
+            entity.setEstado(estado);
         }
         return entity;
     }

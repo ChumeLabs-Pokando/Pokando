@@ -39,10 +39,12 @@ public abstract class ServiceAdapter<E, K, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO>
         return repository.save(entity);
     }
 
+    @Transactional
     @Override
     public E update(K id, UPDATE_DTO request) {
         var entity = findBy(id);
-        return mapper.update(request, entity);
+        var updated = mapper.update(request, entity);
+        return repository.save(updated);
     }
 
     @Override
@@ -67,6 +69,7 @@ public abstract class ServiceAdapter<E, K, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO>
 
     @Override
     public List<E> list() {
+
         return repository.findAll();
     }
 }
