@@ -1,6 +1,7 @@
 package com.br.Pokando.Service;
 
 
+import com.br.Pokando.Mapper.EstadoMapper;
 import com.br.Pokando.Mapper.IMapper;
 import com.br.Pokando.dto.EstadoRequest;
 import com.br.Pokando.dto.EstadoResponse;
@@ -17,7 +18,7 @@ public class EstadoService
         extends ServiceAdapter<Estado, Long, EstadoResponse, EstadoRequest,EstadoRequest>{
 
 
-    public EstadoService(JpaRepository<Estado, Long> repository, IMapper<Estado, EstadoResponse, EstadoRequest, EstadoRequest> mapper) {
+    public EstadoService(EstadoRepository repository, EstadoMapper mapper) {
         super(repository, mapper);
     }
 }

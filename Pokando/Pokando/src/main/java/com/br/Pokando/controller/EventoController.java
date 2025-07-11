@@ -4,11 +4,7 @@
  */
 package com.br.Pokando.controller;
 
-import com.br.Pokando.model.CategoriaDeIngresso;
 import com.br.Pokando.model.Evento;
-import com.br.Pokando.model.Local;
-import com.br.Pokando.model.Organizador;
-import com.br.Pokando.model.heranca.Usuario;
 import com.br.Pokando.repository.EventoRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;

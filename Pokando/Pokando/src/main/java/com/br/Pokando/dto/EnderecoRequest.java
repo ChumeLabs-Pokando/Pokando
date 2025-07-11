@@ -46,6 +46,9 @@ public class EnderecoRequest extends DefaultRequest {
     @NotNull(message = "Estado não pode ser nulo.")
     private EstadoRequest estado;
 
+    @NotNull(message = "Endereco Geografico não pode ser nulo.")
+    private Endereco_geograficoRequest endereco_geografico;
+
     public EnderecoRequest(Long id) {
         super(id);
 

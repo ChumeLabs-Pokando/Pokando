@@ -4,8 +4,7 @@
  */
 package com.br.Pokando.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 /**
@@ -13,23 +12,23 @@ import lombok.*;
  * @author 05029689150
  */
 @Entity
-@Table(name = "EnderecoGeografico")
+@Table(name = "Endereco_geografico")
 @Builder
 @Data
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-public class EnderecoGeografico {
+public class Endereco_geografico {
+
+    @Id
+    @GeneratedValue
     private Long id;
+    @Column(name = "longitude", nullable = false)
     private String longitude;
+    @Column(name = "latitude", nullable = false)
     private String latitude;
 
-    
-     public EnderecoGeografico() {
-    }
 
-
-    
-    
     
 }

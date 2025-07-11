@@ -9,6 +9,7 @@ import com.br.Pokando.dto.EnderecoRequest;
 import com.br.Pokando.dto.EnderecoResponse;
 import com.br.Pokando.model.Endereco;
 import com.br.Pokando.repository.EnderecoRepository;
+import com.br.Pokando.repository.Endereco_geograficoRepository;
 import com.br.Pokando.repository.EstadoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,16 +25,19 @@ import java.util.Optional;
 public class EnderecoService extends ServiceAdapter<Endereco, Long, EnderecoResponse, EnderecoRequest, EnderecoRequest> {
 
     private final EstadoRepository estadoRepository;
+    private final Endereco_geograficoRepository endereco_geograficoRepository;
 
-    public EnderecoService(EnderecoRepository enderecoRepository, EnderecoMapper enderecoMapper, EstadoRepository estadoRepository) {
+    public EnderecoService(EnderecoRepository enderecoRepository, EnderecoMapper enderecoMapper, EstadoRepository estadoRepository, Endereco_geograficoRepository endereco_geograficoRepository) {
         super(enderecoRepository, enderecoMapper);
         this.estadoRepository = estadoRepository;
+        this.endereco_geograficoRepository = endereco_geograficoRepository;
+
     }
 
     @Override
     @Transactional
     public Endereco create(EnderecoRequest request) {
-        var entity = ((EnderecoMapper) mapper).toEntity(request, estadoRepository);
+        var entity = ((EnderecoMapper) mapper).toEntity(request, estadoRepository, endereco_geograficoRepository);
         var saved = repository.save(entity);
         return repository.findById(saved.getId())
                 .orElseThrow(() -> new RuntimeException("Erro ao buscar endereço salvo"));

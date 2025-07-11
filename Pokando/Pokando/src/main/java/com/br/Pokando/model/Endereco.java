@@ -25,7 +25,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Endereco {
 
-   
+
     @Id
     @GeneratedValue
     private Long id;
@@ -44,6 +44,9 @@ public class Endereco {
     @ManyToOne(optional = false)
     @JoinColumn(name = "estado_id", nullable = false)
     private Estado estado;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "endereco_geografico_id", nullable = false)
+    private Endereco_geografico endereco_geografico;
 
     public Endereco() {
     }
