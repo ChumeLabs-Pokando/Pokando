@@ -4,35 +4,27 @@
  */
 package com.br.Pokando.model;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 /**
  *
  * @author 05029689150
  */
+@Entity
+@Table(name = "Cargo")
+@Builder
+@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cargo {
-    private int id;
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column(name = "nome", nullable = false)
     private String nome;
-
-    public Cargo() {
-    }
-    
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    
-    
-    
     
 }

@@ -364,3 +364,12 @@ create global temporary table HTE_usuario(rn_ integer not null, data_de_nascimen
 2025-07-11 10:25:48.450443-04:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_USUARIO" already exists; SQL statement:
 create global temporary table HTE_usuario(rn_ integer not null, data_de_nascimento timestamp(6), id bigint, cpf varchar(255), email varchar(255), foto varchar(255), nome_completo varchar(255), rg varchar(255), senha varchar(255), telefone varchar(255), evento varbinary(255) array, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-07-11 10:39:56.446303-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_USUARIO" already exists; SQL statement:
+create global temporary table HTE_usuario(rn_ integer not null, data_de_nascimento timestamp(6), id bigint, cpf varchar(255), email varchar(255), foto varchar(255), nome_completo varchar(255), rg varchar(255), senha varchar(255), telefone varchar(255), evento varbinary(255) array, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-07-11 11:11:50.184220-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_USUARIO" already exists; SQL statement:
+create global temporary table HTE_usuario(rn_ integer not null, data_de_nascimento timestamp(6), id bigint, cpf varchar(255), email varchar(255), foto varchar(255), nome_completo varchar(255), rg varchar(255), senha varchar(255), telefone varchar(255), evento varbinary(255) array, primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-07-11 11:13:44.462305-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_USUARIO" already exists; SQL statement:
+create global temporary table HTE_usuario(rn_ integer not null, data_de_nascimento timestamp(6), id bigint, cpf varchar(255), email varchar(255), foto varchar(255), nome_completo varchar(255), rg varchar(255), senha varchar(255), telefone varchar(255), evento varbinary(255) array, primary key (rn_)) TRANSACTIONAL [42101-232]
