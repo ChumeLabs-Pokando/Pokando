@@ -20,7 +20,7 @@ public class EstadoRequest extends DefaultRequest{
     @NotNull
     @NotEmpty
     @NotBlank
-    public String sigla;
+    private String sigla;
 
     public EstadoRequest(Long id) {
        super(id);

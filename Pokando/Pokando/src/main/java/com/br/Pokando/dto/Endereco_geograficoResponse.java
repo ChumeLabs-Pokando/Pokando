@@ -11,9 +11,9 @@ import lombok.*;
 @AllArgsConstructor
 public class Endereco_geograficoResponse extends DefaultResponse{
 
-    public String latitude;
+    private String latitude;
 
-    public String longitude;
+    private String longitude;
 
     public Endereco_geograficoResponse(Long id) {
         super(id);

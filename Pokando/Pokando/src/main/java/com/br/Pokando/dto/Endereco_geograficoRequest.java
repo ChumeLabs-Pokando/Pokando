@@ -17,11 +17,11 @@ public class Endereco_geograficoRequest extends DefaultRequest{
     @NotNull
     @NotEmpty
     @NotBlank
-    public String longitude;
+    private String longitude;
     @NotNull
     @NotEmpty
     @NotBlank
-    public String latitude;
+    private String latitude;
 
     public Endereco_geograficoRequest(Long id) {
         super(id);

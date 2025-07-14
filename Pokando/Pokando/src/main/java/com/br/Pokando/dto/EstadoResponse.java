@@ -14,9 +14,9 @@ import lombok.*;
 @AllArgsConstructor
 public class EstadoResponse extends DefaultResponse{
 
-    public String nome;
+    private String nome;
 
-    public String sigla;
+    private String sigla;
 
     public EstadoResponse(Long id) {
         super(id);
