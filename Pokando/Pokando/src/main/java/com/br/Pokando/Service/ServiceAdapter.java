@@ -43,8 +43,8 @@ public abstract class ServiceAdapter<E, K, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO>
     @Override
     public E update(K id, UPDATE_DTO request) {
         var entity = findBy(id);
-        var updated = mapper.update(request, entity);
-        return repository.save(updated);
+        mapper.update(request, entity);
+        return repository.save(entity);
     }
 
     @Override

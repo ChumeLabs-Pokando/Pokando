@@ -78,12 +78,11 @@ public abstract class CRUDDefaultControllerAdapter<
     @PutMapping("/{id}")
     @Override
     public ResponseEntity<ApiDataResponse<DTO_RESPONSE>> update(
-            @PathVariable K id,
+            @PathVariable("id") K id,
             @RequestBody DTO_UPDATE_REQUEST request
     ) {
-        var entity = service.findBy(id);
-        var updated = mapper.update(request, entity);
-        var response = mapper.toDto(updated);
+        var updatedEntity = service.update(id, request);
+        var response = mapper.toDto(updatedEntity);
 
         return ResponseEntity.ok(
                 new ApiDataResponse<>(
