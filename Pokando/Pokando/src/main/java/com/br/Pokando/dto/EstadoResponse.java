@@ -18,13 +18,16 @@ public class EstadoResponse extends DefaultResponse{
 
     private String sigla;
 
+    private PaisResponse pais;
+
     public EstadoResponse(Long id) {
         super(id);
     }
-    public EstadoResponse(Long id, String nome, String sigla) {
+    public EstadoResponse(Long id, String nome, String sigla, PaisResponse pais) {
         super(id);
         this.nome = nome;
         this.sigla = sigla;
+        this.pais = pais;
     }
 
 }

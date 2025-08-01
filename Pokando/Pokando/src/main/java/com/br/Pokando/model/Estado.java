@@ -4,11 +4,7 @@
  */
 package com.br.Pokando.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 /**
@@ -32,5 +28,8 @@ public class Estado {
     private String nome;
     @Column(name = "sigla", unique = true, length = 2)
     private String sigla;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "pais_id", nullable = false)
+    private Pais pais;
 
 }

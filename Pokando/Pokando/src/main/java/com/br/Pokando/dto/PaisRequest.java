@@ -4,14 +4,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Builder
 @Getter
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EstadoRequest extends DefaultRequest{
+public class PaisRequest extends DefaultRequest{
 
     @NotNull(message = "O campo NOME deve ser informado!")
     @NotEmpty(message = "O campo NOME não deve estar vazio!")
@@ -22,11 +24,10 @@ public class EstadoRequest extends DefaultRequest{
     @NotEmpty
     @NotBlank
     private String sigla;
-    @NotNull(message = "Pais não pode ser nulo.")
-    private PaisRequest Pais;
 
-    public EstadoRequest(Long id) {
-       super(id);
+
+    public PaisRequest(Long id) {
+        super(id);
 
     }
 
