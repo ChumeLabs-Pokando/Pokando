@@ -4,6 +4,7 @@
  */
 package com.br.Pokando.dto;
 
+import com.br.Pokando.model.Cidade;
 import com.br.Pokando.model.Estado;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +27,7 @@ public class EnderecoResponse extends DefaultResponse{
 
     private String logradouro;
    
-    private String cidade;
+    private CidadeResponse cidade;
    
     private String numero;
     
@@ -43,7 +44,7 @@ public class EnderecoResponse extends DefaultResponse{
     public EnderecoResponse(Long id) {
         super(id);
     }
-    public EnderecoResponse(Long id, String logradouro, String cidade, String numero, String cep, String bairro, String complemento, EstadoResponse estado, Endereco_geograficoResponse endereco_geografico) {
+    public EnderecoResponse(Long id, String logradouro, CidadeResponse cidade, String numero, String cep, String bairro, String complemento, EstadoResponse estado, Endereco_geograficoResponse endereco_geografico) {
         super(id);
         this.logradouro = logradouro;
         this.cidade = cidade;

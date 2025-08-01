@@ -3,9 +3,11 @@ package com.br.Pokando.Mapper;
 import com.br.Pokando.dto.EnderecoRequest;
 import com.br.Pokando.dto.EnderecoResponse;
 import com.br.Pokando.exception.ResourceNotFoundException;
+import com.br.Pokando.model.Cidade;
 import com.br.Pokando.model.Endereco;
 import com.br.Pokando.model.Endereco_geografico;
 import com.br.Pokando.model.Estado;
+import com.br.Pokando.repository.CidadeRepository;
 import com.br.Pokando.repository.Endereco_geograficoRepository;
 import com.br.Pokando.repository.EstadoRepository;
 import org.mapstruct.Mapper;
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 @Component
 public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, EnderecoRequest, EnderecoRequest>{
 
+    private final CidadeMapper cidadeMapper;
+    private final CidadeRepository cidadeRepository;
     private final EstadoMapper estadoMapper;
     private final EstadoRepository estadoRepository;
     private final Endereco_geograficoMapper enderecoGeograficoMapper;
@@ -28,7 +32,6 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
         EnderecoResponse dto = new EnderecoResponse(entity.getId());
 
         dto.setLogradouro(entity.getLogradouro());
-        dto.setCidade(entity.getCidade());
         dto.setNumero(entity.getNumero());
         dto.setCep(entity.getCep());
         dto.setBairro(entity.getBairro());
@@ -40,6 +43,9 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
         if (entity.getEndereco_geografico() != null) {
             dto.setEndereco_geografico(enderecoGeograficoMapper.toDto(entity.getEndereco_geografico()));
         }
+        if (entity.getCidade() != null) {
+            dto.setCidade(cidadeMapper.toDto(entity.getCidade()));
+        }
 
         return dto;
     }
@@ -47,7 +53,9 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
 
 
 
-    public EnderecoMapper(EstadoMapper estadoMapper, EstadoRepository estadoRepository, Endereco_geograficoMapper enderecoGeograficoMapper, Endereco_geograficoRepository enderecoGeograficoRepository) {
+    public EnderecoMapper(CidadeMapper cidadeMapper, CidadeRepository cidadeRepository, EstadoMapper estadoMapper, EstadoRepository estadoRepository, Endereco_geograficoMapper enderecoGeograficoMapper, Endereco_geograficoRepository enderecoGeograficoRepository) {
+        this.cidadeMapper = cidadeMapper;
+        this.cidadeRepository = cidadeRepository;
         this.estadoMapper = estadoMapper;
         this.estadoRepository = estadoRepository;
         this.enderecoGeograficoMapper = enderecoGeograficoMapper;
@@ -56,12 +64,12 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
 
     public Endereco toEntity(
             EnderecoRequest dto,
+            CidadeRepository cidadeRepository,
             EstadoRepository estadoRepository,
             Endereco_geograficoRepository enderecoGeograficoRepository
     ) {
         var entity = new Endereco();
         entity.setLogradouro(dto.getLogradouro());
-        entity.setCidade(dto.getCidade());
         entity.setNumero(dto.getNumero());
         entity.setCep(dto.getCep());
         entity.setBairro(dto.getBairro());
@@ -79,6 +87,12 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
                     .orElseThrow(() -> new RuntimeException("Endereco Geografico não encontrado"));
             entity.setEndereco_geografico(endGeo);
         }
+        if (dto.getCidade() != null) {
+            var cidade = cidadeRepository
+                    .findById(dto.getCidade().getId())
+                    .orElseThrow(() -> new RuntimeException("Cidade não encontrado"));
+            entity.setCidade(cidade);
+        }
 
         return entity;
     }
@@ -87,7 +101,6 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
     public Endereco toEntity(EnderecoRequest request) {
         var entity = new Endereco(request.getId());
         entity.setLogradouro(request.getLogradouro());
-        entity.setCidade(request.getCidade());
         entity.setNumero(request.getNumero());
         entity.setCep(request.getCep());
         entity.setBairro(request.getBairro());
@@ -104,6 +117,11 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
                     .orElseThrow(() -> new RuntimeException("Endereco Geografico não encontrado"));
             entity.setEndereco_geografico(endGeo);
         }
+        if (request.getCidade() != null && request.getCidade().getId() != null) {
+            Cidade cidade = cidadeRepository.findById(request.getCidade().getId())
+                    .orElseThrow(() -> new RuntimeException("Cidade não encontrada"));
+            entity.setCidade(cidade);
+        }
 
         return entity;
     }
@@ -112,7 +130,6 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
     @Override
     public Endereco update(EnderecoRequest request, Endereco entity) {
         entity.setLogradouro(request.getLogradouro());
-        entity.setCidade(request.getCidade());
         entity.setNumero(request.getNumero());
         entity.setCep(request.getCep());
         entity.setBairro(request.getBairro());
@@ -128,6 +145,12 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
             Endereco_geografico endGeo = enderecoGeograficoRepository.findById(request.getEndereco_geografico().getId())
                     .orElseThrow(() -> new RuntimeException("Endereco Geografico não encontrado"));
             entity.setEndereco_geografico(endGeo);
+        }
+        if (request.getCidade() != null && request.getCidade().getId() != null) {
+            Cidade cidade = cidadeRepository.findById(request.getCidade().getId())
+                    .orElseThrow(() -> new RuntimeException("Cidade não encontrada"));
+            entity.setCidade(cidade);
+
         }
         return entity;
     }

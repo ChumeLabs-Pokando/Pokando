@@ -33,7 +33,8 @@ public class EnderecoRequest extends DefaultRequest {
     @NotBlank
     private String logradouro;
 
-    private String cidade;
+    @NotNull(message = "Cidade não pode ser nulo.")
+    private CidadeRequest cidade;
 
     private String numero;
 

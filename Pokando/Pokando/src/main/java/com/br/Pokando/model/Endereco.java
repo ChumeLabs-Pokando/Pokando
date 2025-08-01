@@ -31,8 +31,9 @@ public class Endereco {
     private Long id;
      @Column(name = "logradouro", nullable = false)
     private String logradouro;
-     @Column(name = "cidade", nullable = false)
-    private String cidade;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "cidade_id", nullable = false)
+    private Cidade cidade;
      @Column(name = "numero", nullable = false)
     private String numero;
     @Column(name = "cep", nullable = false, length = 8)
