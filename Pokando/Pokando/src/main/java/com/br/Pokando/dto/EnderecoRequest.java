@@ -36,10 +36,13 @@ public class EnderecoRequest extends DefaultRequest {
     @NotNull(message = "Cidade não pode ser nulo.")
     private CidadeRequest cidade;
 
+    @NotNull(message = "Numero não pode ser nulo.")
     private String numero;
 
+    @NotNull(message = "Cep não pode ser nulo.")
     private String cep;
 
+    @NotNull(message = "Bairro não pode ser nulo.")
     private String bairro;
 
     private String complemento;
