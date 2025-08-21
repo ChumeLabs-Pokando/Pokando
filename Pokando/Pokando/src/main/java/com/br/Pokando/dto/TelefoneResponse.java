@@ -8,7 +8,6 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class TelefoneResponse extends DefaultResponse{
 
     private String numero;
@@ -20,7 +19,6 @@ public class TelefoneResponse extends DefaultResponse{
     }
 
     public TelefoneResponse(String numero, UsuarioResponse usuario) {
-        super(id);
         this.numero = numero;
         this.usuario = usuario;
     }

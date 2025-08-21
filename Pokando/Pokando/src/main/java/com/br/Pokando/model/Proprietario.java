@@ -4,8 +4,6 @@
  */
 package com.br.Pokando.model;
 
-import com.br.Pokando.model.heranca.Usuario;
-
 /**
  *
  * @author 05029689150

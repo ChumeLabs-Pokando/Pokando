@@ -12,12 +12,15 @@ public class CidadeResponse extends DefaultResponse{
 
     private String nome;
 
+    private EstadoResponse estado;
+
     public CidadeResponse(Long id) {
         super(id);
     }
-    public CidadeResponse(Long id, String nome) {
+    public CidadeResponse(Long id, String nome, EstadoResponse estado) {
         super(id);
         this.nome = nome;
+        this.estado = estado;
     }
 
 }

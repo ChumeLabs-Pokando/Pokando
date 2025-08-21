@@ -21,6 +21,9 @@ public class CidadeRequest extends DefaultRequest{
     @Size(min = 1, max = 255, message = "Limite de caracteres para o campo NOME.")
     private String nome;
 
+    @NotNull(message = "Estado não pode ser nulo.")
+    private EstadoRequest estado;
+
 
 
     public CidadeRequest(Long id) {

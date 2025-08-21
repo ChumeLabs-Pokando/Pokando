@@ -47,9 +47,6 @@ public class EnderecoRequest extends DefaultRequest {
 
     private String complemento;
 
-    @NotNull(message = "Estado não pode ser nulo.")
-    private EstadoRequest estado;
-
     @NotNull(message = "Endereco Geografico não pode ser nulo.")
     private Endereco_geograficoRequest endereco_geografico;
 

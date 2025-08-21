@@ -18,7 +18,7 @@ public class Telefone {
     private Long id;
     @Column(name = "nome")
     private String numero;
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario_id;
 

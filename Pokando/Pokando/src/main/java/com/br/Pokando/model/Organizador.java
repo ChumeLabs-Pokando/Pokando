@@ -4,7 +4,6 @@
  */
 package com.br.Pokando.model;
 
-import com.br.Pokando.model.heranca.Usuario;
 import jakarta.persistence.Entity;
 import java.util.Date;
 import java.util.List;
