@@ -2,9 +2,6 @@ package com.br.Pokando.Mapper;
 
 import com.br.Pokando.dto.TelefoneRequest;
 import com.br.Pokando.dto.TelefoneResponse;
-import com.br.Pokando.dto.TelefoneRequest;
-import com.br.Pokando.dto.TelefoneResponse;
-import com.br.Pokando.model.Telefone;
 import com.br.Pokando.model.Usuario;
 import com.br.Pokando.model.Telefone;
 import com.br.Pokando.repository.UsuarioRepository;
@@ -18,6 +15,11 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
     private final UsuarioMapper usuarioMapper;
     private final UsuarioRepository usuarioRepository;
 
+    public TelefoneMapper(UsuarioMapper usuarioMapper, UsuarioRepository usuarioRepository) {
+        this.usuarioMapper = usuarioMapper;
+        this.usuarioRepository = usuarioRepository;
+    }
+
     @Override
     public TelefoneResponse toDto(
             Telefone entity
@@ -26,7 +28,7 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
         dto.setNumero(entity.getNumero());
 
         if (entity.getUsuario() != null) {
-            dto.setUsuario(UsuarioMapper.toDto(entity.getUsuario()));
+            dto.setUsuario(usuarioMapper.toDto(entity.getUsuario()));
         }
         return dto;
     }
@@ -61,7 +63,7 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
 
 
         if (request.getUsuario() != null && request.getUsuario().getId() != null) {
-            Usuario Usuario = UsuarioRepository.findById(request.getUsuario().getId())
+            Usuario Usuario = usuarioRepository.findById(request.getUsuario().getId())
                     .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
             entity.setUsuario(Usuario);
         }
@@ -74,7 +76,7 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
 
 
         if (request.getUsuario() != null && request.getUsuario().getId() != null) {
-            Usuario Usuario = UsuarioRepository.findById(request.getUsuario().getId())
+            Usuario Usuario = usuarioRepository.findById(request.getUsuario().getId())
                     .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
             entity.setUsuario(Usuario);
         }

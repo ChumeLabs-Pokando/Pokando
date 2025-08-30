@@ -38,7 +38,7 @@ public class Usuario{
     private String senha;
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_acesso_id", nullable = false)
-    private User_acesso user_acesso_id;
+    private User_acesso user_acesso;
     @Column(name = "dataNascimento", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;

@@ -20,6 +20,6 @@ public class Telefone {
     private String numero;
     @ManyToOne(optional = false)
     @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario_id;
+    private Usuario usuario;
 
 }

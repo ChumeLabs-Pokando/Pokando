@@ -17,7 +17,7 @@ public class Categoria_ingressoRequest extends DefaultRequest{
     @NotNull
     @NotEmpty
     @NotBlank
-    private String none;
+    private String nome;
     @NotNull
     @NotEmpty
     @NotBlank

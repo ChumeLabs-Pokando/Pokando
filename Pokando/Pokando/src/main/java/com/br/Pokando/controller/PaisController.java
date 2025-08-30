@@ -1,8 +1,6 @@
 package com.br.Pokando.controller;
 
-import com.br.Pokando.Mapper.IMapper;
 import com.br.Pokando.Mapper.PaisMapper;
-import com.br.Pokando.Service.IService;
 import com.br.Pokando.Service.PaisService;
 import com.br.Pokando.dto.PaisRequest;
 import com.br.Pokando.dto.PaisResponse;

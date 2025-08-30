@@ -37,23 +37,27 @@ public class Categoria_ingressoMapper implements IMapper<Categoria_ingresso, Cat
     public Categoria_ingresso toEntity(Categoria_ingressoRequest request) {
         return new Categoria_ingresso(
                 null,
-                request.getLatitude(),
-                request.getLongitude()
+                request.getNome(),
+                request.getPreco(),
+                request.getMeiaEntrada()
         );
     }
 
     public Categoria_ingresso toEntity(Categoria_ingressoResponse response) {
         return new Categoria_ingresso(
                 response.getId(),
-                response.getLatitude(),
-                response.getLongitude()
+                response.getNome(),
+                response.getPreco(),
+                response.getMeiaEntrada()
         );
     }
 
     @Override
     public Categoria_ingresso update(Categoria_ingressoRequest request, Categoria_ingresso entity) {
-        entity.setLatitude(request.getLatitude());
-        entity.setLongitude(request.getLongitude());
+       
+        entity.setNome(request.getNone());
+        entity.setPreco(request.getPreco());
+        entity.setMeiaEntrada(request.getMeiaEntrada());
         return entity;
     }
 }

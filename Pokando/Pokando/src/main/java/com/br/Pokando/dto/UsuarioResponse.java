@@ -21,7 +21,7 @@ public class UsuarioResponse extends DefaultResponse{
 
     private String senha;
 
-    private User_acessoRequest user_acesso;
+    private User_acessoResponse user_acesso;
 
     private Date dataNascimento;
 
@@ -31,7 +31,7 @@ public class UsuarioResponse extends DefaultResponse{
         super(id);
     }
 
-    public UsuarioResponse(String nome, String nickname, String email, String senha, User_acessoRequest user_acesso, Date dataNascimento, String foto) {
+    public UsuarioResponse(String nome, String nickname, String email, String senha, User_acessoResponse user_acesso, Date dataNascimento, String foto) {
         this.nome = nome;
         this.nickname = nickname;
         this.email = email;

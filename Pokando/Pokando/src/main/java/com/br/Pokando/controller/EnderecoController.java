@@ -4,21 +4,13 @@
  */
 package com.br.Pokando.controller;
 
-import com.br.Pokando.Mapper.EnderecoMapper;
 import com.br.Pokando.Mapper.IMapper;
-import com.br.Pokando.Service.EnderecoService;
 import com.br.Pokando.Service.IService;
 import com.br.Pokando.dto.EnderecoRequest;
 import com.br.Pokando.dto.EnderecoResponse;
 import com.br.Pokando.model.Endereco;
-import com.br.Pokando.repository.EnderecoRepository;
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
 
 /**
  *
