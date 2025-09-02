@@ -19,7 +19,7 @@ public class Categoria_ingressoMapper implements IMapper<Categoria_ingresso, Cat
                 entity.getId(),
                 entity.getNome(),
                 entity.getPreco(),
-                entity.getMeiaEntrada()
+                entity.isMeiaEntrada()
         );
         return dto;
     }
@@ -39,7 +39,7 @@ public class Categoria_ingressoMapper implements IMapper<Categoria_ingresso, Cat
                 null,
                 request.getNome(),
                 request.getPreco(),
-                request.getMeiaEntrada()
+                request.isMeiaEntrada()
         );
     }
 
@@ -48,16 +48,16 @@ public class Categoria_ingressoMapper implements IMapper<Categoria_ingresso, Cat
                 response.getId(),
                 response.getNome(),
                 response.getPreco(),
-                response.getMeiaEntrada()
+                response.isMeiaEntrada()
         );
     }
 
     @Override
     public Categoria_ingresso update(Categoria_ingressoRequest request, Categoria_ingresso entity) {
        
-        entity.setNome(request.getNone());
+        entity.setNome(request.getNome());
         entity.setPreco(request.getPreco());
-        entity.setMeiaEntrada(request.getMeiaEntrada());
+        entity.setMeiaEntrada(request.isMeiaEntrada());
         return entity;
     }
 }

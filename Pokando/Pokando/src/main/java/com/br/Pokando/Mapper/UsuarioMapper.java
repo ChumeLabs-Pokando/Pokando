@@ -11,11 +11,13 @@ import com.br.Pokando.model.Usuario;
 import com.br.Pokando.repository.User_acessoRepository;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author 05029689150
  */
+@Component
 public class UsuarioMapper implements IMapper<Usuario, UsuarioResponse, UsuarioRequest, UsuarioRequest>{
     
      private final User_acessoMapper userAcessoMapper;

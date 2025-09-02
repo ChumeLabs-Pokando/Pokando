@@ -4,13 +4,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
-@Getter
+
 @NoArgsConstructor
+@Getter
 @AllArgsConstructor
 public class Categoria_ingressoRequest extends DefaultRequest{
 
@@ -32,4 +32,7 @@ public class Categoria_ingressoRequest extends DefaultRequest{
 
     }
 
+  
+
+   
 }
