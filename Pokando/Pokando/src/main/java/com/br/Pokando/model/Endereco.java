@@ -27,11 +27,11 @@ public class Endereco {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
      @Column(name = "logradouro", nullable = false)
     private String logradouro;
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "cidade_id", nullable = false)
     private Cidade cidade;
      @Column(name = "numero", nullable = false)

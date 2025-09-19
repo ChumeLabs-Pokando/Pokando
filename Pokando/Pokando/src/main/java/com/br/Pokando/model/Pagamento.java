@@ -19,19 +19,19 @@ import java.util.Date;
 public class Pagamento {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nomeCompleto", nullable = false)
+    @Column(name = "nomecompleto", nullable = false)
     private String nomeCompleto;
     @Column(name = "cpf", nullable = false)
     private String cpf;
     @Column(name = "email", nullable = true)
     private String email;
-    @Column(name = "nomeCartao", nullable = true)
+    @Column(name = "nomecartao", nullable = true)
     private String nomeCartao;
-    @Column(name = "numeroCartao", nullable = false)
+    @Column(name = "numerocartao", nullable = false)
     private String numeroCartao;
-    @Column(name = "validadeCartao", nullable = false)
+    @Column(name = "validadecartao", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date validadeCartao;
     // falta o cvv

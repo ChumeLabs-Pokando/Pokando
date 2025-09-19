@@ -22,13 +22,13 @@ import lombok.*;
 public class Estado {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nome", unique = true)
     private String nome;
     @Column(name = "sigla", unique = true, length = 2)
     private String sigla;
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "pais_id", nullable = false)
     private Pais pais;
 

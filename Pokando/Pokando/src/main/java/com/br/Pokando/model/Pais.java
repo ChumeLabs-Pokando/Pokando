@@ -14,7 +14,7 @@ import lombok.*;
 public class Pais {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nome", unique = true)
     private String nome;

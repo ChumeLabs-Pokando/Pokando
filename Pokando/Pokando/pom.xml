@@ -50,10 +50,17 @@
             <version>2.8.9</version>
         </dependency>
 
-        <!-- Banco H2 -->
+        <!-- Banco H2
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+        </dependency>
+-->
+            <!-- PostG -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
         </dependency>
 
         <!-- DevTools -->

@@ -391,3 +391,6 @@ create global temporary table HTE_pais(rn_ integer not null, id bigint, nome var
 2025-09-01 21:55:48.404682-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_PAIS" already exists; SQL statement:
 create global temporary table HTE_pais(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-09-12 09:11:52.591385-04:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_PAIS" already exists; SQL statement:
+create global temporary table HTE_pais(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]

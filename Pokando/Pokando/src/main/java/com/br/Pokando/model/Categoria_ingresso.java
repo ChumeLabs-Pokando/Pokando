@@ -14,13 +14,13 @@ import lombok.*;
 public class Categoria_ingresso {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nome", nullable = false)
     private String nome;
     @Column(name = "preco")
     private double preco;
-    @Column(name = "meiaEntrada", nullable = false)
+    @Column(name = "meiaentrada", nullable = false)
     private boolean meiaEntrada;
 
 }

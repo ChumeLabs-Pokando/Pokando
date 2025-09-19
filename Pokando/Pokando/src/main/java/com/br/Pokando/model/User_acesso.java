@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "Pais")
+@Table(name = "User_Acesso")
 @Builder
 @Data
 @Getter
@@ -14,7 +14,7 @@ import lombok.*;
 public class User_acesso {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nome", unique = true, nullable = false)
     private String nome;

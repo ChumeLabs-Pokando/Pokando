@@ -14,9 +14,9 @@ import lombok.*;
 public class Telefone {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nome")
+    @Column(name = "numero")
     private String numero;
     @ManyToOne(optional = false)
     @JoinColumn(name = "usuario_id", nullable = false)

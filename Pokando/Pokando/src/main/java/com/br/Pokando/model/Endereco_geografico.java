@@ -22,7 +22,7 @@ import lombok.*;
 public class Endereco_geografico {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "longitude", nullable = false)
     private String longitude;

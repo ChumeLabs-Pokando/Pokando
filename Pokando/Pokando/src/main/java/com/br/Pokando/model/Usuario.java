@@ -26,7 +26,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Usuario{
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -39,7 +39,7 @@ public class Usuario{
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_acesso_id", nullable = false)
     private User_acesso user_acesso;
-    @Column(name = "dataNascimento", nullable = false)
+    @Column(name = "datanascimento", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;
     @Column(name = "foto", nullable = false)
