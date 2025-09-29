@@ -2,9 +2,13 @@ package com.br.Pokando.Mapper;
 
 import com.br.Pokando.dto.TelefoneRequest;
 import com.br.Pokando.dto.TelefoneResponse;
-import com.br.Pokando.model.Usuario;
+import com.br.Pokando.model.Cliente;
+import com.br.Pokando.model.Organizador;
+import com.br.Pokando.model.heranca.Usuario;
 import com.br.Pokando.model.Telefone;
-import com.br.Pokando.repository.UsuarioRepository;
+
+import com.br.Pokando.repository.ClienteRepository;
+import com.br.Pokando.repository.OrganizadorRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,12 +16,21 @@ import java.util.stream.Collectors;
 
 @Component
 public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, TelefoneRequest, TelefoneRequest>{
-    private final UsuarioMapper usuarioMapper;
-    private final UsuarioRepository usuarioRepository;
 
-    public TelefoneMapper(UsuarioMapper usuarioMapper, UsuarioRepository usuarioRepository) {
-        this.usuarioMapper = usuarioMapper;
-        this.usuarioRepository = usuarioRepository;
+    private final ClienteMapper clienteMapper;
+    private final ClienteRepository clienteRepository;
+
+    private final OrganizadorMapper organizadorMapper;
+    private final OrganizadorRepository organizadorRepository;
+
+    //private final ProprietarioMapper proprietarioMapper;
+    //private final ProprietarioRepository proprietarioRepository;
+
+    public TelefoneMapper(ClienteMapper clienteMapper, ClienteRepository clienteRepository, OrganizadorMapper organizadorMapper, OrganizadorRepository organizadorRepository) {
+        this.clienteMapper = clienteMapper;
+        this.clienteRepository = clienteRepository;
+        this.organizadorMapper = organizadorMapper;
+        this.organizadorRepository = organizadorRepository;
     }
 
     @Override
@@ -27,9 +40,16 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
         TelefoneResponse dto = new TelefoneResponse(entity.getId());
         dto.setNumero(entity.getNumero());
 
-        if (entity.getUsuario() != null) {
-            dto.setUsuario(usuarioMapper.toDto(entity.getUsuario()));
+        if (entity.getCliente() != null) {
+            dto.setCliente(clienteMapper.toDto(entity.getCliente()));
         }
+        if (entity.getOrganizador() != null) {
+            dto.setOrganizador(organizadorMapper.toDto(entity.getOrganizador()));
+        }
+       // if (entity.getProprietario() != null) {
+        //    dto.setProprietario(proprietarioMapper.toDto(entity.getProprietario()));
+        //}
+
         return dto;
     }
 
@@ -43,17 +63,31 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
     }
 
 
-    public Telefone toEntity(TelefoneRequest request, UsuarioRepository UsuarioRepository) {
+    public Telefone toEntity(TelefoneRequest request, ClienteRepository clienteRepository, OrganizadorRepository organizadorRepository) {
         var entity = new Telefone();
         entity.setNumero(request.getNumero());
 
 
-        if (request.getUsuario() != null) {
-            var Usuario = UsuarioRepository
-                    .findById(request.getUsuario().getId())
-                    .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
-            entity.setUsuario(Usuario);
+        if (request.getClienteRequest() != null) {
+            var Cliente = clienteRepository
+                    .findById(request.getClienteRequest().getId())
+                    .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+            entity.setCliente(Cliente);
         }
+        if (request.getOrganizadorRequest() != null) {
+            var Organizador = organizadorRepository
+                    .findById(request.getOrganizadorRequest().getId())
+                    .orElseThrow(() -> new RuntimeException("Organizador não encontrado"));
+            entity.setOrganizador(Organizador);
+        }
+     //   if (request.getProprietario() != null) {
+    //        var Proprietario = proprietarioRepository
+     //               .findById(request.getProprietario().getId())
+      //              .orElseThrow(() -> new RuntimeException("Proprietario não encontrado"));
+    //        entity.setProprietario(Proprietario);
+   //     }
+
+
         return entity;
     }
     @Override
@@ -62,11 +96,25 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
         entity.setNumero(request.getNumero());
 
 
-        if (request.getUsuario() != null && request.getUsuario().getId() != null) {
-            Usuario Usuario = usuarioRepository.findById(request.getUsuario().getId())
-                    .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
-            entity.setUsuario(Usuario);
+        if (request.getClienteRequest() != null) {
+            var Cliente = clienteRepository
+                    .findById(request.getClienteRequest().getId())
+                    .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+            entity.setCliente(Cliente);
         }
+        if (request.getOrganizadorRequest() != null) {
+            var Organizador = organizadorRepository
+                    .findById(request.getOrganizadorRequest().getId())
+                    .orElseThrow(() -> new RuntimeException("Organizador não encontrado"));
+            entity.setOrganizador(Organizador);
+        }
+        //   if (request.getProprietario() != null) {
+        //        var Proprietario = proprietarioRepository
+        //               .findById(request.getProprietario().getId())
+        //              .orElseThrow(() -> new RuntimeException("Proprietario não encontrado"));
+        //        entity.setProprietario(Proprietario);
+        //     }
+
         return entity;
     }
 
@@ -75,11 +123,23 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
         entity.setNumero(request.getNumero());
 
 
-        if (request.getUsuario() != null && request.getUsuario().getId() != null) {
-            Usuario Usuario = usuarioRepository.findById(request.getUsuario().getId())
-                    .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
-            entity.setUsuario(Usuario);
+        if (request.getClienteRequest() != null && request.getClienteRequest().getId() != null) {
+            Cliente cliente = clienteRepository.findById(request.getClienteRequest().getId())
+                    .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+            entity.setCliente(cliente);
         }
+        if (request.getOrganizadorRequest() != null && request.getOrganizadorRequest().getId() != null) {
+            Organizador organizador = organizadorRepository.findById(request.getOrganizadorRequest().getId())
+                    .orElseThrow(() -> new RuntimeException("Organizador não encontrado"));
+            entity.setOrganizador(organizador);
+        }
+       // if (request.getProprietarioRequest() != null && request.getProprietarioRequest().getId() != null) {
+       //     Proprietario proprietario = proprietarioRepository.findById(request.getProprietarioRequest().getId())
+      //              .orElseThrow(() -> new RuntimeException("Proprietario não encontrado"));
+      //      entity.setProprietario(proprietario);
+     //   }
+
+
         return entity;
     }
 }

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User_acessoRequest extends DefaultRequest{
+public class UserAcessoRequest extends DefaultRequest{
 
     @NotNull(message = "O campo NOME deve ser informado!")
     @NotEmpty(message = "O campo NOME não deve estar vazio!")
@@ -22,7 +22,7 @@ public class User_acessoRequest extends DefaultRequest{
     @Size(min = 1, max = 255, message = "Limite de caracteres para o campo NOME.")
     private String nome;
 
-    public User_acessoRequest(Long id) {
+    public UserAcessoRequest(Long id) {
         super(id);
 
     }

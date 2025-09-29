@@ -4,13 +4,27 @@
  */
 package com.br.Pokando.model;
 
+import com.br.Pokando.model.heranca.Usuario;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
+
 /**
  *
  * @author 05029689150
  */
-public class Cliente extends Usuario{
+@Entity
+@Table(name = "Cliente")
+@Getter
+@Setter
+public class Cliente extends Usuario {
+
+
+    public Cliente(Long id) {
+       super(id);
+    }
 
     public Cliente() {
+
     }
-    
 }

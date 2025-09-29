@@ -6,9 +6,9 @@ package com.br.Pokando.controller;
 
 import com.br.Pokando.Mapper.IMapper;
 import com.br.Pokando.Service.IService;
-import com.br.Pokando.dto.UsuarioRequest;
-import com.br.Pokando.dto.UsuarioResponse;
-import com.br.Pokando.model.Usuario;
+import com.br.Pokando.dto.ClienteRequest;
+import com.br.Pokando.dto.ClienteResponse;
+import com.br.Pokando.model.Cliente;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 05029689150
  */
 @RestController
-@RequestMapping("/usuario")
-public class UsuarioController 
- extends CRUDDefaultControllerAdapter<Usuario, Long, UsuarioResponse, UsuarioRequest, UsuarioRequest> {
+@RequestMapping("/cliente")
+public class ClienteController 
+ extends CRUDDefaultControllerAdapter<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequest> {
 
-    public UsuarioController(IService<Usuario, Long, UsuarioResponse, UsuarioRequest, UsuarioRequest> service, IMapper<Usuario, UsuarioResponse, UsuarioRequest, UsuarioRequest> mapper) {
+    public ClienteController(IService<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequest> service, IMapper<Cliente, ClienteResponse, ClienteRequest, ClienteRequest> mapper) {
         super(service, mapper);
     }
 }

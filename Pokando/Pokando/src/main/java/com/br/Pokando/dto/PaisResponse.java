@@ -1,9 +1,9 @@
 package com.br.Pokando.dto;
 
+
 import lombok.*;
 
-@Builder
-@Data
+
 @Getter
 @Setter
 @NoArgsConstructor

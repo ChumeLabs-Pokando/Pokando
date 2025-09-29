@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UsuarioResponse extends DefaultResponse{
+public class ClienteResponse extends DefaultResponse{
 
     private String nome;
 
@@ -21,22 +21,22 @@ public class UsuarioResponse extends DefaultResponse{
 
     private String senha;
 
-    private User_acessoResponse user_acesso;
+    private UserAcessoResponse userAcessoResponse;
 
     private Date dataNascimento;
 
     private String foto;
 
-    public UsuarioResponse(Long id) {
+    public ClienteResponse(Long id) {
         super(id);
     }
 
-    public UsuarioResponse(String nome, String nickname, String email, String senha, User_acessoResponse user_acesso, Date dataNascimento, String foto) {
+    public ClienteResponse(String nome, String nickname, String email, String senha, UserAcessoResponse userAcessoResponse, Date dataNascimento, String foto) {
         this.nome = nome;
         this.nickname = nickname;
         this.email = email;
         this.senha = senha;
-        this.user_acesso = user_acesso;
+        this.userAcessoResponse = userAcessoResponse;
         this.dataNascimento = dataNascimento;
         this.foto = foto;
     }

@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioRequest extends DefaultRequest{
+public class ClienteRequest extends DefaultRequest{
 
     @NotNull(message = "O campo Nome deve ser informado!")
     private String nome;
@@ -25,13 +25,13 @@ public class UsuarioRequest extends DefaultRequest{
     @NotNull(message = "O campo senha deve ser informado!")
     private String senha;
     @NotNull(message = "UserAcesso não pode ser nulo.")
-    private User_acessoRequest user_acesso;
+    private UserAcessoRequest userAcesso;
     @NotNull(message = "O campo dataNascimento deve ser informado!")
     private Date dataNascimento;
     @NotNull(message = "O campo foto deve ser informado!")
     private String foto;
 
-    public UsuarioRequest(Long id) {
+    public ClienteRequest(Long id) {
         super(id);
 
     }

@@ -3,20 +3,19 @@ package com.br.Pokando.dto;
 
 import lombok.*;
 
-@Builder
-@Data
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User_acessoResponse extends DefaultResponse{
+public class UserAcessoResponse extends DefaultResponse{
 
     private String nome;
 
-    public User_acessoResponse(Long id) {
+    public UserAcessoResponse(Long id) {
         super(id);
     }
-    public User_acessoResponse(Long id, String nome) {
+    public UserAcessoResponse(Long id, String nome) {
         super(id);
         this.nome = nome;
     }

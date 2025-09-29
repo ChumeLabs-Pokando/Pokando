@@ -1,5 +1,6 @@
 package com.br.Pokando.model;
 
+import com.br.Pokando.model.heranca.Usuario;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +20,13 @@ public class Telefone {
     @Column(name = "numero")
     private String numero;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "organizador_id", nullable = true)
+    private Organizador organizador;
+   // @ManyToOne(optional = false)
+  //  @JoinColumn(name = "proprietario_id", nullable = false)
+ //   private Proprietario proprietario;
 
 }

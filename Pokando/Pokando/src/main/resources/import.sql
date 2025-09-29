@@ -42,9 +42,9 @@ insert into user_acesso (nome) values ('Proprietário');
 
 -- usuario
 
-insert into Usuario (nome, nickname, email, senha, user_acesso_id, dataNascimento, foto) values ('Felipe Farias', 'felipe.dev', 'felipe@email.com', '123456', 1, '1995-04-12', 'felipe.png');
-insert into Usuario (nome, nickname, email, senha, user_acesso_id, dataNascimento, foto) values ('Maria Souza', 'maria.s', 'maria@email.com', 'senha123', 2, '1998-09-25', 'maria.jpg');
-insert into Usuario (nome, nickname, email, senha, user_acesso_id, dataNascimento, foto) values ('João Silva', 'joaos', 'joao@email.com', 'qwerty', 1, '1990-02-10', 'joao.jpeg');
+insert into Cliente (nome, nickname, email, senha, user_acesso_id, dataNascimento, foto) values ('Felipe Farias', 'felipe.dev', 'felipe@email.com', '123456', 1, '1995-04-12', 'felipe.png');
+insert into Cliente (nome, nickname, email, senha, user_acesso_id, dataNascimento, foto) values ('Maria Souza', 'maria.s', 'maria@email.com', 'senha123', 2, '1998-09-25', 'maria.jpg');
+insert into Cliente (nome, nickname, email, senha, user_acesso_id, dataNascimento, foto) values ('João Silva', 'joaos', 'joao@email.com', 'qwerty', 1, '1990-02-10', 'joao.jpeg');
 
 
 -- telefone
