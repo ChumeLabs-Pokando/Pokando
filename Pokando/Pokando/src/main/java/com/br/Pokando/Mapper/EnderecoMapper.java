@@ -129,6 +129,7 @@ public class EnderecoMapper implements IMapper<Endereco, EnderecoResponse, Ender
             entity.setCidade(cidade);
 
         }
+
         return entity;
     }
 

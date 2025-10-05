@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Builder
-@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +21,7 @@ public class ClienteResponse extends DefaultResponse{
 
     private String senha;
 
-    private UserAcessoResponse userAcessoResponse;
+    private List<UserAcessoResponse> userAcessoResponse;
 
     private Date dataNascimento;
 
@@ -31,7 +31,7 @@ public class ClienteResponse extends DefaultResponse{
         super(id);
     }
 
-    public ClienteResponse(String nome, String nickname, String email, String senha, UserAcessoResponse userAcessoResponse, Date dataNascimento, String foto) {
+    public ClienteResponse(String nome, String nickname, String email, String senha, List<UserAcessoResponse> userAcessoResponse, Date dataNascimento, String foto) {
         this.nome = nome;
         this.nickname = nickname;
         this.email = email;

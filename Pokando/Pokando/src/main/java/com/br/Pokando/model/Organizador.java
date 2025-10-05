@@ -1,20 +1,22 @@
 package com.br.Pokando.model;
 
-import com.br.Pokando.model.heranca.Usuario;
+
+import com.br.Pokando.model.heranca.Cliente;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "Organizador")
+//@Table(name = "Organizador")
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Organizador extends Usuario {
-
+@DiscriminatorValue("ORGANIZADOR")
+public class Organizador extends Cliente {
 
     @Column(name = "cpf", unique = true)
     private String cpf;
@@ -28,7 +30,7 @@ public class Organizador extends Usuario {
 
     }
 
-    public Organizador(Long id, String nome, String nickname, String email, String senha, UserAcesso userAcesso, Date dataNascimento, String foto, String cpf, String cnpj, String rg) {
+    public Organizador(Long id, String nome, String nickname, String email, String senha, List<UserAcesso> userAcesso, Date dataNascimento, String foto, String cpf, String cnpj, String rg) {
         super(id, nome, nickname, email, senha, userAcesso, dataNascimento, foto);
         this.cpf = cpf;
         this.cnpj = cnpj;

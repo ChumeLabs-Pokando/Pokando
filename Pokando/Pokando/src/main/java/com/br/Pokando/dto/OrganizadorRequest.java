@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Getter
@@ -36,10 +37,8 @@ public class OrganizadorRequest  extends DefaultRequest{
     @NotEmpty
     @NotBlank
     private String senha;
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    private UserAcessoRequest userAcessoRequest;
+    @NotNull(message = "UserAcesso não pode ser nulo.")
+    private List<Long> userAcessosIds;
     @NotNull
     @NotEmpty
     @NotBlank

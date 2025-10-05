@@ -5,13 +5,16 @@
 package com.br.Pokando.model.heranca;
 
 //import com.br.Pokando.model.Evento;
-import com.br.Pokando.model.UserAcesso;
 
+
+import com.br.Pokando.model.UserAcesso;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 //import java.util.List;
 
 /**
@@ -19,15 +22,16 @@ import java.util.Date;
  * @author 05029689150
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_usuario")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Usuario implements IBaseClass {
+public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -37,16 +41,20 @@ public abstract class Usuario implements IBaseClass {
     private String email;
     @Column(name = "senha", nullable = false)
     private String senha;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_acesso_id", nullable = false)
-    private UserAcesso userAcesso;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "cliente_user_acesso",
+            joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_acesso_id")
+    )
+    private List<UserAcesso> userAcesso = new ArrayList<>();
     @Column(name = "datanascimento", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;
     @Column(name = "foto", nullable = false)
     private String foto;
 
-    public Usuario(Long id) {
+    public Cliente(Long id) {
         this.id = id;
     }
 

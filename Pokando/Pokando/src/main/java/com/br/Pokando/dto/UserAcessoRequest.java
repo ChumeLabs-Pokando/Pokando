@@ -1,6 +1,7 @@
 package com.br.Pokando.dto;
 
 
+import com.br.Pokando.model.heranca.Cliente;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -9,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Builder
 @Getter
@@ -21,6 +24,9 @@ public class UserAcessoRequest extends DefaultRequest{
     @NotBlank(message = "O campo NOME não deve conter somente ESPAÇO VAZIO!")
     @Size(min = 1, max = 255, message = "Limite de caracteres para o campo NOME.")
     private String nome;
+
+    @NotNull(message = "Cliente não pode ser nulo.")
+    private List<Long> clientesIds;
 
     public UserAcessoRequest(Long id) {
         super(id);

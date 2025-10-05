@@ -8,10 +8,10 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Getter
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClienteRequest extends DefaultRequest{
@@ -25,7 +25,7 @@ public class ClienteRequest extends DefaultRequest{
     @NotNull(message = "O campo senha deve ser informado!")
     private String senha;
     @NotNull(message = "UserAcesso não pode ser nulo.")
-    private UserAcessoRequest userAcesso;
+    private List<Long> userAcessosIds;
     @NotNull(message = "O campo dataNascimento deve ser informado!")
     private Date dataNascimento;
     @NotNull(message = "O campo foto deve ser informado!")

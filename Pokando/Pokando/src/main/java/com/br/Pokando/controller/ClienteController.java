@@ -8,7 +8,8 @@ import com.br.Pokando.Mapper.IMapper;
 import com.br.Pokando.Service.IService;
 import com.br.Pokando.dto.ClienteRequest;
 import com.br.Pokando.dto.ClienteResponse;
-import com.br.Pokando.model.Cliente;
+
+import com.br.Pokando.model.heranca.Cliente;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

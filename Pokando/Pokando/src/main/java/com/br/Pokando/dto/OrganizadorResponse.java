@@ -4,6 +4,7 @@ package com.br.Pokando.dto;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Getter
@@ -21,7 +22,7 @@ public class OrganizadorResponse extends DefaultResponse {
 
     private String senha;
 
-    private UserAcessoResponse userAcessoResponse;
+    private List<UserAcessoResponse> userAcessoResponse;
 
     private Date dataNascimento;
 
@@ -38,7 +39,7 @@ public class OrganizadorResponse extends DefaultResponse {
 
 
 
-    public OrganizadorResponse(Long id, String nome, String nickname, String email, String senha, UserAcessoResponse userAcessoResponse, Date dataNascimento, String foto, String cpf, String cnpj) {
+    public OrganizadorResponse(Long id, String nome, String nickname, String email, String senha, List<UserAcessoResponse> userAcessoResponse, Date dataNascimento, String foto, String cpf, String cnpj) {
         super(id);
         this.nome = nome;
         this.nickname = nickname;

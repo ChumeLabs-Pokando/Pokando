@@ -8,7 +8,9 @@ import com.br.Pokando.Mapper.IMapper;
 import com.br.Pokando.Mapper.ClienteMapper;
 import com.br.Pokando.dto.ClienteRequest;
 import com.br.Pokando.dto.ClienteResponse;
-import com.br.Pokando.model.Cliente;
+
+import com.br.Pokando.model.heranca.Cliente;
+import com.br.Pokando.repository.ClienteRepository;
 import com.br.Pokando.repository.UserAcessoRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -24,8 +26,8 @@ public class ClienteService extends ServiceAdapter<Cliente, Long, ClienteRespons
     private final UserAcessoRepository userAcessoRepository;
 
 
-    public ClienteService(UserAcessoRepository userAcessoRepository, JpaRepository<Cliente, Long> repository, IMapper<Cliente, ClienteResponse, ClienteRequest, ClienteRequest> mapper) {
-        super(repository, mapper);
+    public ClienteService(UserAcessoRepository userAcessoRepository, ClienteRepository repository, ClienteMapper mapper) {
+        super(repository,mapper);
         this.userAcessoRepository = userAcessoRepository;
     }
 
