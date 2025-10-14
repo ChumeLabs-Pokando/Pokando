@@ -1,6 +1,7 @@
 package com.br.Pokando.model;
 
 import com.br.Pokando.model.heranca.Cliente;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 

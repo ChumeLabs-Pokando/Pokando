@@ -15,12 +15,12 @@ public class UserAcessoResponse extends DefaultResponse{
 
     private String nome;
 
-    private List<ClienteResponse> clientes;
+    private List<ClienteResumoResponse> clientes;
 
     public UserAcessoResponse(Long id) {
         super(id);
     }
-    public UserAcessoResponse(Long id, String nome, List<ClienteResponse> clientes) {
+    public UserAcessoResponse(Long id, String nome, List<ClienteResumoResponse> clientes) {
         super(id);
         this.nome = nome;
         this.clientes = clientes;

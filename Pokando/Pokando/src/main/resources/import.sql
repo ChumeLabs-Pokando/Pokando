@@ -62,6 +62,13 @@ insert into cliente (nome, nickname, email, senha, datanascimento, foto, cpf, cn
 
 insert into cliente (nome, nickname, email, senha, datanascimento, foto, cpf, cnpj, rg, tipo_usuario) values ('Carlos Mendes', 'carlos.event', 'carlos@email.com', 'eventos2024', '1985-03-15', 'carlos.jpeg', '11223344556', '44556677000122', 'RJ112233', 'ORGANIZADOR');
 
+-- 🔸 PROPRIETARIOS (tipo_usuario = PROPRIETARIO)
+insert into cliente (nome, nickname, email, senha, datanascimento, foto, cpf, cnpj, rg, tipo_usuario) values ('Mariana Souza', 'mariana.pro', 'mariana@email.com', 'proprietaria1', '1989-09-25', 'mariana.png', '32165498700', '32165498000177', 'SP321654', 'PROPRIETARIO');
+
+insert into cliente (nome, nickname, email, senha, datanascimento, foto, cpf, cnpj, rg, tipo_usuario) values ('Ricardo Alves', 'ricardo.alves', 'ricardo.alves@email.com', 'ricardopro', '1990-12-11', 'ricardo.jpg', '65498732100', '65498732000133', 'RJ654987', 'PROPRIETARIO');
+
+insert into cliente (nome, nickname, email, senha, datanascimento, foto, cpf, cnpj, rg, tipo_usuario) values ('Fernanda Costa', 'fernanda.eventos', 'fernanda@email.com', 'proeventos', '1983-02-20', 'fernanda.jpeg', '78912345600', '78912345000144', 'MG789123', 'PROPRIETARIO');
+
 -- ================================================
 -- TABELA CLIENTE_USER_ACESSO (TABELA INTERMEDIÁRIA MANY-TO-MANY)
 -- ================================================

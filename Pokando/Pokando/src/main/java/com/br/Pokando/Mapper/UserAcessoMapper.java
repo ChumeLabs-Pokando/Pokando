@@ -27,6 +27,22 @@ public class UserAcessoMapper implements IMapper<UserAcesso, UserAcessoResponse,
         this.clienteRepository = clienteRepository;
     }
 
+//    @Override
+//    public UserAcessoResponse toDto(UserAcesso entity) {
+//        UserAcessoResponse dto = new UserAcessoResponse(entity.getId());
+//        dto.setNome(entity.getNome());
+//
+//        if (entity.getClientes() != null) {
+//            dto.setClientes(
+//                    entity.getClientes().stream()
+//                            .map(clienteMapper::toDto)
+//                            .collect(Collectors.toList())
+//            );
+//        }
+//
+//        return dto;
+//    }
+
     @Override
     public UserAcessoResponse toDto(UserAcesso entity) {
         UserAcessoResponse dto = new UserAcessoResponse(entity.getId());
@@ -35,7 +51,7 @@ public class UserAcessoMapper implements IMapper<UserAcesso, UserAcessoResponse,
         if (entity.getClientes() != null) {
             dto.setClientes(
                     entity.getClientes().stream()
-                            .map(clienteMapper::toDto)
+                            .map(c -> new ClienteResumoResponse(c.getId(), c.getNome(), c.getNickname()))
                             .collect(Collectors.toList())
             );
         }
