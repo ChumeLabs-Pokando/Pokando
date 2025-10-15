@@ -15,8 +15,6 @@ import lombok.*;
 @Table(name = "Endereco_geografico")
 @Builder
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco_geografico {

@@ -5,8 +5,6 @@ import lombok.*;
 
 @Builder
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco_geograficoResponse extends DefaultResponse{

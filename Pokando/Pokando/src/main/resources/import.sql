@@ -111,3 +111,10 @@ insert into categoria_ingresso (nome, preco, meiaEntrada) values ('Camarote', 30
 insert into cargo (nome) values ('Segurança');
 insert into cargo (nome) values ('DJ');
 insert into cargo (nome) values ('BarMan');
+
+-- ================================================
+-- TABELA TAG
+-- ================================================
+insert into tag_categoria (nome) values ('OpenBar');
+insert into tag_categoria (nome) values ('Rock');
+insert into tag_categoria (nome) values ('+18');
