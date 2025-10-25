@@ -28,11 +28,34 @@ public class IngressoResponse extends DefaultResponse{
 
     private boolean gratuito;
 
-   private Categoria_ingressoResponse categoriaIngresso;
+   private Categoria_ingressoResponse categoriaIngressoResponse;
 
-    private PagamentoResponse pagamento;
+    private PagamentoResponse pagamentoResponse;
 
     private List<EventoResponse> eventoResponse;
 
+    public IngressoResponse(double quantidade, PagamentoResponse pagamentoResponse, List<EventoResponse> eventoResponse, Categoria_ingressoResponse categoriaIngressoResponse, boolean gratuito, LocalDate dataPagamento, LocalDate dataPedido, boolean presenca, boolean status) {
+        this.quantidade = quantidade;
+        this.pagamentoResponse = pagamentoResponse;
+        this.eventoResponse = eventoResponse;
+        this.categoriaIngressoResponse = categoriaIngressoResponse;
+        this.gratuito = gratuito;
+        this.dataPagamento = dataPagamento;
+        this.dataPedido = dataPedido;
+        this.presenca = presenca;
+        this.status = status;
+    }
 
+    public IngressoResponse(Long id, double quantidade, PagamentoResponse pagamentoResponse, List<EventoResponse> eventoResponse, Categoria_ingressoResponse categoriaIngressoResponse, boolean gratuito, LocalDate dataPagamento, LocalDate dataPedido, boolean presenca, boolean status) {
+        super(id);
+        this.quantidade = quantidade;
+        this.pagamentoResponse = pagamentoResponse;
+        this.eventoResponse = eventoResponse;
+        this.categoriaIngressoResponse = categoriaIngressoResponse;
+        this.gratuito = gratuito;
+        this.dataPagamento = dataPagamento;
+        this.dataPedido = dataPedido;
+        this.presenca = presenca;
+        this.status = status;
+    }
 }

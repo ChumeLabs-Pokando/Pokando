@@ -38,4 +38,11 @@ public class Ingresso {
     private Pagamento pagamento;
     @ManyToMany(mappedBy = "ingresso")
     private List<Evento> evento;
+
+    public Ingresso(Long id) {
+        this.id = id;
+    }
+
 }
+
+
