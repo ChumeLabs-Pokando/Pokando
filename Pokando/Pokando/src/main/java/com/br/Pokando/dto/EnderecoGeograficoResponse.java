@@ -1,22 +1,22 @@
 package com.br.Pokando.dto;
 
-import com.br.Pokando.model.Endereco_geografico;
+import com.br.Pokando.model.EnderecoGeografico;
 import lombok.*;
 
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Endereco_geograficoResponse extends DefaultResponse{
+public class EnderecoGeograficoResponse extends DefaultResponse{
 
     private String latitude;
 
     private String longitude;
 
-    public Endereco_geograficoResponse(Long id) {
+    public EnderecoGeograficoResponse(Long id) {
         super(id);
     }
-    public Endereco_geograficoResponse(Long id, String latitude, String longitude) {
+    public EnderecoGeograficoResponse(Long id, String latitude, String longitude) {
         super(id);
         this.latitude = latitude;
         this.longitude = longitude;

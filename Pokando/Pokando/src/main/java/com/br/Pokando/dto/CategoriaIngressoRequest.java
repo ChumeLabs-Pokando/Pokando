@@ -4,27 +4,35 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
-@Getter
+
 @NoArgsConstructor
+@Getter
 @AllArgsConstructor
-public class Endereco_geograficoRequest extends DefaultRequest{
+public class CategoriaIngressoRequest extends DefaultRequest{
 
     @NotNull
     @NotEmpty
     @NotBlank
-    private String longitude;
+    private String nome;
     @NotNull
     @NotEmpty
     @NotBlank
-    private String latitude;
+    private double preco;
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    private boolean meiaEntrada;
 
-    public Endereco_geograficoRequest(Long id) {
+    public CategoriaIngressoRequest(Long id) {
         super(id);
 
     }
+
+  
+
+   
 }

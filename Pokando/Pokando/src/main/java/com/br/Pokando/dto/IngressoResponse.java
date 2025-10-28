@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class IngressoResponse extends DefaultResponse{
 
     private double quantidade;
@@ -28,34 +27,22 @@ public class IngressoResponse extends DefaultResponse{
 
     private boolean gratuito;
 
-   private Categoria_ingressoResponse categoriaIngressoResponse;
+   private CategoriaIngressoResponse categoriaIngressoResponse;
 
     private PagamentoResponse pagamentoResponse;
 
     private List<EventoResponse> eventoResponse;
 
-    public IngressoResponse(double quantidade, PagamentoResponse pagamentoResponse, List<EventoResponse> eventoResponse, Categoria_ingressoResponse categoriaIngressoResponse, boolean gratuito, LocalDate dataPagamento, LocalDate dataPedido, boolean presenca, boolean status) {
-        this.quantidade = quantidade;
-        this.pagamentoResponse = pagamentoResponse;
-        this.eventoResponse = eventoResponse;
-        this.categoriaIngressoResponse = categoriaIngressoResponse;
-        this.gratuito = gratuito;
-        this.dataPagamento = dataPagamento;
-        this.dataPedido = dataPedido;
-        this.presenca = presenca;
-        this.status = status;
+    public IngressoResponse(Long id) {
+        super(id);
     }
 
-    public IngressoResponse(Long id, double quantidade, PagamentoResponse pagamentoResponse, List<EventoResponse> eventoResponse, Categoria_ingressoResponse categoriaIngressoResponse, boolean gratuito, LocalDate dataPagamento, LocalDate dataPedido, boolean presenca, boolean status) {
-        super(id);
+    public IngressoResponse(double quantidade, boolean status, boolean presenca, LocalDate dataPedido, LocalDate dataPagamento, boolean gratuito, CategoriaIngressoResponse categoriaIngressoResponse, PagamentoResponse pagamentoResponse, List<EventoResponse> eventoResponse) {
         this.quantidade = quantidade;
-        this.pagamentoResponse = pagamentoResponse;
-        this.eventoResponse = eventoResponse;
-        this.categoriaIngressoResponse = categoriaIngressoResponse;
-        this.gratuito = gratuito;
-        this.dataPagamento = dataPagamento;
-        this.dataPedido = dataPedido;
-        this.presenca = presenca;
         this.status = status;
+        this.presenca = presenca;
+        this.dataPedido = dataPedido;
+        this.dataPagamento = dataPagamento;
+        this.gratuito = gratuito;
     }
 }

@@ -37,12 +37,12 @@ public class EnderecoResponse extends DefaultResponse{
     
     private String complemento;
 
-    private Endereco_geograficoResponse endereco_geografico;
+    private EnderecoGeograficoResponse enderecoGeograficoResponse;
 
     public EnderecoResponse(Long id) {
         super(id);
     }
-    public EnderecoResponse(Long id, String logradouro, CidadeResponse cidade, String numero, String cep, String bairro, String complemento, Endereco_geograficoResponse endereco_geografico) {
+    public EnderecoResponse(Long id, String logradouro, CidadeResponse cidade, String numero, String cep, String bairro, String complemento, EnderecoGeograficoResponse enderecoGeograficoResponse) {
         super(id);
         this.logradouro = logradouro;
         this.cidade = cidade;
@@ -50,7 +50,7 @@ public class EnderecoResponse extends DefaultResponse{
         this.cep = cep;
         this.bairro = bairro;
         this.complemento = complemento;
-        this.endereco_geografico = endereco_geografico;
+        this.enderecoGeograficoResponse = enderecoGeograficoResponse;
 
     }
 

@@ -48,14 +48,6 @@ public class UserAcessoMapper implements IMapper<UserAcesso, UserAcessoResponse,
         UserAcessoResponse dto = new UserAcessoResponse(entity.getId());
         dto.setNome(entity.getNome());
 
-        if (entity.getClientes() != null) {
-            dto.setClientes(
-                    entity.getClientes().stream()
-                            .map(c -> new ClienteResumoResponse(c.getId(), c.getNome(), c.getNickname()))
-                            .collect(Collectors.toList())
-            );
-        }
-
         return dto;
     }
 

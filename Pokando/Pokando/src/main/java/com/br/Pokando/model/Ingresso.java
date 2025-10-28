@@ -25,14 +25,16 @@ public class Ingresso {
     @Column(name = "presenca", nullable = false)
     private boolean presenca;
     @Column(name = "dataPedido", nullable = false)
+    @Temporal(TemporalType.DATE)
     private LocalDate dataPedido;
     @Column(name = "dataPagamento", nullable = false)
+    @Temporal(TemporalType.DATE)
     private LocalDate dataPagamento;
     @Column(name = "gratuito", nullable = false)
     private boolean gratuito;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "categoriaIngresso_id", nullable = false)
-    private Categoria_ingresso categoriaIngresso;
+    @JoinColumn(name = "categoria_ingresso_id", nullable = false)
+    private CategoriaIngresso categoriaIngresso;
     @ManyToOne(optional = false)
     @JoinColumn(name = "pagamento_id", nullable = false)
     private Pagamento pagamento;
@@ -42,6 +44,8 @@ public class Ingresso {
     public Ingresso(Long id) {
         this.id = id;
     }
+
+
 
 }
 

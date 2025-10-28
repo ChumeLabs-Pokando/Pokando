@@ -63,7 +63,7 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
     }
 
 
-    public Telefone toEntity(TelefoneRequest request, ClienteRepository clienteRepository, OrganizadorRepository organizadorRepository) {
+    public Telefone toEntity(TelefoneRequest request, ClienteRepository clienteRepository) {
         var entity = new Telefone();
         entity.setNumero(request.getNumero());
 

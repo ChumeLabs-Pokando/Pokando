@@ -16,11 +16,11 @@ public class TelefoneRequest  extends DefaultRequest {
     @NotNull(message = "Cliente não pode ser nulo.")
     private ClienteRequest clienteRequest;
 
-    @NotNull(message = "Organizador não pode ser nulo.")
-    private OrganizadorRequest organizadorRequest;
-
-   // @NotNull(message = "Proprietario não pode ser nulo.")
-   // private ProprietarioRequest proprietarioRequest;
+//    @NotNull(message = "Organizador não pode ser nulo.")
+//    private OrganizadorRequest organizadorRequest;
+//
+//    @NotNull(message = "Proprietario não pode ser nulo.")
+//    private ProprietarioRequest proprietarioRequest;
 
     public TelefoneRequest(Long id) {
         super(id);

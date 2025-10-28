@@ -14,22 +14,21 @@ public class TelefoneService extends ServiceAdapter<Telefone, Long, TelefoneResp
 
     private final ClienteRepository clienteRepository;
 
-    private final OrganizadorRepository organizadorRepository;
+    //  private final OrganizadorRepository organizadorRepository;
 
    // private final ProprietarioRepository proprietarioRepository;
 
 
-    public TelefoneService(TelefoneRepository telefoneRepository, TelefoneMapper telefoneMapper, ClienteRepository clienteRepository, OrganizadorRepository organizadorRepository) {
+    public TelefoneService(TelefoneRepository telefoneRepository, TelefoneMapper telefoneMapper, ClienteRepository clienteRepository) {
         super(telefoneRepository, telefoneMapper);
         this.clienteRepository = clienteRepository;
-        this.organizadorRepository = organizadorRepository;
 
     }
 
     @Override
     @Transactional
     public Telefone create(TelefoneRequest request) {
-        var entity = ((TelefoneMapper) mapper).toEntity(request, clienteRepository, organizadorRepository);
+        var entity = ((TelefoneMapper) mapper).toEntity(request, clienteRepository);
         var saved = repository.save(entity);
         return repository.findById(saved.getId())
                 .orElseThrow(() -> new RuntimeException("Erro ao buscar telefone salvo"));

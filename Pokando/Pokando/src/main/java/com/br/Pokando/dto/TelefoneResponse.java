@@ -13,17 +13,17 @@ public class TelefoneResponse extends DefaultResponse{
 
     private ClienteResponse cliente;
 
-    private OrganizadorResponse organizador;
-
-   // private ProprietarioResponse proprietario;
+//    private OrganizadorResponse organizador;
+//
+//    private ProprietarioResponse proprietario;
 
     public TelefoneResponse(Long id) {
         super(id);
     }
 
-    public TelefoneResponse(String numero, ClienteResponse cliente, OrganizadorResponse organizador) {
+    public TelefoneResponse(String numero, ClienteResponse cliente) {
         this.numero = numero;
         this.cliente = cliente;
-        this.organizador = organizador;
+
     }
 }

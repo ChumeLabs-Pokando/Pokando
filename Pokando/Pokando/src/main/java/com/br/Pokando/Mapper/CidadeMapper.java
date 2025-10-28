@@ -3,14 +3,10 @@ package com.br.Pokando.Mapper;
 import com.br.Pokando.dto.CidadeResponse;
 import com.br.Pokando.dto.CidadeRequest;
 
-import com.br.Pokando.dto.EnderecoRequest;
 import com.br.Pokando.exception.ResourceNotFoundException;
 import com.br.Pokando.model.Cidade;
 
 import com.br.Pokando.model.Estado;
-import com.br.Pokando.repository.CidadeRepository;
-
-import com.br.Pokando.repository.Endereco_geograficoRepository;
 import com.br.Pokando.repository.EstadoRepository;
 import org.springframework.stereotype.Component;
 

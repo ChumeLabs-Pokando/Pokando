@@ -17,7 +17,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Endereco_geografico {
+public class EnderecoGeografico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,7 +7,6 @@ import lombok.*;
 import java.util.Date;
 import java.util.List;
 
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,17 +26,20 @@ public class ClienteResponse extends DefaultResponse{
 
     private String foto;
 
+    private List<EventoResponse> eventoResponse;
+
     public ClienteResponse(Long id) {
         super(id);
     }
 
-    public ClienteResponse(String nome, String nickname, String email, String senha, List<UserAcessoResponse> userAcessoResponse, Date dataNascimento, String foto) {
+    public ClienteResponse(String nome, List<EventoResponse> eventoResponse, String foto, Date dataNascimento, List<UserAcessoResponse> userAcessoResponse, String senha, String email, String nickname) {
         this.nome = nome;
-        this.nickname = nickname;
-        this.email = email;
-        this.senha = senha;
-        this.userAcessoResponse = userAcessoResponse;
-        this.dataNascimento = dataNascimento;
+        this.eventoResponse = eventoResponse;
         this.foto = foto;
+        this.dataNascimento = dataNascimento;
+        this.userAcessoResponse = userAcessoResponse;
+        this.senha = senha;
+        this.email = email;
+        this.nickname = nickname;
     }
 }

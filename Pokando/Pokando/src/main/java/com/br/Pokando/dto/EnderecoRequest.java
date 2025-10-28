@@ -48,7 +48,7 @@ public class EnderecoRequest extends DefaultRequest {
     private String complemento;
 
     @NotNull(message = "Endereco Geografico não pode ser nulo.")
-    private Endereco_geograficoRequest endereco_geografico;
+    private EnderecoGeograficoRequest enderecoGeograficoRequest;
 
     public EnderecoRequest(Long id) {
         super(id);

@@ -30,6 +30,8 @@ public class ClienteRequest extends DefaultRequest{
     private Date dataNascimento;
     @NotNull(message = "O campo foto deve ser informado!")
     private String foto;
+    @NotNull(message = "evento não pode ser nulo.")
+    private List<Long> eventoId;
 
     public ClienteRequest(Long id) {
         super(id);

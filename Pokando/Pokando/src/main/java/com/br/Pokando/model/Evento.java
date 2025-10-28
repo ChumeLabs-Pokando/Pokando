@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "Evento")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,13 +24,14 @@ public class Evento {
     private String nome;
     @Column(name = "descricao", nullable = true)
     private String descricao;
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private StatusEvento statusEvento;
-    @Column(name = "data-hora", nullable = false)
+    @Column(name = "data_hora", nullable = false)
     private Date dataHora;
     @Column(name = "autorizado", nullable = false)
     private boolean autorizado;
-    @Column(name = "limite-inscricoes", nullable = false)
+    @Column(name = "limite_inscricoes", nullable = false)
     private double limiteInscricoes;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -40,9 +42,22 @@ public class Evento {
     private List<Organizador> organizador = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "evento_organizador",
+            name = "cliente_evento",
+            joinColumns = @JoinColumn(name = "evento_id"),
+            inverseJoinColumns = @JoinColumn(name = "cliente_id")
+    )
+    private List<Cliente> cliente = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "evento_ingresso",
             joinColumns = @JoinColumn(name = "evento_id"),
             inverseJoinColumns = @JoinColumn(name = "ingresso_id")
     )
     private List<Ingresso> ingresso = new ArrayList<>();
+
+    public Evento(Long id) {
+        this.id = id;
+    }
+
+
 }

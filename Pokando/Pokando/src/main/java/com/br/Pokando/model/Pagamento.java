@@ -21,18 +21,18 @@ public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nomecompleto", nullable = false)
+    @Column(name = "nome_completo", nullable = false)
     private String nomeCompleto;
     @Column(name = "cpf", nullable = false)
     private String cpf;
     @Column(name = "email", nullable = true)
     private String email;
-    @Column(name = "nomecartao", nullable = true)
+    @Column(name = "nome_cartao", nullable = true)
     private String nomeCartao;
-    @Column(name = "numerocartao", nullable = false)
+    @Column(name = "numero_cartao", nullable = false)
     private String numeroCartao;
-    @Column(name = "validadecartao", nullable = false)
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "validade_cartao", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date validadeCartao;
     // falta o cvv
 }

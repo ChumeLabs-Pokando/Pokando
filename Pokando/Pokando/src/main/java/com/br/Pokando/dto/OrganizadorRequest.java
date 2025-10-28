@@ -57,6 +57,8 @@ public class OrganizadorRequest  extends DefaultRequest{
     @NotBlank(message = "O campo cnpj não deve conter somente ESPAÇO VAZIO!")
     @Size(min = 1, max = 255)
     private String cnpj;
+    @NotNull(message = "evento não pode ser nulo.")
+    private List<Long> eventoId;
 
 
 

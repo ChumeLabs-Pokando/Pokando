@@ -25,11 +25,5 @@ public class Telefone {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
-   // @ManyToOne(optional = false)
-  //  @JoinColumn(name = "organizador_id", nullable = true)
-   // private Organizador organizador;
-   // @ManyToOne(optional = false)
-  //  @JoinColumn(name = "proprietario_id", nullable = false)
- //   private Proprietario proprietario;
 
 }

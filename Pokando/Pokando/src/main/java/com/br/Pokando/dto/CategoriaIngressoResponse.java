@@ -9,16 +9,16 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Categoria_ingressoResponse extends DefaultResponse{
+public class CategoriaIngressoResponse extends DefaultResponse{
 
    private String nome;
    private double preco;
    private boolean meiaEntrada;
 
-    public Categoria_ingressoResponse(Long id) {
+    public CategoriaIngressoResponse(Long id) {
         super(id);
     }
-    public Categoria_ingressoResponse(Long id, String nome, double preco, boolean meiaEntrada) {
+    public CategoriaIngressoResponse(Long id, String nome, double preco, boolean meiaEntrada) {
         super(id);
         this.nome = nome;
         this.preco = preco;

@@ -32,23 +32,23 @@ public class OrganizadorResponse extends DefaultResponse {
 
     private String cnpj;
 
+    private List<EventoResponse> eventoResponse;
+
 
     public OrganizadorResponse(Long id) {
         super(id);
     }
 
 
-
-    public OrganizadorResponse(Long id, String nome, String nickname, String email, String senha, List<UserAcessoResponse> userAcessoResponse, Date dataNascimento, String foto, String cpf, String cnpj) {
-        super(id);
+    public OrganizadorResponse(String nome, String cnpj, String cpf, String foto, Date dataNascimento, List<UserAcessoResponse> userAcessoResponse, String nickname, String senha, String email) {
         this.nome = nome;
-        this.nickname = nickname;
-        this.email = email;
-        this.senha = senha;
-        this.userAcessoResponse = userAcessoResponse;
-        this.dataNascimento = dataNascimento;
-        this.foto = foto;
-        this.cpf = cpf;
         this.cnpj = cnpj;
+        this.cpf = cpf;
+        this.foto = foto;
+        this.dataNascimento = dataNascimento;
+        this.userAcessoResponse = userAcessoResponse;
+        this.nickname = nickname;
+        this.senha = senha;
+        this.email = email;
     }
 }

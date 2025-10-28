@@ -11,6 +11,7 @@ import com.br.Pokando.dto.ClienteResponse;
 
 import com.br.Pokando.model.heranca.Cliente;
 import com.br.Pokando.repository.ClienteRepository;
+import com.br.Pokando.repository.EventoRepository;
 import com.br.Pokando.repository.UserAcessoRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class ClienteService extends ServiceAdapter<Cliente, Long, ClienteRespons
     public ClienteService(UserAcessoRepository userAcessoRepository, ClienteRepository repository, ClienteMapper mapper) {
         super(repository,mapper);
         this.userAcessoRepository = userAcessoRepository;
+
     }
 
     @Override

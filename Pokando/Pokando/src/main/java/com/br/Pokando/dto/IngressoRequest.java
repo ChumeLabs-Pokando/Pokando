@@ -28,7 +28,7 @@ public class IngressoRequest  extends DefaultRequest{
     @NotNull
     private boolean gratuito;
     @NotNull(message = "Cartegoria do ingresso não pode ser nulo.")
-    private Categoria_ingressoRequest categoriaIngressoRequest;
+    private CategoriaIngressoRequest categoriaIngressoRequest;
     @NotNull(message = "pagamento não pode ser nulo.")
     private PagamentoRequest pagamentoRequest;
     @NotNull(message = "evento não pode ser nulo.")

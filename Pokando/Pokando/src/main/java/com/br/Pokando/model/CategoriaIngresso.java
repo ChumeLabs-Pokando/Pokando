@@ -11,7 +11,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Categoria_ingresso {
+public class CategoriaIngresso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Categoria_ingresso {
     private String nome;
     @Column(name = "preco")
     private double preco;
-    @Column(name = "meiaentrada", nullable = false)
+    @Column(name = "meia_entrada", nullable = false)
     private boolean meiaEntrada;
 
 }

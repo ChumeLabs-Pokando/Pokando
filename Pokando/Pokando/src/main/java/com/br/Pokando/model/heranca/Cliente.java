@@ -7,6 +7,7 @@ package com.br.Pokando.model.heranca;
 //import com.br.Pokando.model.Evento;
 
 
+import com.br.Pokando.model.Evento;
 import com.br.Pokando.model.UserAcesso;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -35,14 +36,19 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nome", nullable = false)
+
+    @Column(nullable = false)
     private String nome;
-    @Column(name = "nickname", nullable = false, unique = true)
+
+    @Column(nullable = false, unique = true)
     private String nickname;
-    @Column(name = "email", nullable = false)
+
+    @Column(nullable = false)
     private String email;
-    @Column(name = "senha", nullable = false)
+
+    @Column(nullable = false)
     private String senha;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "cliente_user_acesso",
@@ -50,14 +56,17 @@ public class Cliente {
             inverseJoinColumns = @JoinColumn(name = "user_acesso_id")
     )
     private List<UserAcesso> userAcesso = new ArrayList<>();
-    @Column(name = "datanascimento", nullable = false)
-    @JsonFormat(pattern = "dd/MM/yyyy")
+
+
+    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date dataNascimento;
-    @Column(name = "foto", nullable = false)
+
+    @Column(nullable = false)
     private String foto;
 
     public Cliente(Long id) {
         this.id = id;
     }
-
 }
+

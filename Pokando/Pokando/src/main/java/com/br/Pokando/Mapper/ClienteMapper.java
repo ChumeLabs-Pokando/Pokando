@@ -1,31 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.br.Pokando.Mapper;
-import java.util.Objects;
+
 import com.br.Pokando.dto.ClienteRequest;
 import com.br.Pokando.dto.ClienteResponse;
 import com.br.Pokando.model.UserAcesso;
-
+import com.br.Pokando.model.Evento;
 import com.br.Pokando.model.heranca.Cliente;
+import com.br.Pokando.repository.EventoRepository;
 import com.br.Pokando.repository.UserAcessoRepository;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Component;
 
-/**
- * @author 05029689150
- */
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 @Component
 public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteRequest, ClienteRequest> {
 
     private final UserAcessoMapper userAcessoMapper;
     private final UserAcessoRepository userAcessoRepository;
 
-    public ClienteMapper(UserAcessoMapper userAcessoMapper, UserAcessoRepository userAcessoRepository) {
+    public ClienteMapper(
+            UserAcessoMapper userAcessoMapper,
+            UserAcessoRepository userAcessoRepository
+    ) {
         this.userAcessoMapper = userAcessoMapper;
         this.userAcessoRepository = userAcessoRepository;
     }
@@ -40,7 +37,7 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
         dto.setDataNascimento(entity.getDataNascimento());
         dto.setFoto(entity.getFoto());
 
-        if (entity.getUserAcesso() != null) {
+        if (entity.getUserAcesso() != null && !entity.getUserAcesso().isEmpty()) {
             dto.setUserAcessoResponse(
                     entity.getUserAcesso().stream()
                             .map(userAcessoMapper::toDto)
@@ -51,7 +48,9 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
         return dto;
     }
 
-    public Cliente toEntity(ClienteRequest dto, UserAcessoRepository userAcessoRepository) {
+
+    public Cliente toEntity(ClienteRequest dto,
+                            UserAcessoRepository userAcessoRepository) {
         var entity = new Cliente();
         entity.setNome(dto.getNome());
         entity.setNickname(dto.getNickname());
@@ -75,7 +74,7 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
 
     @Override
     public Cliente toEntity(ClienteRequest dto) {
-        Cliente entity = new Cliente(dto.getId());
+        var entity = new Cliente(dto.getId());
         entity.setNome(dto.getNome());
         entity.setNickname(dto.getNickname());
         entity.setEmail(dto.getEmail());
@@ -83,18 +82,16 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
         entity.setDataNascimento(dto.getDataNascimento());
         entity.setFoto(dto.getFoto());
 
-        if (dto.getUserAcessosIds() != null) {
+        if (dto.getUserAcessosIds() != null && !dto.getUserAcessosIds().isEmpty()) {
             List<UserAcesso> acessos = dto.getUserAcessosIds().stream()
                     .map(id -> userAcessoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Acesso não encontrado com ID " + id))
-                    )
+                            .orElseThrow(() -> new RuntimeException("Acesso não encontrado com ID " + id)))
                     .collect(Collectors.toList());
             entity.setUserAcesso(acessos);
         }
 
         return entity;
     }
-
 
     @Override
     public Cliente update(ClienteRequest request, Cliente entity) {
@@ -105,18 +102,16 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
         entity.setDataNascimento(request.getDataNascimento());
         entity.setFoto(request.getFoto());
 
-        if (request.getUserAcessosIds() != null) {
+        if (request.getUserAcessosIds() != null && !request.getUserAcessosIds().isEmpty()) {
             List<UserAcesso> acessos = request.getUserAcessosIds().stream()
                     .map(id -> userAcessoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Acesso não encontrado com ID " + id))
-                    )
+                            .orElseThrow(() -> new RuntimeException("Acesso não encontrado com ID " + id)))
                     .collect(Collectors.toList());
             entity.setUserAcesso(acessos);
         }
 
         return entity;
     }
-
 
     public List<ClienteResponse> toListDto(List<Cliente> items) {
         return items.stream().map(this::toDto).collect(Collectors.toList());

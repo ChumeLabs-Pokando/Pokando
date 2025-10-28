@@ -44,7 +44,7 @@ public class Endereco {
     private String complemento;
     @OneToOne(optional = false)
     @JoinColumn(name = "endereco_geografico_id", nullable = false)
-    private Endereco_geografico endereco_geografico;
+    private EnderecoGeografico enderecoGeografico;
 
     public Endereco() {
     }

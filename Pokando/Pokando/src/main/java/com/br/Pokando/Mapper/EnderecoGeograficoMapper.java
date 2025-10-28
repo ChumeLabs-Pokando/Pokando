@@ -1,10 +1,10 @@
 package com.br.Pokando.Mapper;
 
-import com.br.Pokando.dto.Endereco_geograficoRequest;
-import com.br.Pokando.dto.Endereco_geograficoResponse;
+import com.br.Pokando.dto.EnderecoGeograficoRequest;
+import com.br.Pokando.dto.EnderecoGeograficoResponse;
 import com.br.Pokando.dto.EstadoRequest;
 import com.br.Pokando.dto.EstadoResponse;
-import com.br.Pokando.model.Endereco_geografico;
+import com.br.Pokando.model.EnderecoGeografico;
 import com.br.Pokando.model.Estado;
 import org.springframework.stereotype.Component;
 
@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class Endereco_geograficoMapper implements IMapper<Endereco_geografico, Endereco_geograficoResponse, Endereco_geograficoRequest, Endereco_geograficoRequest>{
+public class EnderecoGeograficoMapper implements IMapper<EnderecoGeografico, EnderecoGeograficoResponse, EnderecoGeograficoRequest, EnderecoGeograficoRequest>{
 
     @Override
-    public Endereco_geograficoResponse toDto(
-            Endereco_geografico entity
+    public EnderecoGeograficoResponse toDto(
+            EnderecoGeografico entity
     ) {
-        Endereco_geograficoResponse dto = new Endereco_geograficoResponse(
+        EnderecoGeograficoResponse dto = new EnderecoGeograficoResponse(
                 entity.getId(),
                 entity.getLatitude(),
                 entity.getLongitude()
@@ -27,8 +27,8 @@ public class Endereco_geograficoMapper implements IMapper<Endereco_geografico, E
     }
 
     @Override
-    public List<Endereco_geograficoResponse> toListDto(
-            List<Endereco_geografico> list
+    public List<EnderecoGeograficoResponse> toListDto(
+            List<EnderecoGeografico> list
     ) {
         return list.stream()
                 .map((entity) -> toDto(entity))
@@ -36,16 +36,16 @@ public class Endereco_geograficoMapper implements IMapper<Endereco_geografico, E
     }
 
     @Override
-    public Endereco_geografico toEntity(Endereco_geograficoRequest request) {
-        return new Endereco_geografico(
+    public EnderecoGeografico toEntity(EnderecoGeograficoRequest request) {
+        return new EnderecoGeografico(
                 null,
                 request.getLatitude(),
                 request.getLongitude()
         );
     }
 
-    public Endereco_geografico toEntity(Endereco_geograficoResponse response) {
-        return new Endereco_geografico(
+    public EnderecoGeografico toEntity(EnderecoGeograficoResponse response) {
+        return new EnderecoGeografico(
                 response.getId(),
                 response.getLatitude(),
                 response.getLongitude()
@@ -53,7 +53,7 @@ public class Endereco_geograficoMapper implements IMapper<Endereco_geografico, E
     }
 
     @Override
-    public Endereco_geografico update(Endereco_geograficoRequest request, Endereco_geografico entity) {
+    public EnderecoGeografico update(EnderecoGeograficoRequest request, EnderecoGeografico entity) {
         entity.setLatitude(request.getLatitude());
         entity.setLongitude(request.getLongitude());
         return entity;
