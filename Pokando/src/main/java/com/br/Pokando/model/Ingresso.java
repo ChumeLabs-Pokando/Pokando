@@ -24,10 +24,10 @@ public class Ingresso {
     private boolean status;
     @Column(name = "presenca", nullable = false)
     private boolean presenca;
-    @Column(name = "dataPedido", nullable = false)
+    @Column(name = "data_pedido", nullable = false)
     @Temporal(TemporalType.DATE)
     private LocalDate dataPedido;
-    @Column(name = "dataPagamento", nullable = false)
+    @Column(name = "data_pagamento", nullable = false)
     @Temporal(TemporalType.DATE)
     private LocalDate dataPagamento;
     @Column(name = "gratuito", nullable = false)

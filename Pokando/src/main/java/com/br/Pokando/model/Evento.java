@@ -27,7 +27,7 @@ public class Evento {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private StatusEvento statusEvento;
-    @Column(name = "data_hora", nullable = false)
+    @Column(name = "datahora", nullable = false)
     private Date dataHora;
     @Column(name = "autorizado", nullable = false)
     private boolean autorizado;

@@ -1,23 +1,24 @@
 package com.br.Pokando.dto;
 
+
 import com.br.Pokando.model.StatusEvento;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 import java.util.List;
-@Builder
+
+@SuperBuilder
 @Getter
 @Setter
-@NoArgsConstructor
 public class EventoResponse extends DefaultResponse{
+
     private String nome;
 
     private String descricao;
-
-    private StatusEvento status;
 
     private Date dataHora;
 
@@ -25,26 +26,26 @@ public class EventoResponse extends DefaultResponse{
 
     private double limiteInscricoes;
 
-    private List<ClienteResponse> clienteResponse;
+    private StatusEvento statusEvento;
 
-    private List<OrganizadorResponse> organizadorResponse;
-
-    private List<IngressoResponse> ingressoResponse;
+    private List<Long> clienteIds;
+    private List<Long> organizadorIds;
+    private List<Long> ingressoIds;
 
 
     public EventoResponse(Long id) {
         super(id);
     }
 
-    public EventoResponse(String nome, String descricao, StatusEvento status, Date dataHora, boolean autorizado, double limiteInscricoes, List<ClienteResponse> clienteResponse, List<OrganizadorResponse> organizadorResponse, List<IngressoResponse> ingressoResponse) {
+    public EventoResponse(String nome, String descricao, Date dataHora, boolean autorizado, double limiteInscricoes, StatusEvento statusEvento, List<Long> clienteIds, List<Long> organizadorIds, List<Long> ingressoIds) {
         this.nome = nome;
         this.descricao = descricao;
-        this.status = status;
         this.dataHora = dataHora;
         this.autorizado = autorizado;
         this.limiteInscricoes = limiteInscricoes;
-        this.clienteResponse = clienteResponse;
-        this.organizadorResponse = organizadorResponse;
-        this.ingressoResponse = ingressoResponse;
+        this.statusEvento = statusEvento;
+        this.clienteIds = clienteIds;
+        this.organizadorIds = organizadorIds;
+        this.ingressoIds = ingressoIds;
     }
 }

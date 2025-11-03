@@ -5,7 +5,6 @@ import lombok.*;
 
 @Entity
 @Table(name = "Categoria_ingresso")
-@Builder
 @Data
 @Getter
 @Setter

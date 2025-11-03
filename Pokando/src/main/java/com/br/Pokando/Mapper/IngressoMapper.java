@@ -17,7 +17,6 @@ public class IngressoMapper implements IMapper<Ingresso, IngressoResponse, Ingre
     private final CategoriaIngressoRepository catRepo;
     private final PagamentoMapper pMapper;
     private final PagamentoRepository pRepo;
-    private final EventoMapper evMapper;
     private final EventoRepository eventoRepo;
 
     public IngressoMapper(
@@ -25,14 +24,12 @@ public class IngressoMapper implements IMapper<Ingresso, IngressoResponse, Ingre
             CategoriaIngressoRepository catRepo,
             PagamentoMapper pMapper,
             PagamentoRepository pRepo,
-            EventoMapper evMapper,
             EventoRepository eventoRepo
     ) {
         this.catMapper = catMapper;
         this.catRepo = catRepo;
         this.pMapper = pMapper;
         this.pRepo = pRepo;
-        this.evMapper = evMapper;
         this.eventoRepo = eventoRepo;
     }
 
@@ -55,9 +52,9 @@ public class IngressoMapper implements IMapper<Ingresso, IngressoResponse, Ingre
         }
 
         if (entity.getEvento() != null && !entity.getEvento().isEmpty()) {
-            dto.setEventoResponse(
+            dto.setEventoIds(
                     entity.getEvento().stream()
-                            .map(evMapper::toDto)
+                            .map(Evento::getId)
                             .collect(Collectors.toList())
             );
         }

@@ -31,7 +31,7 @@ public class IngressoResponse extends DefaultResponse{
 
     private PagamentoResponse pagamentoResponse;
 
-    private List<EventoResponse> eventoResponse;
+    private List<Long> eventoIds;
 
     public IngressoResponse(Long id) {
         super(id);

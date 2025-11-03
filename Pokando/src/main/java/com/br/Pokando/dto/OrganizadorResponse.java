@@ -6,13 +6,13 @@ import lombok.*;
 import java.util.Date;
 import java.util.List;
 
-
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrganizadorResponse extends DefaultResponse {
-
+    private Long id;
 
     private String nome;
 
@@ -32,7 +32,7 @@ public class OrganizadorResponse extends DefaultResponse {
 
     private String cnpj;
 
-    private List<EventoResponse> eventoResponse;
+    private List<Long> eventoIds;
 
 
     public OrganizadorResponse(Long id) {
@@ -40,15 +40,15 @@ public class OrganizadorResponse extends DefaultResponse {
     }
 
 
-    public OrganizadorResponse(String nome, String cnpj, String cpf, String foto, Date dataNascimento, List<UserAcessoResponse> userAcessoResponse, String nickname, String senha, String email) {
+    public OrganizadorResponse(String nome, String nickname, String email, String senha, Date dataNascimento, String foto, String cpf, String cnpj, List<Long> eventoIds) {
         this.nome = nome;
-        this.cnpj = cnpj;
-        this.cpf = cpf;
-        this.foto = foto;
-        this.dataNascimento = dataNascimento;
-        this.userAcessoResponse = userAcessoResponse;
         this.nickname = nickname;
-        this.senha = senha;
         this.email = email;
+        this.senha = senha;
+        this.dataNascimento = dataNascimento;
+        this.foto = foto;
+        this.cpf = cpf;
+        this.cnpj = cnpj;
+        this.eventoIds = eventoIds;
     }
 }

@@ -58,7 +58,7 @@ public class Cliente {
     private List<UserAcesso> userAcesso = new ArrayList<>();
 
 
-    @Column(nullable = false)
+    @Column(name = "data_nascimento",nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
 

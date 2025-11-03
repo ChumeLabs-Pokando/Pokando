@@ -4,6 +4,7 @@ import com.br.Pokando.dto.*;
 import com.br.Pokando.model.*;
 import com.br.Pokando.repository.EventoRepository;
 import com.br.Pokando.repository.UserAcessoRepository;
+import lombok.Builder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,14 +16,12 @@ public class OrganizadorMapper implements IMapper<Organizador, OrganizadorRespon
 
     private final UserAcessoMapper userAcessoMapper;
     private final UserAcessoRepository userAcessoRepository;
-    private final EventoRepository eventoRepository;
-    private final EventoMapper eventoMapper;
 
-    public OrganizadorMapper(UserAcessoMapper userAcessoMapper, UserAcessoRepository userAcessoRepository, EventoRepository eventoRepository, EventoMapper eventoMapper) {
+
+    public OrganizadorMapper(UserAcessoMapper userAcessoMapper, UserAcessoRepository userAcessoRepository) {
         this.userAcessoMapper = userAcessoMapper;
         this.userAcessoRepository = userAcessoRepository;
-        this.eventoRepository = eventoRepository;
-        this.eventoMapper = eventoMapper;
+
     }
 
     @Override
@@ -47,14 +46,12 @@ public class OrganizadorMapper implements IMapper<Organizador, OrganizadorRespon
 
 
         if (entity.getEvento() != null && !entity.getEvento().isEmpty()) {
-            dto.setEventoResponse(
+            dto.setEventoIds(
                     entity.getEvento().stream()
-                            .map(eventoMapper::toDto)
+                            .map(Evento::getId)
                             .collect(Collectors.toList())
             );
-
         }
-
             return dto;
     }
 
@@ -103,28 +100,8 @@ public class OrganizadorMapper implements IMapper<Organizador, OrganizadorRespon
         entity.setDataNascimento(dto.getDataNascimento());
         entity.setCpf(dto.getCpf());
         entity.setCnpj(dto.getCnpj());
-
-
-        if (dto.getUserAcessosIds() != null) {
-            List<UserAcesso> acessos = dto.getUserAcessosIds().stream()
-                    .map(id -> userAcessoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Acesso não encontrado com ID " + id)))
-                    .collect(Collectors.toList());
-            entity.setUserAcesso(acessos);
-        }
-
-
-        if (dto.getEventoId() != null) {
-            List<Evento> eventos = dto.getEventoId().stream()
-                    .map(id -> eventoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
-                    .collect(Collectors.toList());
-            entity.setEvento(eventos);
-        }
-
         return entity;
     }
-
 
     @Override
     public Organizador update(OrganizadorRequest request, Organizador entity) {
@@ -135,30 +112,52 @@ public class OrganizadorMapper implements IMapper<Organizador, OrganizadorRespon
         entity.setDataNascimento(request.getDataNascimento());
         entity.setCpf(request.getCpf());
         entity.setCnpj(request.getCnpj());
-
-
-        if (request.getUserAcessosIds() != null) {
-            List<UserAcesso> acessos = request.getUserAcessosIds().stream()
-                    .map(id -> userAcessoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Acesso não encontrado com ID " + id)))
-                    .collect(Collectors.toList());
-            entity.setUserAcesso(acessos);
-        }
-
-
-        if (request.getEventoId() != null) {
-            List<Evento> eventos = request.getEventoId().stream()
-                    .map(id -> eventoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
-                    .collect(Collectors.toList());
-            entity.setEvento(eventos);
-        }
-
         return entity;
     }
+
 
     @Override
     public List<OrganizadorResponse> toListDto(List<Organizador> items) {
         return items.stream().map(this::toDto).collect(Collectors.toList());
     }
+
+    public OrganizadorResponse toResponse(Organizador org) {
+        return OrganizadorResponse.builder()
+                .id(org.getId())
+                .nome(org.getNome())
+                .email(org.getEmail())
+                .eventoIds(
+                        org.getEvento() != null
+                                ? org.getEvento().stream()
+                                .map(Evento::getId)
+                                .collect(Collectors.toList())
+                                : null
+                )
+                .build();
+    }
+
+    public OrganizadorDetalhadoResponse toDetalhadoResponse(Organizador org) {
+
+        return OrganizadorDetalhadoResponse.builder()
+                .id(org.getId())
+                .nome(org.getNome())
+                .email(org.getEmail())
+                .eventos(
+                        org.getEvento() != null
+                                ? org.getEvento().stream()
+                                .map((Evento ev) -> EventoResumoResponse.builder()
+                                        .id(ev.getId())
+                                        .nome(ev.getNome())
+                                        .dataHora(ev.getDataHora())
+                                        .build()
+                                )
+                                .collect(Collectors.toList())
+                                : null
+                )
+                .build();
+    }
+
+
+
+
 }

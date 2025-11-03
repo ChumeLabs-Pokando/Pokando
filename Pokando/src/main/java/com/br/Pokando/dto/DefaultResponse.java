@@ -1,9 +1,12 @@
 package com.br.Pokando.dto;
 
+import lombok.experimental.SuperBuilder;
+
 /**
  *
  * @author 1513003
  */
+@SuperBuilder
 public abstract class DefaultResponse {
 
     private Long id;
