@@ -145,7 +145,7 @@ public class OrganizadorMapper implements IMapper<Organizador, OrganizadorRespon
                 .eventos(
                         org.getEvento() != null
                                 ? org.getEvento().stream()
-                                .map((Evento ev) -> EventoResumoResponse.builder()
+                                .map((Evento ev) -> EventoDetalhadoResponse.builder()
                                         .id(ev.getId())
                                         .nome(ev.getNome())
                                         .dataHora(ev.getDataHora())

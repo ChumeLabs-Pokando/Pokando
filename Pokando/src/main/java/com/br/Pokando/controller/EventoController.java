@@ -3,9 +3,10 @@ package com.br.Pokando.controller;
 import com.br.Pokando.Mapper.EventoMapper;
 import com.br.Pokando.Service.IService;
 import com.br.Pokando.dto.ApiDataResponse;
+import com.br.Pokando.dto.EventoDetalhadoResponse;
 import com.br.Pokando.dto.EventoRequest;
 import com.br.Pokando.dto.EventoResponse;
-import com.br.Pokando.dto.EventoResumoResponse;
+
 import com.br.Pokando.model.Evento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,8 @@ public class EventoController
         this.eventoMapper = eventoMapper;
     }
 
-    @GetMapping("/{id}/detalhe")
-    public ResponseEntity<EventoResumoResponse> getDetalhe(@PathVariable Long id) {
+    @GetMapping("/{id}/detalhado")
+    public ResponseEntity<EventoDetalhadoResponse> getDetalhado(@PathVariable Long id) {
         Evento ev = service.findBy(id);
         return ResponseEntity.ok(eventoMapper.toDetalhadoResponse(ev));
     }

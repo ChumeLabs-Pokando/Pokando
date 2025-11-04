@@ -13,5 +13,5 @@ public class OrganizadorDetalhadoResponse extends DefaultResponse {
     private Long id;
     private String nome;
     private String email;
-    private List<EventoResumoResponse> eventos;
+    private List<EventoDetalhadoResponse> eventos;
 }

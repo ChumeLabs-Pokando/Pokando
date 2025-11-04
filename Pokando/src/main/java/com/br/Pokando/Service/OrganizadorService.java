@@ -28,7 +28,7 @@ public class OrganizadorService  extends ServiceAdapter<Organizador, Long, Organ
         this.userAcessoRepository = userAcessoRepository;
         this.eventoRepository = eventoRepository;
         this.repo = repo;
-        this.mapper = mapper1;
+        this.mapper = mapper;
     }
 
 

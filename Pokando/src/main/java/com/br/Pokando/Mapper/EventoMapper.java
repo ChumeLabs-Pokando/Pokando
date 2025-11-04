@@ -1,8 +1,8 @@
 package com.br.Pokando.Mapper;
 
+import com.br.Pokando.dto.EventoDetalhadoResponse;
 import com.br.Pokando.dto.EventoRequest;
 import com.br.Pokando.dto.EventoResponse;
-import com.br.Pokando.dto.EventoResumoResponse;
 import com.br.Pokando.dto.OrganizadorDetalhadoResponse;
 import com.br.Pokando.model.*;
 import com.br.Pokando.model.Organizador;
@@ -59,10 +59,10 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
         return dto;
     }
 
-    public EventoResumoResponse toDetalhadoResponse(Evento ev) {
+    public EventoDetalhadoResponse toDetalhadoResponse(Evento ev) {
         if (ev == null) return null;
 
-        return EventoResumoResponse.builder()
+        return EventoDetalhadoResponse.builder()
                 .id(ev.getId())
                 .nome(ev.getNome())
                 .descricao(ev.getDescricao())
