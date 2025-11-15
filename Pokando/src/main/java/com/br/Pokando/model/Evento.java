@@ -33,20 +33,10 @@ public class Evento {
     private boolean autorizado;
     @Column(name = "limite_inscricoes", nullable = false)
     private double limiteInscricoes;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "organizador_evento",
-            joinColumns = @JoinColumn(name = "evento_id"),
-            inverseJoinColumns = @JoinColumn(name = "organizador_id")
-    )
-    private List<Organizador> organizador = new ArrayList<>();
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "cliente_evento",
-            joinColumns = @JoinColumn(name = "evento_id"),
-            inverseJoinColumns = @JoinColumn(name = "cliente_id")
-    )
+    @ManyToMany(mappedBy = "acessoCliente")
     private List<Cliente> cliente = new ArrayList<>();
+    @ManyToMany(mappedBy = "acessoCliente")
+    private List<Cliente> organizador = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "evento_ingresso",

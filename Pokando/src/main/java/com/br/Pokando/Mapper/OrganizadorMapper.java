@@ -16,12 +16,14 @@ public class OrganizadorMapper implements IMapper<Organizador, OrganizadorRespon
 
     private final UserAcessoMapper userAcessoMapper;
     private final UserAcessoRepository userAcessoRepository;
+    private final EventoRepository eventoRepository;
 
 
-    public OrganizadorMapper(UserAcessoMapper userAcessoMapper, UserAcessoRepository userAcessoRepository) {
+    public OrganizadorMapper(UserAcessoMapper userAcessoMapper, UserAcessoRepository userAcessoRepository, EventoRepository eventoRepository) {
         this.userAcessoMapper = userAcessoMapper;
         this.userAcessoRepository = userAcessoRepository;
 
+        this.eventoRepository = eventoRepository;
     }
 
     @Override

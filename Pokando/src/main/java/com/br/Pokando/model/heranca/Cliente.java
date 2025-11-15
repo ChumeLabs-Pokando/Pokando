@@ -64,9 +64,26 @@ public class Cliente {
 
     @Column(nullable = false)
     private String foto;
+    @ManyToMany
+    private List<Evento> acessoCliente;
+    @ManyToMany
+    private List<Evento> acessoOrganizador;
 
     public Cliente(Long id) {
         this.id = id;
     }
+    public Cliente(Long id, String nome, String nickname, String email,
+                   String senha, List<UserAcesso> userAcesso,
+                   Date dataNascimento, String foto) {
+        this.id = id;
+        this.nome = nome;
+        this.nickname = nickname;
+        this.email = email;
+        this.senha = senha;
+        this.userAcesso = userAcesso;
+        this.dataNascimento = dataNascimento;
+        this.foto = foto;
+    }
+
 }
 

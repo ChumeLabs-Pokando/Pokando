@@ -7,6 +7,7 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,14 +29,17 @@ public class Proprietario extends Cliente {
     @Column(unique = true)
     private String rg;
 
+
+
+
     public Proprietario(Long id) {
         super(id);
     }
 
     public Proprietario(Long id, String nome, String nickname, String email, String senha,
                         List<UserAcesso> userAcesso, Date dataNascimento, String foto,
-                        String cpf, String cnpj, String rg) {
-        super(id, nome, nickname, email, senha, userAcesso, dataNascimento, foto);
+                        String cpf, String cnpj, String rg, List<Evento> evento) {
+        super(id, nome, nickname, email, senha, userAcesso, dataNascimento, foto, evento);
         this.cpf = cpf;
         this.cnpj = cnpj;
         this.rg = rg;

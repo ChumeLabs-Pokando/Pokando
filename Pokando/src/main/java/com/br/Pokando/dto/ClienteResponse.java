@@ -26,15 +26,15 @@ public class ClienteResponse extends DefaultResponse{
 
     private String foto;
 
-    private List<EventoResponse> eventoResponse;
+    private List<Long> eventoId;
 
     public ClienteResponse(Long id) {
         super(id);
     }
 
-    public ClienteResponse(String nome, List<EventoResponse> eventoResponse, String foto, Date dataNascimento, List<UserAcessoResponse> userAcessoResponse, String senha, String email, String nickname) {
+    public ClienteResponse(String nome, List<Long> eventoId, String foto, Date dataNascimento, List<UserAcessoResponse> userAcessoResponse, String senha, String email, String nickname) {
         this.nome = nome;
-        this.eventoResponse = eventoResponse;
+        this.eventoId = eventoId;
         this.foto = foto;
         this.dataNascimento = dataNascimento;
         this.userAcessoResponse = userAcessoResponse;

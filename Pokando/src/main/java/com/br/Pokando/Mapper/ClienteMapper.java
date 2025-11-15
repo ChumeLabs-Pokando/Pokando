@@ -18,13 +18,15 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
 
     private final UserAcessoMapper userAcessoMapper;
     private final UserAcessoRepository userAcessoRepository;
+    private final EventoRepository eventoRepository;
 
     public ClienteMapper(
             UserAcessoMapper userAcessoMapper,
-            UserAcessoRepository userAcessoRepository
+            UserAcessoRepository userAcessoRepository, EventoRepository eventoRepository
     ) {
         this.userAcessoMapper = userAcessoMapper;
         this.userAcessoRepository = userAcessoRepository;
+        this.eventoRepository = eventoRepository;
     }
 
     @Override
@@ -43,6 +45,13 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
                             .map(userAcessoMapper::toDto)
                             .collect(Collectors.toList())
             );
+        }
+        if (dto.getEventoId() != null && !dto.getEventoId().isEmpty()) {
+            List<Evento> eventos = dto.getEventoId().stream()
+                    .map(id -> eventoRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
+                    .collect(Collectors.toList());
+            entity.setEvento(eventos);
         }
 
         return dto;

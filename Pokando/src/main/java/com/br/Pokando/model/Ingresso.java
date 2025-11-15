@@ -25,10 +25,10 @@ public class Ingresso {
     @Column(name = "presenca", nullable = false)
     private boolean presenca;
     @Column(name = "data_pedido", nullable = false)
-    @Temporal(TemporalType.DATE)
+   // @Temporal(TemporalType.DATE)
     private LocalDate dataPedido;
     @Column(name = "data_pagamento", nullable = false)
-    @Temporal(TemporalType.DATE)
+   // @Temporal(TemporalType.DATE)
     private LocalDate dataPagamento;
     @Column(name = "gratuito", nullable = false)
     private boolean gratuito;

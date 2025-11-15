@@ -42,7 +42,7 @@ public class Organizador extends Cliente {
     public Organizador(Long id, String nome, String nickname, String email, String senha,
                        List<UserAcesso> userAcesso, Date dataNascimento, String foto,
                        List<Evento> evento, String cpf, String cnpj, String rg) {
-        super(id, nome, nickname, email, senha, userAcesso, dataNascimento, foto);
+
         this.evento = evento;
         this.cpf = cpf;
         this.cnpj = cnpj;
