@@ -1,10 +1,7 @@
 package com.br.Pokando.dto;
 
 
-import com.br.Pokando.model.heranca.Cliente;
 import lombok.*;
-
-import java.util.List;
 
 
 @Getter

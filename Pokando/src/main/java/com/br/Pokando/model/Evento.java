@@ -1,10 +1,7 @@
 package com.br.Pokando.model;
 
-import com.br.Pokando.model.heranca.Cliente;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,9 +30,9 @@ public class Evento {
     private boolean autorizado;
     @Column(name = "limite_inscricoes", nullable = false)
     private double limiteInscricoes;
-    @ManyToMany(mappedBy = "acessoCliente")
+    @ManyToMany(mappedBy = "acessoClienteEvento")
     private List<Cliente> cliente = new ArrayList<>();
-    @ManyToMany(mappedBy = "acessoCliente")
+    @ManyToMany(mappedBy = "acessoOrganizadorEvento")
     private List<Cliente> organizador = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

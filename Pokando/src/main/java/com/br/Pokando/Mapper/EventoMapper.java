@@ -3,13 +3,10 @@ package com.br.Pokando.Mapper;
 import com.br.Pokando.dto.EventoDetalhadoResponse;
 import com.br.Pokando.dto.EventoRequest;
 import com.br.Pokando.dto.EventoResponse;
-import com.br.Pokando.dto.OrganizadorDetalhadoResponse;
 import com.br.Pokando.model.*;
-import com.br.Pokando.model.Organizador;
-import com.br.Pokando.model.heranca.Cliente;
+import com.br.Pokando.model.Cliente;
 import com.br.Pokando.repository.ClienteRepository;
 import com.br.Pokando.repository.IngressoRepository;
-import com.br.Pokando.repository.OrganizadorRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -49,7 +46,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
                         ? event.getCliente().stream().map(Cliente::getId).collect(Collectors.toList())
                         : null)
                 .organizadorIds(event.getOrganizador() != null
-                        ? event.getOrganizador().stream().map(Organizador::getId).collect(Collectors.toList())
+                        ? event.getOrganizador().stream().map(Cliente::getId).collect(Collectors.toList())
                         : null)
                 .ingressoIds(event.getIngresso() != null
                         ? event.getIngresso().stream().map(Ingresso::getId).collect(Collectors.toList())
@@ -59,36 +56,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
         return dto;
     }
 
-    public EventoDetalhadoResponse toDetalhadoResponse(Evento ev) {
-        if (ev == null) return null;
-
-        return EventoDetalhadoResponse.builder()
-                .id(ev.getId())
-                .nome(ev.getNome())
-                .descricao(ev.getDescricao())
-                .dataHora(ev.getDataHora())
-                .autorizado(ev.isAutorizado())
-                .limiteInscricoes(ev.getLimiteInscricoes())
-                .statusEvento(ev.getStatusEvento())
-
-                .organizadores(
-                        ev.getOrganizador() != null
-                                ? ev.getOrganizador().stream()
-                                .map(org -> OrganizadorDetalhadoResponse.builder()
-                                        .id(org.getId())
-                                        .nome(org.getNome())
-                                        .email(org.getEmail())
-                                        .build()
-                                )
-                                .collect(Collectors.toList())
-                                : null
-                )
-                .build();
-    }
-
-
-
-    public Evento toEntity(EventoRequest dto, ClienteRepository clienteRepository, OrganizadorRepository organizadorRepository, IngressoRepository ingressoRepository) {
+    public Evento toEntity(EventoRequest dto, ClienteRepository clienteRepository, IngressoRepository ingressoRepository) {
         var entity = new Evento();
         entity.setNome(dto.getNome());
         entity.setDescricao(dto.getDescricao());
@@ -107,15 +75,14 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
             entity.setCliente(clientes);
         }
         if (dto.getOrganizadorId() != null && !dto.getOrganizadorId().isEmpty()) {
-            List<Organizador> organizadores = dto.getOrganizadorId().stream()
+            List<Cliente> organizadores = dto.getOrganizadorId().stream()
                     .filter(Objects::nonNull)
                     .distinct()
-                    .map(id -> organizadorRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Organizador não encontrado com ID " + id)))
+                    .map(id -> clienteRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Organziador não encontrado com ID " + id)))
                     .collect(Collectors.toList());
             entity.setOrganizador(organizadores);
         }
-
         if (dto.getIngressoId() != null && !dto.getIngressoId().isEmpty()) {
             List<Ingresso> ingressos = dto.getIngressoId().stream()
                     .filter(Objects::nonNull)

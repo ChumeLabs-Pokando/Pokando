@@ -20,6 +20,12 @@ public class ClienteRequest extends DefaultRequest{
     private String nome;
     @NotNull(message = "O campo Nickname deve ser informado!")
     private String nickname;
+    @NotBlank
+    @Size(max = 255)
+    private String cpf;
+    @NotBlank
+    @Size(max = 255)
+    private String cnpj;
     @NotNull(message = "O campo email deve ser informado!")
     private String email;
     @NotNull(message = "O campo senha deve ser informado!")
@@ -30,8 +36,10 @@ public class ClienteRequest extends DefaultRequest{
     private Date dataNascimento;
     @NotNull(message = "O campo foto deve ser informado!")
     private String foto;
-    @NotNull(message = "evento não pode ser nulo.")
-    private List<Long> eventoId;
+
+    private List<Long> eventoClienteId;
+
+    private List<Long> eventoOrganizadorId;
 
     public ClienteRequest(Long id) {
         super(id);

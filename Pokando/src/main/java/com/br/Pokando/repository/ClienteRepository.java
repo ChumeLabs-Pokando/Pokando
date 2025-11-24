@@ -1,7 +1,7 @@
 package com.br.Pokando.repository;
 
 
-import com.br.Pokando.model.heranca.Cliente;
+import com.br.Pokando.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {

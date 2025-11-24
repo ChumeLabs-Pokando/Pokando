@@ -4,16 +4,13 @@
  */
 package com.br.Pokando.Service;
 
-import com.br.Pokando.Mapper.IMapper;
 import com.br.Pokando.Mapper.ClienteMapper;
 import com.br.Pokando.dto.ClienteRequest;
 import com.br.Pokando.dto.ClienteResponse;
 
-import com.br.Pokando.model.heranca.Cliente;
+import com.br.Pokando.model.Cliente;
 import com.br.Pokando.repository.ClienteRepository;
-import com.br.Pokando.repository.EventoRepository;
 import com.br.Pokando.repository.UserAcessoRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

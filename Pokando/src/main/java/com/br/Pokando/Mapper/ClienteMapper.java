@@ -4,7 +4,7 @@ import com.br.Pokando.dto.ClienteRequest;
 import com.br.Pokando.dto.ClienteResponse;
 import com.br.Pokando.model.UserAcesso;
 import com.br.Pokando.model.Evento;
-import com.br.Pokando.model.heranca.Cliente;
+import com.br.Pokando.model.Cliente;
 import com.br.Pokando.repository.EventoRepository;
 import com.br.Pokando.repository.UserAcessoRepository;
 import org.springframework.stereotype.Component;
@@ -34,6 +34,8 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
         ClienteResponse dto = new ClienteResponse(entity.getId());
         dto.setNome(entity.getNome());
         dto.setNickname(entity.getNickname());
+        dto.setCpf(entity.getCpf());
+        dto.setCnpj(entity.getCnpj());
         dto.setEmail(entity.getEmail());
         dto.setSenha(entity.getSenha());
         dto.setDataNascimento(entity.getDataNascimento());
@@ -46,13 +48,21 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
                             .collect(Collectors.toList())
             );
         }
-        if (dto.getEventoId() != null && !dto.getEventoId().isEmpty()) {
-            List<Evento> eventos = dto.getEventoId().stream()
+        if (dto.getEventoClienteId() != null && !dto.getEventoClienteId().isEmpty()) {
+            List<Evento> eventos = dto.getEventoClienteId().stream()
                     .map(id -> eventoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
+                            .orElseThrow(() -> new RuntimeException("Evento vinculado a um cliente não encontrado com ID " + id)))
                     .collect(Collectors.toList());
-            entity.setEvento(eventos);
+            entity.setAcessoClienteEvento(eventos);
         }
+        if (dto.getEventoOrganizadorId() != null && !dto.getEventoOrganizadorId().isEmpty()) {
+            List<Evento> eventos = dto.getEventoOrganizadorId().stream()
+                    .map(id -> eventoRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Evento vinculado a um organizador não encontrado com ID " + id)))
+                    .collect(Collectors.toList());
+            entity.setAcessoOrganizadorEvento(eventos);
+        }
+
 
         return dto;
     }
@@ -63,6 +73,8 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
         var entity = new Cliente();
         entity.setNome(dto.getNome());
         entity.setNickname(dto.getNickname());
+        entity.setCpf(dto.getCpf());
+        entity.setCnpj(dto.getCnpj());
         entity.setEmail(dto.getEmail());
         entity.setSenha(dto.getSenha());
         entity.setDataNascimento(dto.getDataNascimento());
@@ -77,7 +89,24 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
                     .collect(Collectors.toList());
             entity.setUserAcesso(acessos);
         }
-
+        if (dto.getEventoClienteId() != null && !dto.getEventoClienteId().isEmpty()) {
+            List<Evento> eventos = dto.getEventoClienteId().stream()
+                    .filter(Objects::nonNull)
+                    .distinct()
+                    .map(id -> eventoRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
+                    .collect(Collectors.toList());
+            entity.setAcessoClienteEvento(eventos);
+        }
+        if (dto.getEventoOrganizadorId() != null && !dto.getEventoOrganizadorId().isEmpty()) {
+            List<Evento> eventos = dto.getEventoOrganizadorId().stream()
+                    .filter(Objects::nonNull)
+                    .distinct()
+                    .map(id -> eventoRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
+                    .collect(Collectors.toList());
+            entity.setAcessoOrganizadorEvento(eventos);
+        }
         return entity;
     }
 
@@ -86,6 +115,8 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
         var entity = new Cliente(dto.getId());
         entity.setNome(dto.getNome());
         entity.setNickname(dto.getNickname());
+        entity.setCpf(dto.getCpf());
+        entity.setCnpj(dto.getCnpj());
         entity.setEmail(dto.getEmail());
         entity.setSenha(dto.getSenha());
         entity.setDataNascimento(dto.getDataNascimento());
@@ -98,6 +129,20 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
                     .collect(Collectors.toList());
             entity.setUserAcesso(acessos);
         }
+        if (dto.getEventoClienteId() != null && !dto.getEventoClienteId().isEmpty()) {
+            List<Evento> eventos = dto.getEventoClienteId().stream()
+                    .map(id -> eventoRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
+                    .collect(Collectors.toList());
+            entity.setAcessoClienteEvento(eventos);
+        }
+        if (dto.getEventoOrganizadorId() != null && !dto.getEventoOrganizadorId().isEmpty()) {
+            List<Evento> eventos = dto.getEventoOrganizadorId().stream()
+                    .map(id -> eventoRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
+                    .collect(Collectors.toList());
+            entity.setAcessoOrganizadorEvento(eventos);
+        }
 
         return entity;
     }
@@ -106,6 +151,8 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
     public Cliente update(ClienteRequest request, Cliente entity) {
         entity.setNome(request.getNome());
         entity.setNickname(request.getNickname());
+        entity.setCpf(request.getCpf());
+        entity.setCnpj(request.getCnpj());
         entity.setEmail(request.getEmail());
         entity.setSenha(request.getSenha());
         entity.setDataNascimento(request.getDataNascimento());
@@ -118,6 +165,21 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
                     .collect(Collectors.toList());
             entity.setUserAcesso(acessos);
         }
+        if (request.getEventoClienteId() != null && !request.getEventoClienteId().isEmpty()) {
+            List<Evento> eventos = request.getEventoClienteId().stream()
+                    .map(id -> eventoRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
+                    .collect(Collectors.toList());
+            entity.setAcessoClienteEvento(eventos);
+        }
+        if (request.getEventoOrganizadorId() != null && !request.getEventoOrganizadorId().isEmpty()) {
+            List<Evento> eventos = request.getEventoOrganizadorId().stream()
+                    .map(id -> eventoRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
+                    .collect(Collectors.toList());
+            entity.setAcessoOrganizadorEvento(eventos);
+        }
+
 
         return entity;
     }

@@ -3,12 +3,10 @@ package com.br.Pokando.Mapper;
 import com.br.Pokando.dto.TelefoneRequest;
 import com.br.Pokando.dto.TelefoneResponse;
 
-import com.br.Pokando.model.Organizador;
 import com.br.Pokando.model.Telefone;
 
-import com.br.Pokando.model.heranca.Cliente;
+import com.br.Pokando.model.Cliente;
 import com.br.Pokando.repository.ClienteRepository;
-import com.br.Pokando.repository.OrganizadorRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,17 +18,11 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
     private final ClienteMapper clienteMapper;
     private final ClienteRepository clienteRepository;
 
- //   private final OrganizadorMapper organizadorMapper;
- //   private final OrganizadorRepository organizadorRepository;
 
-    //private final ProprietarioMapper proprietarioMapper;
-    //private final ProprietarioRepository proprietarioRepository;
 
-    public TelefoneMapper(ClienteMapper clienteMapper, ClienteRepository clienteRepository, OrganizadorMapper organizadorMapper, OrganizadorRepository organizadorRepository) {
+    public TelefoneMapper(ClienteMapper clienteMapper, ClienteRepository clienteRepository) {
         this.clienteMapper = clienteMapper;
         this.clienteRepository = clienteRepository;
-    //    this.organizadorMapper = organizadorMapper;
-    //    this.organizadorRepository = organizadorRepository;
     }
 
     @Override
@@ -43,13 +35,6 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
         if (entity.getCliente() != null) {
             dto.setCliente(clienteMapper.toDto(entity.getCliente()));
         }
-     //   if (entity.getOrganizador() != null) {
-    //        dto.setOrganizador(organizadorMapper.toDto(entity.getOrganizador()));
-  //      }
-       // if (entity.getProprietario() != null) {
-        //    dto.setProprietario(proprietarioMapper.toDto(entity.getProprietario()));
-        //}
-
         return dto;
     }
 
@@ -74,18 +59,6 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
                     .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
             entity.setCliente(Cliente);
         }
-//        if (request.getOrganizadorRequest() != null) {
-  //          var Organizador = organizadorRepository
-  //                  .findById(request.getOrganizadorRequest().getId())
-    //                .orElseThrow(() -> new RuntimeException("Organizador não encontrado"));
-   //         entity.setOrganizador(Organizador);
-   //     }
-     //   if (request.getProprietario() != null) {
-    //        var Proprietario = proprietarioRepository
-     //               .findById(request.getProprietario().getId())
-      //              .orElseThrow(() -> new RuntimeException("Proprietario não encontrado"));
-    //        entity.setProprietario(Proprietario);
-   //     }
 
 
         return entity;
@@ -102,19 +75,6 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
                     .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
             entity.setCliente(Cliente);
         }
-  //      if (request.getOrganizadorRequest() != null) {
-  //          var Organizador = organizadorRepository
-   //                 .findById(request.getOrganizadorRequest().getId())
-    //                .orElseThrow(() -> new RuntimeException("Organizador não encontrado"));
-   //         entity.setOrganizador(Organizador);
-  //      }
-        //   if (request.getProprietario() != null) {
-        //        var Proprietario = proprietarioRepository
-        //               .findById(request.getProprietario().getId())
-        //              .orElseThrow(() -> new RuntimeException("Proprietario não encontrado"));
-        //        entity.setProprietario(Proprietario);
-        //     }
-
         return entity;
     }
 
@@ -128,17 +88,6 @@ public class TelefoneMapper implements IMapper<Telefone, TelefoneResponse, Telef
                     .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
             entity.setCliente(cliente);
         }
-  //      if (request.getOrganizadorRequest() != null && request.getOrganizadorRequest().getId() != null) {
-  //          Organizador organizador = organizadorRepository.findById(request.getOrganizadorRequest().getId())
-  //                  .orElseThrow(() -> new RuntimeException("Organizador não encontrado"));
- //           entity.setOrganizador(organizador);
- //       }
-       // if (request.getProprietarioRequest() != null && request.getProprietarioRequest().getId() != null) {
-       //     Proprietario proprietario = proprietarioRepository.findById(request.getProprietarioRequest().getId())
-      //              .orElseThrow(() -> new RuntimeException("Proprietario não encontrado"));
-      //      entity.setProprietario(proprietario);
-     //   }
-
 
         return entity;
     }

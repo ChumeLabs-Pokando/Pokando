@@ -2,15 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.br.Pokando.model.heranca;
+package com.br.Pokando.model;
 
 //import com.br.Pokando.model.Evento;
 
 
-import com.br.Pokando.model.Evento;
-import com.br.Pokando.model.UserAcesso;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,9 +20,6 @@ import java.util.List;
  * @author 05029689150
  */
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_usuario")
-@DiscriminatorValue("CLIENTE")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
@@ -43,10 +36,16 @@ public class Cliente {
     @Column(nullable = false, unique = true)
     private String nickname;
 
+    @Column(name = "cpf", unique = true, nullable = false)
+    private String cpf;
+
+    @Column(name = "cnpj", unique = true, nullable = true)
+    private String cnpj;
+
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false)  
     private String senha;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -65,9 +64,19 @@ public class Cliente {
     @Column(nullable = false)
     private String foto;
     @ManyToMany
-    private List<Evento> acessoCliente;
+    @JoinTable(
+            name = "cliente_acesso_cliente_evento",
+            joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "evento_id")
+    )
+    private List<Evento> acessoClienteEvento;
     @ManyToMany
-    private List<Evento> acessoOrganizador;
+    @JoinTable(
+            name = "cliente_acesso_organizador_evento",
+            joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "evento_id")
+    )
+    private List<Evento> acessoOrganizadorEvento;
 
     public Cliente(Long id) {
         this.id = id;

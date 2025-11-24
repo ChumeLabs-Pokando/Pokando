@@ -1,12 +1,9 @@
 package com.br.Pokando.Service;
 
-import com.br.Pokando.Mapper.ClienteMapper;
 import com.br.Pokando.Mapper.UserAcessoMapper;
-import com.br.Pokando.dto.ClienteRequest;
 import com.br.Pokando.dto.UserAcessoRequest;
 import com.br.Pokando.dto.UserAcessoResponse;
 import com.br.Pokando.model.UserAcesso;
-import com.br.Pokando.model.heranca.Cliente;
 import com.br.Pokando.repository.ClienteRepository;
 import com.br.Pokando.repository.UserAcessoRepository;
 import org.springframework.stereotype.Service;

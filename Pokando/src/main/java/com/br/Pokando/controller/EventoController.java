@@ -34,26 +34,5 @@ public class EventoController
         this.eventoMapper = eventoMapper;
     }
 
-    @GetMapping("/{id}/detalhado")
-    public ResponseEntity<EventoDetalhadoResponse> getDetalhado(@PathVariable Long id) {
-        Evento ev = service.findBy(id);
-        return ResponseEntity.ok(eventoMapper.toDetalhadoResponse(ev));
-    }
 
-//    @GetMapping
-//    public ResponseEntity<ApiDataResponse<List<EventoResponse>>> listar() {
-//        var lista = service.list()
-//                .stream()
-//                .map(eventoMapper::toDto)
-//                .collect(Collectors.toList());
-//
-//        return ResponseEntity.ok(
-//                new ApiDataResponse<>(
-//                        "Consulta realizada com sucesso",
-//                        200,
-//                        "OK",
-//                        lista
-//                )
-//        );
-//    }
 }

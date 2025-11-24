@@ -14,13 +14,13 @@ import java.util.List;
 @Setter
 public class EventoDetalhadoResponse {
 
-    private Long id;
-    private String nome;
-    private String descricao;
-    private Date dataHora;
-    private boolean autorizado;
-    private double limiteInscricoes;
-    private StatusEvento statusEvento;
-
-    private List<OrganizadorDetalhadoResponse> organizadores;
+//    private Long id;
+//    private String nome;
+//    private String descricao;
+//    private Date dataHora;
+//    private boolean autorizado;
+//    private double limiteInscricoes;
+//    private StatusEvento statusEvento;
+//
+//    private List<OrganizadorDetalhadoResponse> organizadores;
 }

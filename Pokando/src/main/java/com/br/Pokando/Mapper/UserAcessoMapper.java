@@ -2,9 +2,8 @@ package com.br.Pokando.Mapper;
 
 import com.br.Pokando.dto.*;
 import com.br.Pokando.model.UserAcesso;
-import com.br.Pokando.model.heranca.Cliente;
+import com.br.Pokando.model.Cliente;
 import com.br.Pokando.repository.ClienteRepository;
-import com.br.Pokando.repository.UserAcessoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

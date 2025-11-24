@@ -1,6 +1,5 @@
 package com.br.Pokando.model;
 
-import com.br.Pokando.model.heranca.Cliente;
 import jakarta.persistence.*;
 import lombok.*;
 

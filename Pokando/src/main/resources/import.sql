@@ -41,7 +41,7 @@ insert into endereco (logradouro, cidade_id, numero, cep, bairro, complemento, e
 -- ================================================
 -- TABELA EVENTO
 -- ================================================
-INSERT INTO evento (id, nome, descricao, status, datahora, autorizado, limite_inscricoes) VALUES (1, 'Festa Tech', 'Evento de tecnologia', 'DIVULGADO', '2026-01-10 18:00:00', true, 500),(2, 'Show Rock', 'Festival de rock', 'OCULTO', '2026-03-15 20:00:00', false, 800),(3, 'Startup Meeting', 'Encontro de startups', 'DIVULGADO', '2026-05-01 09:00:00', true, 300);
+INSERT INTO evento (id, nome, descricao, status, datahora,autorizado, limite_inscricoes) VALUES(1, 'Tech Expo 2025', 'Feira de tecnologia e inovação.','DIVULGADO', '2025-06-10 18:00:00', TRUE, 500),(2, 'Festival de Música Sunset', 'Festival de música ao ar livre.','DIVULGADO', '2025-12-01 15:00:00', TRUE, 1500),(3, 'Encontro de Negócios Rio', 'Evento empresarial exclusivo.','OCULTO', '2025-03-20 09:00:00', FALSE, 300);
 
 -- ================================================
 -- TABELA CATEGORIA_INGRESSO
@@ -73,39 +73,38 @@ insert into user_acesso (nome) values ('Proprietário');
 INSERT INTO ingresso (id, quantidade, status, presenca, data_pedido, data_pagamento, gratuito, categoria_ingresso_id, pagamento_id) VALUES(1, 1, true, false, '2026-01-01', '2026-01-02', false, 1, 1),(2, 2, true, false, '2026-01-05', '2026-01-06', false, 2, 2),(3, 1, true, false, '2026-02-01', '2026-02-01', false, 3, 3);
 
 -- ================================================
--- TABELA CLIENTE (HERANÇA: SINGLE_TABLE)
+-- TABELA CLIENTE
 -- ================================================
 
--- 🔹 CLIENTES (tipo_usuario = CLIENTE)
-INSERT INTO cliente (nome, nickname, email, senha, data_nascimento, foto, tipo_usuario) VALUES ('João Silva', 'joao.s', 'joao@email.com', '123', '1995-02-10', 'p1.png','CLIENTE'),('Maria Souza', 'maria.s', 'maria@email.com', '123', '1998-06-15', 'p2.png','CLIENTE'),('Pedro Lima', 'pedro.l', 'pedro@email.com', '123', '1993-11-22', 'p3.png','CLIENTE');
-
--- 🔸 ORGANIZADORES (tipo_usuario = ORGANIZADOR)
-INSERT INTO cliente (nome, nickname, email, senha, data_nascimento, foto, cpf, cnpj, rg, tipo_usuario) VALUES ('Ana Ramos', 'ana.event', 'ana@email.com', '123', '1990-01-01', 'o1.png','12345678901','12345678000199','MG112233','ORGANIZADOR'),('Carlos Mendes', 'carlos.m', 'carlos@email.com', '123', '1988-05-22', 'o2.png','98765432100','98765432000177','SP445566','ORGANIZADOR'),( 'Fernanda Torres', 'fernanda.t', 'fernanda@email.com', '123', '1992-04-02', 'o3.png','55566677788','55443322000155','RJ889900','ORGANIZADOR');
-
--- 🔸 PROPRIETARIOS (tipo_usuario = PROPRIETARIO)
-insert into cliente (nome, nickname, email, senha, data_nascimento, foto, cpf, cnpj, rg, tipo_usuario) values ('Mariana Souza', 'mariana.pro', 'mariana@email.com', 'proprietaria1', '1989-09-25', 'mariana.png', '32165498700', '32165498000177', 'SP321654', 'PROPRIETARIO');
-
-insert into cliente (nome, nickname, email, senha, data_nascimento, foto, cpf, cnpj, rg, tipo_usuario) values ('Ricardo Alves', 'ricardo.alves', 'ricardo.alves@email.com', 'ricardopro', '1990-12-11', 'ricardo.jpg', '65498732100', '65498732000133', 'RJ654987', 'PROPRIETARIO');
-
-insert into cliente (nome, nickname, email, senha, data_nascimento, foto, cpf, cnpj, rg, tipo_usuario) values ('Fernanda Costa', 'fernanda.eventos', 'fernanda@email.com', 'proeventos', '1983-02-20', 'fernanda.jpeg', '78912345600', '78912345000144', 'MG789123', 'PROPRIETARIO');
+INSERT INTO cliente (id, nome, nickname, cpf, cnpj, email, senha,data_nascimento, foto) VALUES (1, 'Felipe Andrade', 'felipe_dev', '12345678901', NULL,'felipe@gmail.com', '123456', '1998-05-22', 'foto1.png'),(2, 'Marina Costa', 'marina_c', '98765432100', NULL,'marina@gmail.com', 'senhaMarina', '1995-09-10', 'foto2.png'),(3, 'Eventos Rio LTDA', 'eventos_rio', '12312312341', '11222333000155','contato@eventosrio.com', 'admin123', '2010-01-01', 'foto_empresa.png');
 
 -- ================================================
 -- TABELA CLIENTE_USERACESSO (TABELA INTERMEDIÁRIA MANY-TO-MANY)
 -- ================================================
-INSERT INTO cliente_user_acesso VALUES (1,1),(2,1),(3,1),(4,2),(5,2),(6,3),(6,2);
+INSERT INTO cliente_user_acesso VALUES (1,1),(2,1),(3,1),(2,2),(3,2);
 
--- ================================================
--- TABELA CLIENTE_EVENTO
--- ================================================
-insert into cliente_evento (cliente_id, evento_id) values (1, 1);
-insert into cliente_evento (cliente_id, evento_id) values (1, 2);
-insert into cliente_evento (cliente_id, evento_id) values (2, 3);
-insert into cliente_evento (cliente_id, evento_id) values (3, 1);
+------------------------------------------------------------
+-- RELACIONAMENTOS EVENTO ↔ CLIENTE
+-- ACESSO COMO CLIENTE (ManyToMany)
+------------------------------------------------------------
 
--- ================================================
--- TABELA ORGANIZADOR_EVENTO
--- ================================================
-INSERT INTO organizador_evento VALUES (1,1),(2,2),(3,3),(1,2);
+-- Cliente 1 tem acesso ao Evento 1 e 2
+INSERT INTO cliente_acesso_cliente_evento (cliente_id, evento_id) VALUES (1, 1);
+INSERT INTO cliente_acesso_cliente_evento (cliente_id, evento_id) VALUES (1, 2);
+
+-- Cliente 2 tem acesso ao Evento 2
+INSERT INTO cliente_acesso_cliente_evento (cliente_id, evento_id) VALUES (2, 2);
+
+------------------------------------------------------------
+-- RELACIONAMENTOS ORGANIZADOR ↔ EVENTO
+------------------------------------------------------------
+
+-- Cliente 2 é organizador dos eventos 1 e 3
+INSERT INTO cliente_acesso_organizador_evento (cliente_id, evento_id) VALUES (2, 1);
+INSERT INTO cliente_acesso_organizador_evento (cliente_id, evento_id) VALUES (2, 3);
+
+-- Cliente 3 organiza o Evento 2
+INSERT INTO cliente_acesso_organizador_evento (cliente_id, evento_id) VALUES (3, 2);
 
 -- ================================================
 -- TABELA EVENTO_INGRESSO
@@ -119,8 +118,7 @@ insert into telefone (numero, cliente_id) values ('(31) 98877-6655', 1);
 insert into telefone (numero, cliente_id) values ('(31) 99745-3322', 1);
 insert into telefone (numero, cliente_id) values ('(21) 97654-1122', 2);
 insert into telefone (numero, cliente_id) values ('(11) 91234-5566', 3);
-insert into telefone (numero, cliente_id) values ('(11) 98888-7777', 4);
-insert into telefone (numero, cliente_id) values ('(21) 95555-6666', 5);
+
 
 
 

@@ -10,11 +10,16 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class ClienteResponse extends DefaultResponse{
 
     private String nome;
 
     private String nickname;
+
+    private String cpf;
+
+    private String cnpj;
 
     private String email;
 
@@ -26,20 +31,13 @@ public class ClienteResponse extends DefaultResponse{
 
     private String foto;
 
-    private List<Long> eventoId;
+    private List<Long> eventoClienteId;
+
+    private List<Long> eventoOrganizadorId;
 
     public ClienteResponse(Long id) {
         super(id);
     }
 
-    public ClienteResponse(String nome, List<Long> eventoId, String foto, Date dataNascimento, List<UserAcessoResponse> userAcessoResponse, String senha, String email, String nickname) {
-        this.nome = nome;
-        this.eventoId = eventoId;
-        this.foto = foto;
-        this.dataNascimento = dataNascimento;
-        this.userAcessoResponse = userAcessoResponse;
-        this.senha = senha;
-        this.email = email;
-        this.nickname = nickname;
-    }
+
 }
