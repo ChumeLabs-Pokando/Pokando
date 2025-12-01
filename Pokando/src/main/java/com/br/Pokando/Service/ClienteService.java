@@ -6,6 +6,7 @@ package com.br.Pokando.Service;
 
 import com.br.Pokando.Mapper.ClienteMapper;
 import com.br.Pokando.dto.ClienteRequest;
+import com.br.Pokando.dto.ClienteRequestUpdate;
 import com.br.Pokando.dto.ClienteResponse;
 
 import com.br.Pokando.model.Cliente;
@@ -19,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author 05029689150
  */
 @Service
-public class ClienteService extends ServiceAdapter<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequest> {
+public class ClienteService extends ServiceAdapter<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequestUpdate> {
 
     private final UserAcessoRepository userAcessoRepository;
 

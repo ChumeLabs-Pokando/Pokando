@@ -7,6 +7,7 @@ package com.br.Pokando.controller;
 import com.br.Pokando.Mapper.IMapper;
 import com.br.Pokando.Service.IService;
 import com.br.Pokando.dto.ClienteRequest;
+import com.br.Pokando.dto.ClienteRequestUpdate;
 import com.br.Pokando.dto.ClienteResponse;
 
 import com.br.Pokando.model.Cliente;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController 
- extends CRUDDefaultControllerAdapter<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequest> {
+ extends CRUDDefaultControllerAdapter<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequestUpdate> {
 
     public ClienteController(IService<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequest> service, IMapper<Cliente, ClienteResponse, ClienteRequest, ClienteRequest> mapper) {
         super(service, mapper);

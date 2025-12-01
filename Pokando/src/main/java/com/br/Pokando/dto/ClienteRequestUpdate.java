@@ -14,34 +14,34 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClienteRequest extends DefaultRequest{
+public class ClienteRequestUpdate extends DefaultRequest{
 
-    @NotNull(message = "O campo Nome deve ser informado!")
+
     private String nome;
-    @NotNull(message = "O campo Nickname deve ser informado!")
+
     private String nickname;
-    @NotBlank
+
     @Size(max = 255)
     private String cpf;
-    @NotBlank
+
     @Size(max = 255)
     private String cnpj;
-    @NotNull(message = "O campo email deve ser informado!")
+
     private String email;
-    @NotNull(message = "O campo senha deve ser informado!")
+
     private String senha;
 
     private List<Long> userAcessosIds;
-    @NotNull(message = "O campo dataNascimento deve ser informado!")
+
     private Date dataNascimento;
-    @NotNull(message = "O campo foto deve ser informado!")
+
     private String foto;
 
     private List<Long> eventoClienteId;
 
     private List<Long> eventoOrganizadorId;
 
-    public ClienteRequest(Long id) {
+    public ClienteRequestUpdate(Long id) {
         super(id);
 
     }
