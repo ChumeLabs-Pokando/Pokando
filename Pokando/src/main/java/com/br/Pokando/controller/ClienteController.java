@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClienteController 
  extends CRUDDefaultControllerAdapter<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequestUpdate> {
 
-    public ClienteController(IService<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequest> service, IMapper<Cliente, ClienteResponse, ClienteRequest, ClienteRequest> mapper) {
+    public ClienteController(IService<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequestUpdate> service, IMapper<Cliente, ClienteResponse, ClienteRequest, ClienteRequestUpdate> mapper) {
         super(service, mapper);
     }
 }
