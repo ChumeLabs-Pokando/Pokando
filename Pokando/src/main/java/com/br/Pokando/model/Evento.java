@@ -27,9 +27,9 @@ public class Evento {
     @Column(name = "datahora", nullable = false)
     private Date dataHora;
     @Column(name = "autorizado", nullable = false)
-    private boolean autorizado;
+    private Boolean autorizado;
     @Column(name = "limite_inscricoes", nullable = false)
-    private double limiteInscricoes;
+    private Double limiteInscricoes;
     @ManyToMany(mappedBy = "acessoClienteEvento")
     private List<Cliente> cliente = new ArrayList<>();
     @ManyToMany(mappedBy = "acessoOrganizadorEvento")

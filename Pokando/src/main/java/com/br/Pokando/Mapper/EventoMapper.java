@@ -19,13 +19,16 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
     private final ClienteMapper clienteMapper;
 
     private final IngressoMapper ingressoMapper;
+    private final ClienteRepository clienteRepository;
+    private final IngressoRepository ingressoRepository;
 
-
-    public EventoMapper(ClienteMapper clienteMapper, IngressoMapper ingressoMapper) {
+    public EventoMapper(ClienteMapper clienteMapper, IngressoMapper ingressoMapper, ClienteRepository clienteRepository, IngressoRepository ingressoRepository) {
         this.clienteMapper = clienteMapper;
 
         this.ingressoMapper = ingressoMapper;
 
+        this.clienteRepository = clienteRepository;
+        this.ingressoRepository = ingressoRepository;
     }
 
 
@@ -38,7 +41,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
                 .nome(event.getNome())
                 .descricao(event.getDescricao())
                 .dataHora(event.getDataHora())
-                .autorizado(event.isAutorizado())
+                .autorizado(event.getAutorizado())
                 .limiteInscricoes(event.getLimiteInscricoes())
                 .statusEvento(event.getStatusEvento())
 
@@ -62,7 +65,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
         entity.setDescricao(dto.getDescricao());
         entity.setStatusEvento(dto.getStatus());
         entity.setDataHora(dto.getDataHora());
-        entity.setAutorizado(dto.isAutorizado());
+        entity.setAutorizado(dto.getAutorizado());
         entity.setLimiteInscricoes(dto.getLimiteInscricoes());
 
         if (dto.getClienteId() != null && !dto.getClienteId().isEmpty()) {
@@ -106,21 +109,83 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
         entity.setDescricao(dto.getDescricao());
         entity.setStatusEvento(dto.getStatus());
         entity.setDataHora(dto.getDataHora());
-        entity.setAutorizado(dto.isAutorizado());
+        entity.setAutorizado(dto.getAutorizado());
         entity.setLimiteInscricoes(dto.getLimiteInscricoes());
         return entity;
     }
 
     @Override
     public Evento update(EventoRequestUpdate request, Evento entity) {
-        entity.setNome(request.getNome());
-        entity.setDescricao(request.getDescricao());
-        entity.setStatusEvento(request.getStatus());
-        entity.setDataHora(request.getDataHora());
-        entity.setAutorizado(request.isAutorizado());
-        entity.setLimiteInscricoes(request.getLimiteInscricoes());
+
+        if (request.getNome() != null)
+            entity.setNome(request.getNome());
+
+        if (request.getDescricao() != null)
+            entity.setDescricao(request.getDescricao());
+
+        if (request.getStatus() != null)
+            entity.setStatusEvento(request.getStatus());
+
+        if (request.getDataHora() != null)
+            entity.setDataHora(request.getDataHora());
+
+        if (request.getAutorizado() != null)
+            entity.setAutorizado(request.getAutorizado());
+
+        if (request.getLimiteInscricoes() != null)
+            entity.setLimiteInscricoes(request.getLimiteInscricoes());
+
+        // ======== CLIENTES ========
+        if (request.getClienteId() != null) {
+            if (request.getClienteId().isEmpty()) {
+                entity.setCliente(null);
+            } else {
+                List<Cliente> clientes = request.getClienteId().stream()
+                        .filter(Objects::nonNull)
+                        .distinct()
+                        .map(id -> clienteRepository.findById(id)
+                                .orElseThrow(() -> new RuntimeException("Cliente não encontrado com ID " + id)))
+                        .collect(Collectors.toList());
+
+                entity.setCliente(clientes);
+            }
+        }
+
+        // ======== ORGANIZADORES ========
+        if (request.getOrganizadorId() != null) {
+            if (request.getOrganizadorId().isEmpty()) {
+                entity.setOrganizador(null);
+            } else {
+                List<Cliente> organizadores = request.getOrganizadorId().stream()
+                        .filter(Objects::nonNull)
+                        .distinct()
+                        .map(id -> clienteRepository.findById(id)
+                                .orElseThrow(() -> new RuntimeException("Organizador não encontrado com ID " + id)))
+                        .collect(Collectors.toList());
+
+                entity.setOrganizador(organizadores);
+            }
+        }
+
+        // ======== INGRESSOS ========
+        if (request.getIngressoId() != null) {
+            if (request.getIngressoId().isEmpty()) {
+                entity.setIngresso(null);
+            } else {
+                List<Ingresso> ingressos = request.getIngressoId().stream()
+                        .filter(Objects::nonNull)
+                        .distinct()
+                        .map(id -> ingressoRepository.findById(id)
+                                .orElseThrow(() -> new RuntimeException("Ingresso não encontrado com ID " + id)))
+                        .collect(Collectors.toList());
+
+                entity.setIngresso(ingressos);
+            }
+        }
+
         return entity;
     }
+
 
 
 

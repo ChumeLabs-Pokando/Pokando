@@ -24,9 +24,9 @@ public class EventoRequest extends DefaultRequest{
     @NotNull(message = "O campo Data deve ser informado!")
     private Date dataHora;
     @NotNull(message = "O campo autorizado deve ser informado!")
-    private boolean autorizado;
+    private Boolean autorizado;
     @NotNull(message = "O campo do limite de inscrições deve ser informado!")
-    private double limiteInscricoes;
+    private Double limiteInscricoes;
 
     private List<Long> clienteId;
 
