@@ -30,6 +30,8 @@ public class Evento {
     private Boolean autorizado;
     @Column(name = "limite_inscricoes", nullable = false)
     private Double limiteInscricoes;
+    @Column(name = "local", nullable = false)
+    private String local;
     @ManyToMany(mappedBy = "acessoClienteEvento")
     private List<Cliente> cliente = new ArrayList<>();
     @ManyToMany(mappedBy = "acessoOrganizadorEvento")

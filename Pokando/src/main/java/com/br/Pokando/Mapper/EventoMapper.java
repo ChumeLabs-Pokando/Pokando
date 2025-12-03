@@ -43,6 +43,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
                 .dataHora(event.getDataHora())
                 .autorizado(event.getAutorizado())
                 .limiteInscricoes(event.getLimiteInscricoes())
+                .local(event.getLocal())
                 .statusEvento(event.getStatusEvento())
 
                 .clienteIds(event.getCliente() != null
@@ -67,6 +68,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
         entity.setDataHora(dto.getDataHora());
         entity.setAutorizado(dto.getAutorizado());
         entity.setLimiteInscricoes(dto.getLimiteInscricoes());
+        entity.setLocal(dto.getLocal());
 
         if (dto.getClienteId() != null && !dto.getClienteId().isEmpty()) {
             List<Cliente> clientes = dto.getClienteId().stream()
@@ -111,6 +113,8 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
         entity.setDataHora(dto.getDataHora());
         entity.setAutorizado(dto.getAutorizado());
         entity.setLimiteInscricoes(dto.getLimiteInscricoes());
+        entity.setLocal(dto.getLocal());
+
         return entity;
     }
 
@@ -135,7 +139,10 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
         if (request.getLimiteInscricoes() != null)
             entity.setLimiteInscricoes(request.getLimiteInscricoes());
 
-        // ======== CLIENTES ========
+        if (request.getLocal() != null)
+            entity.setLocal(request.getLocal());
+
+
         if (request.getClienteId() != null) {
             if (request.getClienteId().isEmpty()) {
                 entity.setCliente(null);
@@ -151,7 +158,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
             }
         }
 
-        // ======== ORGANIZADORES ========
+
         if (request.getOrganizadorId() != null) {
             if (request.getOrganizadorId().isEmpty()) {
                 entity.setOrganizador(null);
@@ -167,7 +174,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
             }
         }
 
-        // ======== INGRESSOS ========
+
         if (request.getIngressoId() != null) {
             if (request.getIngressoId().isEmpty()) {
                 entity.setIngresso(null);

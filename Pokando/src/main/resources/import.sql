@@ -41,7 +41,7 @@ insert into endereco (logradouro, cidade_id, numero, cep, bairro, complemento, e
 -- ================================================
 -- TABELA EVENTO
 -- ================================================
-INSERT INTO evento (id, nome, descricao, status, datahora,autorizado, limite_inscricoes) VALUES(1, 'Tech Expo 2025', 'Feira de tecnologia e inovação.','DIVULGADO', '2025-06-10 18:00:00', TRUE, 500),(2, 'Festival de Música Sunset', 'Festival de música ao ar livre.','DIVULGADO', '2025-12-01 15:00:00', TRUE, 1500),(3, 'Encontro de Negócios Rio', 'Evento empresarial exclusivo.','OCULTO', '2025-03-20 09:00:00', FALSE, 300);
+INSERT INTO evento (id, nome, descricao, status, datahora,autorizado, limite_inscricoes, local) VALUES(1, 'Tech Expo 2025', 'Feira de tecnologia e inovação.','DIVULGADO', '2025-06-10 18:00:00', TRUE, 500, 'Rua primavera 143 Jardim Primavera Itaquiraí-MS'),(2, 'Festival de Música Sunset', 'Festival de música ao ar livre.','DIVULGADO', '2025-12-01 15:00:00', TRUE, 1500, 'Avenida Salvador Dali 134A Centro São Paulo-SP'),(3, 'Encontro de Negócios Rio', 'Evento empresarial exclusivo.','OCULTO', '2025-03-20 09:00:00', FALSE, 300, 'Avenida Amélia Fukuda 1435 Centro Naviraí-MS');
 
 -- ================================================
 -- TABELA CATEGORIA_INGRESSO

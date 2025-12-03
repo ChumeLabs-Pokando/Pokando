@@ -42,6 +42,7 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
         dto.setDataNascimento(entity.getDataNascimento());
         dto.setFoto(entity.getFoto());
 
+
         if (entity.getUserAcesso() != null && !entity.getUserAcesso().isEmpty()) {
             dto.setUserAcessoResponse(
                     entity.getUserAcesso().stream()
@@ -49,21 +50,25 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
                             .collect(Collectors.toList())
             );
         }
-        if (dto.getEventoClienteId() != null && !dto.getEventoClienteId().isEmpty()) {
-            List<Evento> eventos = dto.getEventoClienteId().stream()
-                    .map(id -> eventoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Evento vinculado a um cliente não encontrado com ID " + id)))
-                    .collect(Collectors.toList());
-            entity.setAcessoClienteEvento(eventos);
-        }
-        if (dto.getEventoOrganizadorId() != null && !dto.getEventoOrganizadorId().isEmpty()) {
-            List<Evento> eventos = dto.getEventoOrganizadorId().stream()
-                    .map(id -> eventoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Evento vinculado a um organizador não encontrado com ID " + id)))
-                    .collect(Collectors.toList());
-            entity.setAcessoOrganizadorEvento(eventos);
+
+
+        if (entity.getAcessoClienteEvento() != null && !entity.getAcessoClienteEvento().isEmpty()) {
+            dto.setEventoClienteId(
+                    entity.getAcessoClienteEvento()
+                            .stream()
+                            .map(Evento::getId)
+                            .collect(Collectors.toList())
+            );
         }
 
+        if (entity.getAcessoOrganizadorEvento() != null && !entity.getAcessoOrganizadorEvento().isEmpty()) {
+            dto.setEventoOrganizadorId(
+                    entity.getAcessoOrganizadorEvento()
+                            .stream()
+                            .map(Evento::getId)
+                            .collect(Collectors.toList())
+            );
+        }
 
         return dto;
     }

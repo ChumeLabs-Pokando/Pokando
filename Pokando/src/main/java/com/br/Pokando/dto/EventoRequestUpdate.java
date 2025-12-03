@@ -24,6 +24,8 @@ public class EventoRequestUpdate extends DefaultRequest{
     private Boolean autorizado;
 
     private Double limiteInscricoes;
+    @OptionalNotBlank
+    private String local;
 
     private List<Long> clienteId;
 

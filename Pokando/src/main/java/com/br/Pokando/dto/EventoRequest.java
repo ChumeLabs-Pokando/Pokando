@@ -27,6 +27,8 @@ public class EventoRequest extends DefaultRequest{
     private Boolean autorizado;
     @NotNull(message = "O campo do limite de inscrições deve ser informado!")
     private Double limiteInscricoes;
+    @NotNull(message = "O local deve ser informado!")
+    private String local;
 
     private List<Long> clienteId;
 
