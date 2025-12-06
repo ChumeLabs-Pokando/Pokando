@@ -24,6 +24,8 @@ public class EventoResponse extends DefaultResponse{
 
     private double limiteInscricoes;
 
+    private String local;
+
     private StatusEvento statusEvento;
 
     private List<Long> clienteIds;
@@ -35,12 +37,13 @@ public class EventoResponse extends DefaultResponse{
         super(id);
     }
 
-    public EventoResponse(String nome, String descricao, Date dataHora, boolean autorizado, double limiteInscricoes, StatusEvento statusEvento, List<Long> clienteIds, List<Long> organizadorIds, List<Long> ingressoIds) {
+    public EventoResponse(String nome, String descricao, Date dataHora, boolean autorizado, double limiteInscricoes, String local, StatusEvento statusEvento, List<Long> clienteIds, List<Long> organizadorIds, List<Long> ingressoIds) {
         this.nome = nome;
         this.descricao = descricao;
         this.dataHora = dataHora;
         this.autorizado = autorizado;
         this.limiteInscricoes = limiteInscricoes;
+        this.local = local;
         this.statusEvento = statusEvento;
         this.clienteIds = clienteIds;
         this.organizadorIds = organizadorIds;
