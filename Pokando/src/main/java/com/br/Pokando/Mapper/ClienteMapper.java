@@ -1,7 +1,6 @@
 package com.br.Pokando.Mapper;
 
 import com.br.Pokando.dto.ClienteRequest;
-import com.br.Pokando.dto.ClienteRequestUpdate;
 import com.br.Pokando.dto.ClienteResponse;
 import com.br.Pokando.model.UserAcesso;
 import com.br.Pokando.model.Evento;
@@ -15,7 +14,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteRequest, ClienteRequestUpdate> {
+public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteRequest, ClienteRequest> {
 
     private final UserAcessoMapper userAcessoMapper;
     private final UserAcessoRepository userAcessoRepository;
@@ -148,46 +147,42 @@ public class ClienteMapper implements IMapper<Cliente, ClienteResponse, ClienteR
         return entity;
     }
 
-    public Cliente update(ClienteRequestUpdate request, Cliente entity) {
-        if (request.getNome() != null) entity.setNome(request.getNome());
-        if (request.getNickname() != null) entity.setNickname(request.getNickname());
-        if (request.getCpf() != null) entity.setCpf(request.getCpf());
-        if (request.getCnpj() != null) entity.setCnpj(request.getCnpj());
-        if (request.getEmail() != null) entity.setEmail(request.getEmail());
-        if (request.getSenha() != null) entity.setSenha(request.getSenha());
-        if (request.getDataNascimento() != null) entity.setDataNascimento(request.getDataNascimento());
-        if (request.getFoto() != null) entity.setFoto(request.getFoto());
+    @Override
+    public Cliente update(ClienteRequest request, Cliente entity) {
+        entity.setNome(request.getNome());
+        entity.setNickname(request.getNickname());
+        entity.setCpf(request.getCpf());
+        entity.setCnpj(request.getCnpj());
+        entity.setEmail(request.getEmail());
+        entity.setSenha(request.getSenha());
+        entity.setDataNascimento(request.getDataNascimento());
+        entity.setFoto(request.getFoto());
 
-        if (request.getUserAcessosIds() != null) {
+        if (request.getUserAcessosIds() != null && !request.getUserAcessosIds().isEmpty()) {
             List<UserAcesso> acessos = request.getUserAcessosIds().stream()
                     .map(id -> userAcessoRepository.findById(id)
                             .orElseThrow(() -> new RuntimeException("Acesso não encontrado com ID " + id)))
                     .collect(Collectors.toList());
-
             entity.setUserAcesso(acessos);
         }
-
-        if (request.getEventoClienteId() != null) {
+        if (request.getEventoClienteId() != null && !request.getEventoClienteId().isEmpty()) {
             List<Evento> eventos = request.getEventoClienteId().stream()
                     .map(id -> eventoRepository.findById(id)
                             .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
                     .collect(Collectors.toList());
-
             entity.setAcessoClienteEvento(eventos);
         }
-
-        if (request.getEventoOrganizadorId() != null) {
+        if (request.getEventoOrganizadorId() != null && !request.getEventoOrganizadorId().isEmpty()) {
             List<Evento> eventos = request.getEventoOrganizadorId().stream()
                     .map(id -> eventoRepository.findById(id)
                             .orElseThrow(() -> new RuntimeException("Evento não encontrado com ID " + id)))
                     .collect(Collectors.toList());
-
             entity.setAcessoOrganizadorEvento(eventos);
         }
 
+
         return entity;
     }
-
 
     public List<ClienteResponse> toListDto(List<Cliente> items) {
         return items.stream().map(this::toDto).collect(Collectors.toList());

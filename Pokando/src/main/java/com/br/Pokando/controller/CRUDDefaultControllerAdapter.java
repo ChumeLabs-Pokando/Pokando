@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -80,7 +79,7 @@ public abstract class CRUDDefaultControllerAdapter<
     @Override
     public ResponseEntity<ApiDataResponse<DTO_RESPONSE>> update(
             @PathVariable("id") K id,
-            @Valid @RequestBody DTO_UPDATE_REQUEST request
+            @RequestBody DTO_UPDATE_REQUEST request
     ) {
         var updatedEntity = service.update(id, request);
         var response = mapper.toDto(updatedEntity);

@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author 05029689150
  */
 @Service
-public class ClienteService extends ServiceAdapter<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequestUpdate> {
+public class ClienteService extends ServiceAdapter<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequest> {
 
     private final UserAcessoRepository userAcessoRepository;
 

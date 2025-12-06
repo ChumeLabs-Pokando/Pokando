@@ -1,7 +1,7 @@
 package com.br.Pokando.Mapper;
 
+import com.br.Pokando.dto.EventoDetalhadoResponse;
 import com.br.Pokando.dto.EventoRequest;
-import com.br.Pokando.dto.EventoRequestUpdate;
 import com.br.Pokando.dto.EventoResponse;
 import com.br.Pokando.model.*;
 import com.br.Pokando.model.Cliente;
@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class EventoMapper implements IMapper<Evento, EventoResponse, EventoRequest, EventoRequestUpdate> {
+public class EventoMapper implements IMapper<Evento, EventoResponse, EventoRequest, EventoRequest> {
 
     private final ClienteMapper clienteMapper;
 
@@ -112,7 +112,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
     }
 
     @Override
-    public Evento update(EventoRequestUpdate request, Evento entity) {
+    public Evento update(EventoRequest request, Evento entity) {
         entity.setNome(request.getNome());
         entity.setDescricao(request.getDescricao());
         entity.setStatusEvento(request.getStatus());

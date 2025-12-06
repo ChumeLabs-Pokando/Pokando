@@ -2,7 +2,6 @@ package com.br.Pokando.Service;
 
 import com.br.Pokando.Mapper.EventoMapper;
 import com.br.Pokando.dto.EventoRequest;
-import com.br.Pokando.dto.EventoRequestUpdate;
 import com.br.Pokando.dto.EventoResponse;
 import com.br.Pokando.model.Evento;
 import com.br.Pokando.repository.*;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class EventoService extends ServiceAdapter<Evento, Long, EventoResponse, EventoRequest, EventoRequestUpdate> {
+public class EventoService extends ServiceAdapter<Evento, Long, EventoResponse, EventoRequest, EventoRequest> {
 
     private final ClienteRepository clienteRepository;
     private final IngressoRepository ingressoRepository;
