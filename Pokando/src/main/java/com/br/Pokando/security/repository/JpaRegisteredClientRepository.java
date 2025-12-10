@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  *
  * @author 1513003
  */
-@Repository
+// @Repository
 public interface JpaRegisteredClientRepository extends JpaRepository<RegisteredClientEntity, String> {
 
     // Método de busca usado pelo SocialProviderService

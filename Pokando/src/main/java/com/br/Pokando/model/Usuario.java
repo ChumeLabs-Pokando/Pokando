@@ -3,6 +3,8 @@ package com.br.Pokando.model;
 
 import com.br.Pokando.security.enumeration.SocialAuthProvider;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -41,6 +43,8 @@ public class Usuario implements UserDetails {
     @ToString.Include
     @Id
     private String login;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // <--- O Segredo!
     private String senha;
     private boolean bloqueado;
     
@@ -101,11 +105,11 @@ public class Usuario implements UserDetails {
         return this.login;
     }
 
+    @JsonIgnore // <--- Ignora o getter da interface UserDetails também
     @Override
     public String getPassword() {
         return this.senha;
     }
-
    @Override
 public boolean isEnabled() {
     return !this.bloqueado; // Habilitado se NÃO estiver bloqueado

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Prof
  */
-@Service
+// @Service
 @RequiredArgsConstructor
 public class ClientRegistrationRepositoryImplementation implements ClientRegistrationRepository {
 
