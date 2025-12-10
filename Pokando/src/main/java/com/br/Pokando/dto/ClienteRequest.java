@@ -31,8 +31,6 @@ public class ClienteRequest extends DefaultRequest{
     @NotNull(message = "O campo senha deve ser informado!")
     private String senha;
 
-    private List<Long> userAcessosIds;
-    @NotNull(message = "O campo dataNascimento deve ser informado!")
     private Date dataNascimento;
     @NotNull(message = "O campo foto deve ser informado!")
     private String foto;

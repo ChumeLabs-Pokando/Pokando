@@ -59,12 +59,6 @@ insert into pagamento (nome_completo, cpf, email, nome_cartao, numero_cartao, va
 
 insert into pagamento (nome_completo, cpf, email, nome_cartao, numero_cartao, validade_cartao) values ('Carlos Pereira', '45678912300', null, 'Carlos Pereira', '340000000000009', '2028-02-28');
 
--- ================================================
--- TABELA USERACESSO
--- ================================================
-insert into user_acesso (nome) values ('Cliente');
-insert into user_acesso (nome) values ('Organizador');
-insert into user_acesso (nome) values ('Proprietário');
 
 -- ================================================
 -- TABELA INGRESSO
@@ -78,10 +72,6 @@ INSERT INTO ingresso (id, quantidade, status, presenca, data_pedido, data_pagame
 
 INSERT INTO cliente (id, nome, nickname, cpf, cnpj, email, senha,data_nascimento, foto) VALUES (1, 'Felipe Andrade', 'felipe_dev', '12345678901', NULL,'felipe@gmail.com', '123456', '1998-05-22', 'foto1.png'),(2, 'Marina Costa', 'marina_c', '98765432100', NULL,'marina@gmail.com', 'senhaMarina', '1995-09-10', 'foto2.png'),(3, 'Eventos Rio LTDA', 'eventos_rio', '12312312341', '11222333000155','contato@eventosrio.com', 'admin123', '2010-01-01', 'foto_empresa.png');
 
--- ================================================
--- TABELA CLIENTE_USERACESSO (TABELA INTERMEDIÁRIA MANY-TO-MANY)
--- ================================================
-INSERT INTO cliente_user_acesso VALUES (1,1),(2,1),(3,1),(2,2),(3,2);
 
 ------------------------------------------------------------
 -- RELACIONAMENTOS EVENTO ↔ CLIENTE

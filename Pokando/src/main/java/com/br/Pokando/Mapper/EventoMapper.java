@@ -2,6 +2,7 @@ package com.br.Pokando.Mapper;
 
 import com.br.Pokando.dto.EventoDetalhadoResponse;
 import com.br.Pokando.dto.EventoRequest;
+import com.br.Pokando.dto.EventoRequestUpdate;
 import com.br.Pokando.dto.EventoResponse;
 import com.br.Pokando.model.*;
 import com.br.Pokando.model.Cliente;
@@ -14,7 +15,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class EventoMapper implements IMapper<Evento, EventoResponse, EventoRequest, EventoRequest> {
+public class EventoMapper implements IMapper<Evento, EventoResponse, EventoRequest, EventoRequestUpdate> {
 
     private final ClienteMapper clienteMapper;
 
@@ -119,15 +120,6 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
     }
 
     @Override
-<<<<<<< HEAD
-    public Evento update(EventoRequest request, Evento entity) {
-        entity.setNome(request.getNome());
-        entity.setDescricao(request.getDescricao());
-        entity.setStatusEvento(request.getStatus());
-        entity.setDataHora(request.getDataHora());
-        entity.setAutorizado(request.isAutorizado());
-        entity.setLimiteInscricoes(request.getLimiteInscricoes());
-=======
     public Evento update(EventoRequestUpdate request, Evento entity) {
 
         if (request.getNome() != null)
@@ -199,7 +191,7 @@ public class EventoMapper implements IMapper<Evento, EventoResponse, EventoReque
             }
         }
 
->>>>>>> 211da5c12b015a4a9553d1a5f02ad45943d4b0dc
+
         return entity;
     }
 

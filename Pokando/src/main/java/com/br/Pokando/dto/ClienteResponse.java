@@ -25,8 +25,6 @@ public class ClienteResponse extends DefaultResponse{
 
     private String senha;
 
-    private List<UserAcessoResponse> userAcessoResponse;
-
     private Date dataNascimento;
 
     private String foto;

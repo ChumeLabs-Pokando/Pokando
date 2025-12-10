@@ -31,7 +31,6 @@ public class ClienteRequestUpdate extends DefaultRequest{
 
     private String senha;
 
-    private List<Long> userAcessosIds;
 
     private Date dataNascimento;
 

@@ -11,6 +11,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 //import java.util.List;
@@ -48,15 +49,6 @@ public class Cliente {
     @Column(nullable = false)  
     private String senha;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "cliente_user_acesso",
-            joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_acesso_id")
-    )
-    private List<UserAcesso> userAcesso = new ArrayList<>();
-
-
     @Column(name = "data_nascimento",nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
@@ -82,14 +74,14 @@ public class Cliente {
         this.id = id;
     }
     public Cliente(Long id, String nome, String nickname, String email,
-                   String senha, List<UserAcesso> userAcesso,
+                   String senha,
                    Date dataNascimento, String foto) {
         this.id = id;
         this.nome = nome;
         this.nickname = nickname;
         this.email = email;
         this.senha = senha;
-        this.userAcesso = userAcesso;
+
         this.dataNascimento = dataNascimento;
         this.foto = foto;
     }

@@ -3,7 +3,7 @@ package com.br.Pokando.controller;
 
 import com.br.Pokando.Mapper.IMapper;
 import com.br.Pokando.Service.IService;
-import com.br.Pokando.Service.OrganizadorService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

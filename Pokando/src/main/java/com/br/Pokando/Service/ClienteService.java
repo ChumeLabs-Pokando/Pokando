@@ -11,7 +11,7 @@ import com.br.Pokando.dto.ClienteResponse;
 
 import com.br.Pokando.model.Cliente;
 import com.br.Pokando.repository.ClienteRepository;
-import com.br.Pokando.repository.UserAcessoRepository;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,19 +22,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ClienteService extends ServiceAdapter<Cliente, Long, ClienteResponse, ClienteRequest, ClienteRequest> {
 
-    private final UserAcessoRepository userAcessoRepository;
 
-
-    public ClienteService(UserAcessoRepository userAcessoRepository, ClienteRepository repository, ClienteMapper mapper) {
+    public ClienteService(ClienteRepository repository, ClienteMapper mapper) {
         super(repository,mapper);
-        this.userAcessoRepository = userAcessoRepository;
+
 
     }
 
     @Override
     @Transactional
     public Cliente create(ClienteRequest request) {
-        var entity = ((ClienteMapper) mapper).toEntity(request, userAcessoRepository);
+        var entity = ((ClienteMapper) mapper).toEntity(request);
         var saved = repository.save(entity);
         return repository.findById(saved.getId())
                 .orElseThrow(() -> new RuntimeException("Erro ao buscar Cliente salvo"));
